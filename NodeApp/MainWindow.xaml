@@ -5,8 +5,152 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:NodeApp"
         mc:Ignorable="d"
-        Title="NodeApp" Height="450" Width="800">
-    <Grid>
-        
-    </Grid>
+        Title="MainWindow" Height="600" Width="900"
+        WindowStyle="None"
+        AllowsTransparency="True"
+        WindowStartupLocation="CenterScreen"
+        MinWidth="{Binding WindowMinimumWidth}"
+        MinHeight="{Binding WindowMinimumHeight}"
+        x:Name="AppWindow">
+
+    <Window.Resources>
+        <Style TargetType="{x:Type local:MainWindow}">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Window}">
+                        <!-- Outer border with the dropshadow margin -->
+                        <Border Padding="{Binding OuterMarginSizeThickness, FallbackValue=10}">
+
+                            <Grid>
+                                <!-- Opacity mask for corners on grid (close button corner vanished when background wasn't transparent)-->
+                                <Border x:Name="Container" CornerRadius="{Binding WindowCornerRadius, FallbackValue=10}"
+                                        Background="{StaticResource BackgroundLightBrush}"/>
+
+
+
+                                <!-- Window Border and dropshadow -->
+                                <Border CornerRadius="{Binding WindowCornerRadius, FallbackValue=10}"
+                                        Background="{StaticResource BackgroundBlueBrush}">
+                                    <Border.Effect>
+                                        <DropShadowEffect ShadowDepth="1" Opacity="0.2"/>
+                                    </Border.Effect>
+                                </Border>
+
+                                <!-- Main window content -->
+                                <Grid>
+
+                                    <!-- Corner clipping -->
+                                    <Grid.OpacityMask>
+                                        <VisualBrush Visual="{Binding ElementName=Container}"/>
+                                    </Grid.OpacityMask>
+
+                                    <Grid.RowDefinitions>
+                                        <!-- Title Bar -->
+                                        <RowDefinition Height="{Binding TitleHeightGridLength, FallbackValue=42}"/>
+                                        <!-- Drop Shadow -->
+                                        <!--
+                                        <RowDefinition Height="Auto"/>-->
+                                        <!-- Window Content -->
+                                        <RowDefinition Height="*"/>
+                                    </Grid.RowDefinitions>
+
+                                    <!-- Title Bar -->
+                                    <Grid Grid.Row="0" Panel.ZIndex="1">
+                                        <Grid.ColumnDefinitions>
+                                            <!-- Icon -->
+                                            <ColumnDefinition Width="Auto"/>
+                                            <!-- Title -->
+                                            <ColumnDefinition Width="*"/>
+                                            <!-- Windows Button -->
+                                            <ColumnDefinition Width="Auto"/>
+                                        </Grid.ColumnDefinitions>
+
+                                        <!-- Icon -->
+                                        <Button Style="{StaticResource SystemIconButton}" Command="{Binding MenuCommand}">
+                                            <Image Source="/Images/Logo/logo-small.png"/>
+                                        </Button>
+
+                                        <!-- Title -->
+                                        <Viewbox Grid.ColumnSpan="3" Margin="0">
+                                            <StackPanel>
+                                                <TextBlock FontSize="{StaticResource FontSizeRegular}" FontFamily="{StaticResource LatoBold}" Margin="0 0 0 -5">
+                                                    <Run Text="NODE" Foreground="{StaticResource ForegroundGreyBrush}"/>
+                                                    <Run Text="APP" Foreground="{StaticResource ForegroundVeryDarkBrush}"/>
+                                                </TextBlock>
+                                                <TextBlock Text="by WWS" Foreground="{StaticResource ForegroundDarkBrush}" HorizontalAlignment="Center">
+
+                                                </TextBlock>
+                                            </StackPanel>
+                                            <!--<TextBlock Style="{StaticResource HeaderText}" Text="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Title, FallbackValue='Title'}"/>-->
+                                        </Viewbox>
+
+                                        <!-- Window Buttons -->
+                                        <StackPanel Orientation="Horizontal" Grid.Column="2">
+                                            <Button Style="{StaticResource WindowControlButton}" Content="_" Command="{Binding MinimizeCommand}"/>
+                                            <Button Style="{StaticResource WindowControlButton}" Content="[]" Command="{Binding MaximizeCommand}"/>
+                                            <Button Style="{StaticResource CloseWindowControlButton}" Content="X" Command="{Binding CloseCommand}"/>
+                                        </StackPanel>
+
+                                    </Grid>
+
+                                    <!-- Drop Shadow -->
+                                    <!--
+                                    <Border Grid.Row="1" Height="6" BorderThickness="0 0.2 0 0">
+                                        -->
+                                    <!-- Underline -->
+                                    <!--
+                                        <Border.BorderBrush>
+                                            <LinearGradientBrush StartPoint="0,0" EndPoint="1,0">
+                                                <GradientStop Color="{StaticResource ForegroundLight}" Offset="0.0"/>
+                                                <GradientStop Color="{StaticResource ForegroundMain}" Offset="0.5"/>
+                                                <GradientStop Color="{StaticResource ForegroundLight}" Offset="1.0"/>
+                                            </LinearGradientBrush>
+                                        </Border.BorderBrush>
+                                        
+                                        -->
+                                    <!-- Drop Shadow -->
+                                    <!--
+                                        <Border.Background>
+                                            <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
+                                                <GradientStop Color="{StaticResource BackgroundVeryLight}" Offset="0.0"/>
+                                                <GradientStop Color="{StaticResource ForegroundLight}" Offset="1.0"/>
+                                            </LinearGradientBrush>
+                                        </Border.Background>
+                                    </Border>-->
+
+
+                                    <!-- Page Content -->
+                                    <Border Grid.Row="1" Padding="{Binding InnerContentPadding}">
+                                        <ContentPresenter Content="{TemplateBinding Content}"/>
+                                    </Border>
+                                </Grid>
+                            </Grid>
+
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </Window.Resources>
+
+    <WindowChrome.WindowChrome>
+        <WindowChrome
+            ResizeBorderThickness="{Binding ResizeBorderThickness}"
+            CaptionHeight="{Binding TitleHeight}"
+            GlassFrameThickness="0"
+            CornerRadius="0"/>
+    </WindowChrome.WindowChrome>
+
+    <Border Background="{StaticResource BackgroundDarkBlueBrush}">
+        <Grid>
+
+            <!-- Blue background image -->
+            <Grid.Background>
+                <ImageBrush TileMode="Tile" ViewportUnits="Absolute" Viewport="0 0 500 500" ImageSource="Images/Backgrounds/NodeApp_Background.png"/>
+            </Grid.Background>
+
+            <Frame x:Name="MainFrame" Content="{Binding CurrentPage, Converter={local:ApplicationPageValueConverter}}" 
+                                 Background="Transparent" />
+        </Grid>
+    </Border>
 </Window>

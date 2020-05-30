@@ -1,0 +1,61 @@
+﻿<local:BasePage x:Class="NodeApp.LoginPage"
+                x:TypeArguments="local:LoginViewModel"
+                xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+                xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+                xmlns:local="clr-namespace:NodeApp"
+                mc:Ignorable="d" 
+                d:DesignHeight="450" d:DesignWidth="800"
+                Title="LoginPage">
+
+    <Border>
+        <Grid>
+
+            <!-- Main content scroll -->
+            <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto">
+                <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center"
+                            TextBlock.TextAlignment="Center">
+
+                    <!-- Login main content box -->
+                    <Border Background="{StaticResource ForegroundVeryLightBlueBrush}"
+                            CornerRadius="10"
+                            Padding="15 50 15 15"
+                            Width="330"
+                            Margin="50 50 50 0">
+
+                        <StackPanel>
+
+                            <!-- Sign up header -->
+                            <TextBlock Text="Enter Room"
+                                   FontSize="{StaticResource FontSizeLarge}"
+                                   FontFamily="{StaticResource LatoRegular}"
+                                   Foreground="{StaticResource WordBlueBrush}"/>
+
+                            <!-- Sign up subtext -->
+                            <TextBlock Text="Enter room name to proceed!"
+                                       FontSize="{StaticResource FontSizeRegular}"
+                                       Foreground="{StaticResource ForegroundDarkBrush}"
+                                       Margin="0 0 0 20"/>
+
+                            <!-- Room -->
+                            <TextBox Tag="Room Name" Text="{Binding Email}"
+                                     Background="{StaticResource ForegroundVeryLightBlueBrush}"/>
+
+                            <Button Content="Login"
+                                    Command="{Binding LoginCommand}" 
+                                    HorizontalAlignment="Center"
+                                    local:IsBusyProperty.Value="{Binding LoginIsRunning}"/>
+                        </StackPanel>
+
+                    </Border>
+
+                    <Button Content="Help me!" HorizontalAlignment="Center"
+                            Style="{StaticResource TextButton}"/>
+
+                </StackPanel>
+            </ScrollViewer>
+
+        </Grid>
+    </Border>
+</local:BasePage>

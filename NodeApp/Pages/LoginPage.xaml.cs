@@ -16,14 +16,13 @@ using System.Windows.Shapes;
 namespace NodeApp
 {
     /// <summary>
-    /// Logika interakcji dla klasy MainWindow.xaml
+    /// Logika interakcji dla klasy LoginPage.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class LoginPage : BasePage<LoginViewModel>
     {
-        public MainWindow()
+        public LoginPage()
         {
             InitializeComponent();
-            this.DataContext = new MainWindowViewModel(this);
         }
     }
 }
