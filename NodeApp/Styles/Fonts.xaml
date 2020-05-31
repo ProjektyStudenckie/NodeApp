@@ -30,9 +30,8 @@
     <system:Double x:Key="FontSizeSmall">14</system:Double>
     <system:Double x:Key="FontSizeLarge">30</system:Double>
 
-    <system:String x:Key="FontAwesomeChatIcon">&#xf086;</system:String>
-    <system:String x:Key="FontAwesomeUserIcon">&#xf007;</system:String>
-    <system:String x:Key="FontAwesomePictureIcon">&#xf03e;</system:String>
     <system:String x:Key="FontAwesomeCogIcon">&#xf013;</system:String>
+    <system:String x:Key="FontAwesomeToolsIcon">&#xf7d9;</system:String>
+    <system:String x:Key="FontAwesomeToDoIcon">&#xf0ae;</system:String>
 
 </ResourceDictionary>

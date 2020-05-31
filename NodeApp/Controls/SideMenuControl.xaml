@@ -1,0 +1,56 @@
+﻿<UserControl x:Class="NodeApp.SideMenuControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:NodeApp"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="300">
+
+    <UserControl.Template>
+        <ControlTemplate TargetType="UserControl">
+
+            <Grid>
+                <Border Background="{StaticResource NDarkBlueBrush}">
+
+                    <!-- Content -->
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="*"/>
+                        </Grid.RowDefinitions>
+
+                        <Grid Height="60" Background="{StaticResource BackgroundDarkBlueBrush}">
+
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="Auto"/>
+                            </Grid.ColumnDefinitions>
+
+                            <!-- Main Buttons -->
+                            <StackPanel Orientation="Horizontal">
+                                <Button Style="{StaticResource IconButton}"
+                                        Content="{StaticResource FontAwesomeToDoIcon}"/>
+                                <Button Style="{StaticResource IconButton}"
+                                        Content="{StaticResource FontAwesomeToolsIcon}"/>
+                            </StackPanel>
+
+                            <!-- Settings Button -->
+                            <Button Grid.Column="2" Style="{StaticResource IconButton}"
+                                Content="{StaticResource FontAwesomeCogIcon}" Foreground="{StaticResource TonedLightBlueBrush}"/>
+
+                        </Grid>
+
+
+                        <!--The User Content-->
+                        <ContentPresenter Grid.Row="1"/>
+                    </Grid>
+
+                </Border>
+            </Grid>
+
+        </ControlTemplate>
+    </UserControl.Template>
+
+</UserControl>
