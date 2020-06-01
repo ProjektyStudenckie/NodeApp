@@ -1,7 +1,7 @@
 ﻿using System.Threading.Tasks;
 using System.Windows.Input;
 
-namespace NodeApp
+namespace NodeApp.Core
 {
     /// <summary>
     /// View Model for the custom flat window

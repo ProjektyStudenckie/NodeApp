@@ -3,7 +3,7 @@ using System.ComponentModel;
 using System.Linq.Expressions;
 using System.Threading.Tasks;
 
-namespace NodeApp
+namespace NodeApp.Core
 {
     public class ViewModelBase : INotifyPropertyChanged
     {

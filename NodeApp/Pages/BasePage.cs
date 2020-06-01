@@ -1,6 +1,7 @@
 ﻿using System.Windows.Controls;
 using System.Windows;
 using System.Threading.Tasks;
+using NodeApp.Core;
 
 namespace NodeApp
 {

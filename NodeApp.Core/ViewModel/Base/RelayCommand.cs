@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Windows.Input;
 
-namespace NodeApp
+namespace NodeApp.Core
 {
     public class RelayCommand : ICommand
     {
