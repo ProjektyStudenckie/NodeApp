@@ -1,4 +1,5 @@
-﻿using System.Windows;
+﻿using NodeApp.Core;
+using System.Windows;
 using System.Windows.Input;
 
 namespace NodeApp

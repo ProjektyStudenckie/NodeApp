@@ -3,7 +3,7 @@ using System.Linq.Expressions;
 using System.Reflection;
 
 
-namespace NodeApp
+namespace NodeApp.Core
 {
     public static class ExpressionHelpers
     {
