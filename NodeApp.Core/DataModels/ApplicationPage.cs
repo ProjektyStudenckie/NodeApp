@@ -2,6 +2,7 @@
 {
     public enum ApplicationPage
     {
-        Login = 0
+        Login = 0,
+        Nodes = 1
     }
 }
