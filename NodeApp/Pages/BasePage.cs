@@ -5,37 +5,17 @@ using NodeApp.Core;
 
 namespace NodeApp
 {
-    public class BasePage<VM> : Page
-        where VM : ViewModelBase, new()
+    public class BasePage : Page
     {
-        #region Private Member
-
-        private VM mViewModel;
-
-        #endregion
-
-
         #region Public Properties
 
         public PageAnimation PageLoadAnimation { get; set; } = PageAnimation.SlideAndFadeInFromRight;
 
         public PageAnimation PageUnloadAnimation { get; set; } = PageAnimation.SlidaAndFadeOutToLeft;
 
-        public float SlideSeconds { get; set; } = 0.8f;
+        public float SlideSeconds { get; set; } = 0.4f;
 
-        public VM ViewModel
-        {
-            get { return mViewModel; }
-            set
-            {
-                if (mViewModel == value)
-                    return;
-
-                mViewModel = value;
-
-                this.DataContext = mViewModel;
-            }
-        }
+        public bool ShouldAnimateOut { get; set; }
 
         #endregion
 
@@ -49,8 +29,6 @@ namespace NodeApp
 
             // Listen out for the page loading
             this.Loaded += BasePage_Loaded;
-
-            this.ViewModel = new VM();
         }
 
         #endregion
@@ -64,7 +42,10 @@ namespace NodeApp
         /// <param name="e"></param>
         private async void BasePage_Loaded(object sender, RoutedEventArgs e)
         {
-            await AnimateIn();
+            if (ShouldAnimateOut)
+                await AnimateOut();
+            else
+                await AnimateIn();
         }
 
         public async Task AnimateIn()
@@ -95,4 +76,43 @@ namespace NodeApp
 
         #endregion
     }
+
+
+    public class BasePage<VM> : BasePage
+        where VM : ViewModelBase, new()
+    {
+        #region Private Member
+
+        private VM mViewModel;
+
+        #endregion
+
+        #region Public Properties
+
+        public VM ViewModel
+        {
+            get { return mViewModel; }
+            set
+            {
+                if (mViewModel == value)
+                    return;
+
+                mViewModel = value;
+
+                this.DataContext = mViewModel;
+            }
+        }
+
+        #endregion
+
+        #region Constructor
+
+        public BasePage() : base()
+        {
+            this.ViewModel = new VM();
+        }
+
+        #endregion
+    }
 }
+

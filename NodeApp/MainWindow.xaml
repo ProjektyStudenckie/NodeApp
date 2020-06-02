@@ -161,11 +161,12 @@
                                         Binding ApplicationViewModel.SideMenuVisible,
                                         Source={x:Static local:ViewModelLocator.Instance}}"/>
 
-            <Frame x:Name="MainFrame" 
-                   Content="{Binding ApplicationViewModel.CurrentPage,
+            <local:PageHost
+                   d:DataContext=""
+                   DataContext="{Binding ApplicationViewModel.CurrentPage,
                             Source={x:Static local:ViewModelLocator.Instance},
-                            Converter={local:ApplicationPageValueConverter}}" 
-                   Background="Transparent" />
+                            Converter={local:ApplicationPageValueConverter}}"
+                   CurrentPage="{Binding}"/>
         </Grid>
     </Border>
 </Window>
