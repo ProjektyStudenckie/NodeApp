@@ -155,7 +155,7 @@
             </Grid.ColumnDefinitions>
             
             <local:SideMenuControl Width="300" Grid.Column="1"
-                                   local:AnimateSlideInFromLeftProperty.Value="{
+                                   local:AnimateSlideInFromRightProperty.Value="{
                                         Binding ApplicationViewModel.SideMenuVisible,
                                         Source={x:Static local:ViewModelLocator.Instance}}"/>
 
