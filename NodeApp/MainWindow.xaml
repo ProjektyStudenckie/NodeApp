@@ -19,7 +19,7 @@
                 <Setter.Value>
                     <ControlTemplate TargetType="{x:Type Window}">
                         <!-- Outer border with the dropshadow margin -->
-                        <Border Padding="{Binding OuterMarginSizeThickness, FallbackValue=10}">
+                        <Border Margin="{Binding OuterMarginSizeThickness, FallbackValue=10}">
 
                             <Grid>
                                 <!-- Opacity mask for corners on grid (close button corner vanished when background wasn't transparent)-->
@@ -120,7 +120,9 @@
 
 
                                     <!-- Page Content -->
-                                    <Border Grid.Row="1" Padding="{Binding InnerContentPadding}">
+                                    <Border Grid.Row="1"
+                                            Padding="{Binding InnerContentPadding}"
+                                            ClipToBounds="True">
                                         <ContentPresenter Content="{TemplateBinding Content}"/>
                                     </Border>
                                 </Grid>
