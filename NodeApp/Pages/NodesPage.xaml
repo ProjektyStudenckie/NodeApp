@@ -11,7 +11,11 @@
 
     <Border>
         <Grid>
-
+            <TextBlock Text="Test"
+                       VerticalAlignment="Center"
+                       HorizontalAlignment="Center"
+                       FontSize="{StaticResource FontSizeLarge}"
+                       Foreground="White"/>
         </Grid>
     </Border>
 </local:BasePage>

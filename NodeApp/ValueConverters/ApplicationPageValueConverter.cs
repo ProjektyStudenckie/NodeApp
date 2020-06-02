@@ -16,7 +16,8 @@ namespace NodeApp
             {
                 case ApplicationPage.Login:
                     return new LoginPage();
-
+                case ApplicationPage.Nodes:
+                    return new NodesPage();
 
                 default:
                     Debugger.Break();
