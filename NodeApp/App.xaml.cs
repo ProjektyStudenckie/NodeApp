@@ -1,4 +1,5 @@
-﻿using System;
+﻿using NodeApp.Core;
+using System;
 using System.Collections.Generic;
 using System.Configuration;
 using System.Data;
@@ -13,5 +14,18 @@ namespace NodeApp
     /// </summary>
     public partial class App : Application
     {
+        /// <summary>
+        /// Custom startup so we load IoC immediately
+        /// </summary>
+        /// <param name="e"></param>
+        protected override void OnStartup(StartupEventArgs e)
+        {
+            base.OnStartup(e);
+
+            IoC.Setup();
+
+            Current.MainWindow = new MainWindow();
+            Current.MainWindow.Show();
+        }
     }
 }
