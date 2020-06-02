@@ -36,9 +36,17 @@ namespace NodeApp.Core
 
             await RunCommand(() => this.LoginIsRunning, async () =>
             {
-                await Task.Delay(1500);
+                //await Task.Delay(1500);
 
-                var roomName = RoomName;
+                IoC.Get<ApplicationViewModel>().SideMenuVisible ^= true;
+                return;
+
+                //Change page to nodespage if everything is ok
+                //IoC.Get<ApplicationViewModel>().CurrentPage = ApplicationPage.Nodes;
+
+                //var roomName = RoomName;
+
+                await Task.Delay(1);
             });
         }
     }

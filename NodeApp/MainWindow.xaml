@@ -149,18 +149,21 @@
                 <ImageBrush TileMode="Tile" ViewportUnits="Absolute" Viewport="0 0 500 500"
                             ImageSource="Images/Backgrounds/NodeApp_Background.png"/>
             </Grid.Background>
-
-            <!--<Frame x:Name="MainFrame" Content="{Binding CurrentPage, Converter={local:ApplicationPageValueConverter}}" 
-                                 Background="Transparent" />-->
-            
-            <!--Temporary board page-->
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="300"/>
+                <ColumnDefinition Width="Auto"/>
             </Grid.ColumnDefinitions>
             
-            <local:SideMenuControl Grid.Column="1"/>
+            <local:SideMenuControl Width="300" Grid.Column="1"
+                                   local:AnimateSlideInFromLeftProperty.Value="{
+                                        Binding ApplicationViewModel.SideMenuVisible,
+                                        Source={x:Static local:ViewModelLocator.Instance}}"/>
 
+            <Frame x:Name="MainFrame" 
+                   Content="{Binding ApplicationViewModel.CurrentPage,
+                            Source={x:Static local:ViewModelLocator.Instance},
+                            Converter={local:ApplicationPageValueConverter}}" 
+                   Background="Transparent" />
         </Grid>
     </Border>
 </Window>

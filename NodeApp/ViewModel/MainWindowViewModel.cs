@@ -23,8 +23,6 @@ namespace NodeApp
 
         #region Public Properties
 
-        public ApplicationPage CurrentPage { get; set; } = ApplicationPage.Login;
-
         public double WindowMinimumWidth { get; set; } = 800;
         public double WindowMinimumHeight { get; set; } = 400;
 
