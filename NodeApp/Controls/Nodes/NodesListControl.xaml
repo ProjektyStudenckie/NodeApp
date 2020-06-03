@@ -6,26 +6,36 @@
              xmlns:local="clr-namespace:NodeApp"
              xmlns:core="clr-namespace:NodeApp.Core;assembly=NodeApp.Core"
              mc:Ignorable="d" 
-             d:DesignHeight="550" d:DesignWidth="650">
+             d:DesignHeight="1550" d:DesignWidth="1250">
 
     <Grid Background="Transparent"
           DataContext="{x:Static core:NodesListDesignModel.Instance}"
           HorizontalAlignment="Center">
-
         <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Disabled">
-            <ItemsControl ItemsSource="{Binding Items}">
-                <ItemsControl.ItemsPanel>
-                    <ItemsPanelTemplate>
-                        <StackPanel Orientation="Horizontal"/>
-                    </ItemsPanelTemplate>
-                </ItemsControl.ItemsPanel>
-                
-                <ItemsControl.ItemTemplate>
-                    <DataTemplate>
-                        <local:NodeContentListControl Margin="20 50"/>
-                    </DataTemplate>
-                </ItemsControl.ItemTemplate>
-            </ItemsControl>
+
+            <StackPanel Orientation="Horizontal">
+                <ItemsControl ItemsSource="{Binding Items}">
+                    <ItemsControl.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <StackPanel Orientation="Horizontal"/>
+                        </ItemsPanelTemplate>
+                    </ItemsControl.ItemsPanel>
+
+                    <ItemsControl.ItemTemplate>
+                        <DataTemplate>
+                            <local:NodeContentListControl Margin="20 50"/>
+                        </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+                </ItemsControl>
+
+                <Button Height="60"
+                        Margin="20 50"
+                        VerticalAlignment="Top"
+                        Style="{StaticResource RoundedIconButton}"
+                        Content="{StaticResource FontAwesomePlusIcon}"/>
+
+
+            </StackPanel>
         </ScrollViewer>
 
     </Grid>
