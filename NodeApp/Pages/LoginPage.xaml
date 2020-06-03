@@ -29,13 +29,13 @@
 
                             <!-- Sign up header -->
                             <TextBlock Text="Enter Room"
-                                   FontSize="{StaticResource FontSizeLarge}"
+                                   FontSize="{StaticResource FontSizeXXLarge}"
                                    FontFamily="{StaticResource LatoRegular}"
                                    Foreground="{StaticResource WordBlueBrush}"/>
 
                             <!-- Sign up subtext -->
                             <TextBlock Text="Enter room name to proceed!"
-                                       FontSize="{StaticResource FontSizeRegular}"
+                                       FontSize="{StaticResource FontSizeLarge}"
                                        Foreground="{StaticResource ForegroundDarkBrush}"
                                        Margin="0 0 0 20"/>
 
