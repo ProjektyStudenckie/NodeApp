@@ -1,0 +1,47 @@
+﻿<UserControl x:Class="NodeApp.NodeContentListControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:NodeApp"
+             xmlns:core="clr-namespace:NodeApp.Core;assembly=NodeApp.Core"
+             mc:Ignorable="d" 
+             d:DesignHeight="600" d:DesignWidth="300"
+             Width="300">
+
+    <Border CornerRadius="12"
+            Background="{StaticResource BackgroundBlueBrush}"
+            d:DataContext="{x:Static core:NodeContentListDesignModel.Instance}"
+            VerticalAlignment="Top"
+            Padding="10">
+
+        <Grid>
+
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+
+            <TextBlock Text="{Binding Title}"
+                       FontSize="{StaticResource FontSizeXXLarge}"
+                       FontFamily="{StaticResource LatoBold}"
+                       Foreground="{StaticResource ForegroundLightBrush}"
+                       Padding="10"
+                       VerticalAlignment="Center"
+                       HorizontalAlignment="Center"/>
+
+
+            <ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Auto">
+                <ItemsControl ItemsSource="{Binding Items}">
+                    <ItemsControl.ItemTemplate>
+                        <DataTemplate>
+                            <local:NodeListItemControl Padding="7"/>
+                        </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+                </ItemsControl>
+            </ScrollViewer>
+
+        </Grid>
+        
+    </Border>
+</UserControl>

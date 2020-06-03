@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:NodeApp"
         mc:Ignorable="d"
-        Title="MainWindow" Height="600" Width="900"
+        Title="MainWindow" Height="600" Width="980"
         WindowStyle="None"
         AllowsTransparency="True"
         WindowStartupLocation="CenterScreen"
@@ -152,7 +152,7 @@
                 <ImageBrush TileMode="Tile" ViewportUnits="Absolute" Viewport="0 0 500 500"
                             ImageSource="Images/Backgrounds/NodeApp_Background.png"/>
             </Grid.Background>
-            <Grid.ColumnDefinitions>
+            <!--<Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="Auto"/>
             </Grid.ColumnDefinitions>
@@ -160,7 +160,7 @@
             <local:SideMenuControl Width="300" Grid.Column="1"
                                    local:AnimateSlideInFromRightProperty.Value="{
                                         Binding ApplicationViewModel.SideMenuVisible,
-                                        Source={x:Static local:ViewModelLocator.Instance}}"/>
+                                        Source={x:Static local:ViewModelLocator.Instance}}"/>-->
 
             <local:PageHost
                    d:DataContext=""

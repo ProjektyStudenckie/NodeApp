@@ -70,6 +70,15 @@
     <Compile Include="Animation\StoryboardHelpers.cs" />
     <Compile Include="AttachedProperties\BaseAttachedProperty.cs" />
     <Compile Include="AttachedProperties\ButtonAttachedProperty.cs" />
+    <Compile Include="Controls\Nodes\NodeContentListControl.xaml.cs">
+      <DependentUpon>NodeContentListControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\Nodes\NodeListItemControl.xaml.cs">
+      <DependentUpon>NodeListItemControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\Nodes\NodesListControl.xaml.cs">
+      <DependentUpon>NodesListControl.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Controls\SideMenuControl.xaml.cs">
       <DependentUpon>SideMenuControl.xaml</DependentUpon>
     </Compile>
@@ -92,6 +101,18 @@
     <Compile Include="ViewModel\MainWindowViewModel.cs" />
     <Compile Include="ViewModel\ViewModelLocator.cs" />
     <Compile Include="Window\WindowResizer.cs" />
+    <Page Include="Controls\Nodes\NodeContentListControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\Nodes\NodeListItemControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\Nodes\NodesListControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Controls\SideMenuControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

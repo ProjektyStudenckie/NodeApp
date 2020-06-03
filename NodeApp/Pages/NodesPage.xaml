@@ -11,11 +11,27 @@
 
     <Border>
         <Grid>
-            <TextBlock Text="Test"
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="Auto"/>
+            </Grid.ColumnDefinitions>
+
+
+
+            <!--<local:NodeContentListControl Width="300" VerticalAlignment="Center"/>-->
+
+            <local:NodesListControl/>
+
+            <!--<TextBlock Text="Test"
                        VerticalAlignment="Center"
                        HorizontalAlignment="Center"
                        FontSize="{StaticResource FontSizeLarge}"
-                       Foreground="White"/>
+                       Foreground="White"/>-->
+
+            <local:SideMenuControl Width="300" Grid.Column="1"
+                                   local:AnimateSlideInFromRightProperty.Value="{
+                                        Binding ApplicationViewModel.SideMenuVisible,
+                                        Source={x:Static local:ViewModelLocator.Instance}}"/>
         </Grid>
     </Border>
 </local:BasePage>
