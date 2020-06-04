@@ -1,4 +1,4 @@
-﻿using System.Collections.Generic;
+﻿using System.Collections.ObjectModel;
 
 namespace NodeApp.Core
 {
@@ -12,7 +12,7 @@ namespace NodeApp.Core
         {
             Title = "Przykładowy node";
 
-            Items = new List<NodeListItemViewModel>
+            Items = new ObservableCollection<NodeListItemViewModel>
             {
                 new NodeListItemViewModel
                 {

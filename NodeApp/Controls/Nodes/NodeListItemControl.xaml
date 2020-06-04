@@ -6,7 +6,8 @@
              xmlns:local="clr-namespace:NodeApp"
              xmlns:core="clr-namespace:NodeApp.Core;assembly=NodeApp.Core"
              mc:Ignorable="d"
-             d:DesignHeight="100" d:DesignWidth="270">
+             d:DesignHeight="100" d:DesignWidth="270"
+             MinHeight="80">
 
     <UserControl.Resources>
         <Style x:Key="ContentStyle" TargetType="{x:Type ContentControl}">
@@ -17,15 +18,63 @@
                         <!--Content-->
                         <Border x:Name="background"
                                 Background="{StaticResource TonedVeryLightBlueBrush}"
-                                CornerRadius="6"
-                                Height="100">
-                            
+                                CornerRadius="6">
+
                             <Grid x:Name="container" Background="Transparent">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto"/>
+                                </Grid.RowDefinitions>
+
+
                                 <TextBlock Text="{Binding Title}"
                                            FontSize="{StaticResource FontSizeRegular}"
-                                           FontFamily="{StaticResource LatoRegular}"
+                                           FontFamily="{StaticResource LatoBold}"
                                            Padding="10 10 10 0"
-                                           TextTrimming="CharacterEllipsis"/>
+                                           TextWrapping="WrapWithOverflow"
+                                           TextTrimming="CharacterEllipsis"
+                                           MaxHeight="110"
+                                           MinHeight="50"/>
+
+                                <ItemsControl ItemsSource="{Binding Labels}"
+                                              Grid.Row="1"
+                                              Margin="3 0">
+                                    <ItemsControl.ItemsPanel>
+                                        <ItemsPanelTemplate>
+                                            <WrapPanel Orientation="Horizontal"/>
+                                        </ItemsPanelTemplate>
+                                    </ItemsControl.ItemsPanel>
+                                    <ItemsControl.ItemTemplate>
+                                        <DataTemplate>
+                                            <Border CornerRadius="2" 
+                                                    VerticalAlignment="Top"
+                                                    HorizontalAlignment="Left"
+                                                    Background="{Binding BackgroundRGBColor, Converter={local:StringRGBToBrushConverter}}"
+                                                    Padding="3 2 3 1"
+                                                    Margin="4 0 4 6">
+                                                
+                                                <TextBlock Text="{Binding Text}"
+                                                           Foreground="{Binding ForegroundRGBColor, Converter={local:StringRGBToBrushConverter}}"
+                                                           FontFamily="{StaticResource LatoRegular}"
+                                                           FontSize="{StaticResource FontSizeSmall}"
+                                                           MaxWidth="135"
+                                                           TextTrimming="CharacterEllipsis"/>
+                                            </Border>
+                                        </DataTemplate>
+                                    </ItemsControl.ItemTemplate>
+                                </ItemsControl>
+                                
+                                <!--<StackPanel Grid.Row="1">
+                                    <Border CornerRadius="2"
+                                            VerticalAlignment="Top"
+                                            HorizontalAlignment="Left"
+                                            Background="PaleVioletRed"
+                                            Padding="2 0"
+                                            Margin="5 5">
+                                        <TextBlock Text="bla bla" Foreground="White"/>
+
+                                    </Border>
+                                </StackPanel>-->
                             </Grid>
                             
                         </Border>

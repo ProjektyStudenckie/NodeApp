@@ -23,11 +23,26 @@ namespace NodeApp.Core
                 new NodeContentListViewModel
                 {
                     Title = "ToDo",
-                    Items = new List<NodeListItemViewModel>
+                    Items = new ObservableCollection<NodeListItemViewModel>
                     {
                         new NodeListItemViewModel
                         {
-                            Title = "Przykład 1"
+                            Title = "Przykład 1",
+                            Labels = new ObservableCollection<CardLabel>
+                            {
+                                new CardLabel
+                                {
+                                    Text = "STUDIA",
+                                    BackgroundRGBColor = "46a",
+                                    ForegroundRGBColor = "fff"
+                                },
+                                new CardLabel
+                                {
+                                    Text = "WAŻNE",
+                                    BackgroundRGBColor = "D64",
+                                    ForegroundRGBColor = "fff"
+                                }
+                            }
                         },
                         new NodeListItemViewModel
                         {
@@ -54,7 +69,7 @@ namespace NodeApp.Core
                 new NodeContentListViewModel
                 {
                     Title = "In Progress",
-                    Items = new List<NodeListItemViewModel>
+                    Items = new ObservableCollection<NodeListItemViewModel>
                     {
                         new NodeListItemViewModel
                         {
@@ -62,7 +77,28 @@ namespace NodeApp.Core
                         },
                         new NodeListItemViewModel
                         {
-                            Title = "Przykład 2"
+                            Title = "Przykład 2",
+                            Labels = new ObservableCollection<CardLabel>
+                            {
+                                new CardLabel
+                                {
+                                    Text = "ĆWICZENIA",
+                                    BackgroundRGBColor = "4a6",
+                                    ForegroundRGBColor = "fff"
+                                },
+                                new CardLabel
+                                {
+                                    Text = "WAŻNE",
+                                    BackgroundRGBColor = "D64",
+                                    ForegroundRGBColor = "fff"
+                                },
+                                new CardLabel
+                                {
+                                    Text = "PROGRAMOWANIE",
+                                    BackgroundRGBColor = "EEE",
+                                    ForegroundRGBColor = "000"
+                                }
+                            }
                         },
                         new NodeListItemViewModel
                         {
@@ -73,7 +109,7 @@ namespace NodeApp.Core
                 new NodeContentListViewModel
                 {
                     Title = "Done",
-                    Items = new List<NodeListItemViewModel>
+                    Items = new ObservableCollection<NodeListItemViewModel>
                     {
                         new NodeListItemViewModel
                         {

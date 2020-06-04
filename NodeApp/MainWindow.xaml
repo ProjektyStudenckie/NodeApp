@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:NodeApp"
         mc:Ignorable="d"
-        Title="MainWindow" Height="600" Width="980"
+        Title="MainWindow" Height="650" Width="980"
         WindowStyle="None"
         AllowsTransparency="True"
         WindowStartupLocation="CenterScreen"

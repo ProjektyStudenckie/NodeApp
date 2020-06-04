@@ -1,4 +1,4 @@
-﻿using System.Collections.Generic;
+﻿using System.Collections.ObjectModel;
 
 namespace NodeApp.Core
 {
@@ -6,6 +6,6 @@ namespace NodeApp.Core
     {
         public string Title { get; set; }
 
-        public List<NodeListItemViewModel> Items { get; set; }
+        public ObservableCollection<NodeListItemViewModel> Items { get; set; }
     }
 }
