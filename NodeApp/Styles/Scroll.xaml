@@ -55,9 +55,9 @@
             <Trigger Property="Orientation" Value="Horizontal">
                 <Setter Property="Width" Value="Auto"/>
                 <Setter Property="MinWidth" Value="0"/>
-                <Setter Property="Height" Value="25"/>
+                <Setter Property="Height" Value="75"/>
                 <Setter Property="MinHeight" Value="{Binding Height, RelativeSource={RelativeSource Self}}"/>
-                <Setter Property="Margin" Value="0 -20 0 0" />
+                <Setter Property="Margin" Value="0 -40 0 0" />
 
                 <Setter Property="Template">
                     <Setter.Value>
@@ -65,8 +65,7 @@
                             <Grid x:Name="Bg" SnapsToDevicePixels="true">
                                 <Track x:Name="PART_Track"
                                     IsEnabled="{TemplateBinding IsMouseOver}"
-                                    Height="25"
-                                       >
+                                    Height="75">
                                     <Track.DecreaseRepeatButton>
                                         <RepeatButton Opacity="0" Command="{x:Static ScrollBar.PageLeftCommand}"/>
                                     </Track.DecreaseRepeatButton>

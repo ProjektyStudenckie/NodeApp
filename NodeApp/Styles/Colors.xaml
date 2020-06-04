@@ -68,7 +68,10 @@
     <Color x:Key="TonedLightBlue">#878dBF</Color>
     <SolidColorBrush x:Key="TonedLightBlueBrush" Color="{StaticResource TonedLightBlue}"/>
 
-    <Color x:Key="TonedVeryLightBlue">#B7cdef</Color>
+    <Color x:Key="TonedVeryLightBlue">#b7cdef</Color>
     <SolidColorBrush x:Key="TonedVeryLightBlueBrush" Color="{StaticResource TonedVeryLightBlue}"/>
+
+    <Color x:Key="TonedSuperLightBlue">#dfefff</Color>
+    <SolidColorBrush x:Key="TonedSuperLightBlueBrush" Color="{StaticResource TonedSuperLightBlue}"/>
 
 </ResourceDictionary>

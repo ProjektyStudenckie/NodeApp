@@ -36,8 +36,8 @@
                             <EventTrigger RoutedEvent="MouseEnter">
                                 <BeginStoryboard>
                                     <Storyboard>
-                                        <ColorAnimation To="{StaticResource LightBlue}" Duration="0:0:0.15"
-                                                        Storyboard.TargetName="container"
+                                        <ColorAnimation To="{StaticResource TonedSuperLightBlue}" Duration="0:0:0.15"
+                                                        Storyboard.TargetName="background"
                                                         Storyboard.TargetProperty="Background.Color"/>
                                     </Storyboard>
                                 </BeginStoryboard>
@@ -46,8 +46,8 @@
                             <EventTrigger RoutedEvent="MouseLeave">
                                 <BeginStoryboard>
                                     <Storyboard>
-                                        <ColorAnimation To="Transparent" Duration="0:0:0.15"
-                                                        Storyboard.TargetName="container"
+                                        <ColorAnimation To="{StaticResource TonedVeryLightBlue}" Duration="0:0:0.15"
+                                                        Storyboard.TargetName="background"
                                                         Storyboard.TargetProperty="Background.Color"/>
                                     </Storyboard>
                                 </BeginStoryboard>
