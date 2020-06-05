@@ -19,7 +19,7 @@ namespace NodeApp
     /// <summary>
     /// Logika interakcji dla klasy NodesPage.xaml
     /// </summary>
-    public partial class NodesPage : BasePage<LoginViewModel>
+    public partial class NodesPage : BasePage<NodesViewModel>
     {
         public NodesPage()
         {

@@ -31,6 +31,9 @@ namespace NodeApp.Core
 
         public void AddNode(object parameter)
         {
+            if (Items == null)
+                Items = new ObservableCollection<NodeContentListViewModel>();
+
             Items.Add(new NodeContentListViewModel
             {
                 Title = "New Node"

@@ -6,10 +6,10 @@
              xmlns:local="clr-namespace:NodeApp"
              xmlns:core="clr-namespace:NodeApp.Core;assembly=NodeApp.Core"
              mc:Ignorable="d" 
-             d:DesignHeight="1550" d:DesignWidth="1250">
+             d:DesignHeight="750" d:DesignWidth="1250">
 
     <Grid Background="Transparent"
-          DataContext="{x:Static core:NodesListDesignModel.Instance}"
+          d:DataContext="{x:Static core:NodesListDesignModel.Instance}"
           HorizontalAlignment="Center">
 
         <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Disabled">

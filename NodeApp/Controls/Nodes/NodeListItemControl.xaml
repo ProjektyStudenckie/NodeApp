@@ -51,7 +51,7 @@
                                                     HorizontalAlignment="Left"
                                                     Background="{Binding BackgroundRGBColor, Converter={local:StringRGBToBrushConverter}}"
                                                     Padding="3 2 3 1"
-                                                    Margin="4 0 4 6">
+                                                    Margin="4 1 4 6">
                                                 
                                                 <TextBlock Text="{Binding Text}"
                                                            Foreground="{Binding ForegroundRGBColor, Converter={local:StringRGBToBrushConverter}}"

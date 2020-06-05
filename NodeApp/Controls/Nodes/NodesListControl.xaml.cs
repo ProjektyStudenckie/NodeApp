@@ -1,4 +1,5 @@
-﻿using System.Windows.Controls;
+﻿using NodeApp.Core;
+using System.Windows.Controls;
 
 namespace NodeApp
 {
@@ -10,6 +11,7 @@ namespace NodeApp
         public NodesListControl()
         {
             InitializeComponent();
+            DataContext = new NodesListViewModel();
         }
     }
 }

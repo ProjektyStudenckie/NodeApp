@@ -22,13 +22,38 @@
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
 
-            <TextBlock Text="{Binding Title}"
+            <Grid Height="60">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="Auto"/>
+                </Grid.ColumnDefinitions>
+
+                <Grid.RowDefinitions>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+
+                <Viewbox Grid.RowSpan="2">
+                    <TextBlock Text="{Binding Title}"
+                       TextTrimming="CharacterEllipsis"
                        FontSize="{StaticResource FontSizeXXLarge}"
                        FontFamily="{StaticResource LatoBold}"
                        Foreground="{StaticResource ForegroundLightBrush}"
                        Padding="10"
                        VerticalAlignment="Center"
                        HorizontalAlignment="Center"/>
+                </Viewbox>
+                
+
+                <Button Grid.Column="1" 
+                        Style="{StaticResource NoBackgroundHoverIconButton}"
+                        Content="{StaticResource FontAwesomeThreeDotsIcon}"
+                        Command="{Binding EditNodeCommand}"/>
+                <Button Grid.Column="1" Grid.Row="2" 
+                        Style="{StaticResource NoBackgroundHoverIconButton}"
+                        Content="{StaticResource FontAwesomePlusIcon}"
+                        Command="{Binding AddCardCommand}"/>
+            </Grid>
 
 
             <ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Auto">
