@@ -2,13 +2,13 @@
 
 namespace NodeApp.Core
 {
-   public class NodeListItemDesignModel : NodeListItemViewModel
+   public class CardDesignModel : CardViewModel
     {
-        public static NodeListItemDesignModel Instance => new NodeListItemDesignModel();
+        public static CardDesignModel Instance => new CardDesignModel();
 
         #region Constructor
 
-        public NodeListItemDesignModel()
+        public CardDesignModel()
         {
             Title = "Przykładowy kafelek";
             Labels = new ObservableCollection<CardLabel>

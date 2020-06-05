@@ -9,7 +9,9 @@ namespace NodeApp.Core
 
         public string Title { get; set; }
 
-        public ObservableCollection<NodeListItemViewModel> Items { get; set; }
+        public ObservableCollection<CardViewModel> Cards { get; set; }
+
+        public static CardViewModel SelectedCard { get; set; } = null;
 
         public bool EditMenuVisible { get; set; }
 
@@ -37,19 +39,67 @@ namespace NodeApp.Core
 
         public void AddCard(object parameter = null)
         {
-            if (Items == null)
-                Items = new ObservableCollection<NodeListItemViewModel>();
+            if (Cards == null)
+                Cards = new ObservableCollection<CardViewModel>();
 
-            Items.Add(new NodeListItemViewModel
+            Cards.Add(new CardViewModel
             {
-                Title = "New Card..."
+                Title = "New Card...",
+                Labels = new ObservableCollection<CardLabel>
+                {
+                   new CardLabel
+                   {
+                       BackgroundRGBColor = "359",
+                       ForegroundRGBColor = "fff",
+                       Text = "Loool"
+                   },
+                   new CardLabel
+                   {
+                       BackgroundRGBColor = "359",
+                       ForegroundRGBColor = "fff",
+                       Text = "Loool"
+                   },
+                   new CardLabel
+                   {
+                       BackgroundRGBColor = "359",
+                       ForegroundRGBColor = "fff",
+                       Text = "Loooool"
+                   },
+                   new CardLabel
+                   {
+                       BackgroundRGBColor = "359",
+                       ForegroundRGBColor = "fff",
+                       Text = "Loool"
+                   },
+                   new CardLabel
+                   {
+                       BackgroundRGBColor = "359",
+                       ForegroundRGBColor = "fff",
+                       Text = "Loooool"
+                   },
+                   new CardLabel
+                   {
+                       BackgroundRGBColor = "359",
+                       ForegroundRGBColor = "fff",
+                       Text = "Loool"
+                   },
+                   new CardLabel
+                   {
+                       BackgroundRGBColor = "359",
+                       ForegroundRGBColor = "fff",
+                       Text = "Loool"
+                   }
+                }
             });
         }
+
 
         public void EditNode(object parameter = null)
         {
             EditMenuVisible ^= true;
         }
+
+        
 
         #endregion
     }

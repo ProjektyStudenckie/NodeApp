@@ -11,7 +11,6 @@ namespace NodeApp
         public NodesListControl()
         {
             InitializeComponent();
-            DataContext = new NodesListViewModel();
         }
     }
 }

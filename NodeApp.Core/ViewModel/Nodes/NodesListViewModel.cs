@@ -8,13 +8,17 @@ namespace NodeApp.Core
     {
         #region Public Properties
 
-        public ObservableCollection<NodeContentListViewModel> Items { get; set; }
+        public ObservableCollection<NodeContentListViewModel> Nodes { get; set; }
+
+        public CardViewModel SelectedCard => NodeContentListViewModel.SelectedCard;
 
         #endregion
 
         #region Public Commands
 
         public ICommand AddNodeCommand { get; set; }
+
+        public ICommand RemoveSelectedCardCommand { get; set; }
 
         #endregion
 
@@ -23,6 +27,8 @@ namespace NodeApp.Core
         public NodesListViewModel()
         {
             AddNodeCommand = new RelayCommand(AddNode);
+            RemoveSelectedCardCommand = new RelayCommand(RemoveSelectedCard);
+            
         }
 
         #endregion
@@ -31,13 +37,21 @@ namespace NodeApp.Core
 
         public void AddNode(object parameter)
         {
-            if (Items == null)
-                Items = new ObservableCollection<NodeContentListViewModel>();
+            if (Nodes == null)
+                Nodes = new ObservableCollection<NodeContentListViewModel>();
 
-            Items.Add(new NodeContentListViewModel
+            Nodes.Add(new NodeContentListViewModel
             {
                 Title = "New Node"
             });
+        }
+
+        public void RemoveSelectedCard(object parameter)
+        {
+            if (SelectedCard != null)
+                for (int i = 0; i < Nodes.Count; i++)
+                    if (Nodes[i].Cards.Contains(SelectedCard))
+                        Nodes[i].Cards.Remove(SelectedCard);
         }
 
         #endregion

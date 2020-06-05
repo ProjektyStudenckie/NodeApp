@@ -18,14 +18,14 @@ namespace NodeApp.Core
             var l1 = new NodeContentListViewModel();
             l1.Title = "ToDo";
 
-            Items = new ObservableCollection<NodeContentListViewModel>
+            Nodes = new ObservableCollection<NodeContentListViewModel>
             {
                 new NodeContentListViewModel
                 {
                     Title = "ToDo",
-                    Items = new ObservableCollection<NodeListItemViewModel>
+                    Cards = new ObservableCollection<CardViewModel>
                     {
-                        new NodeListItemViewModel
+                        new CardViewModel
                         {
                             Title = "Przykład 1",
                             Labels = new ObservableCollection<CardLabel>
@@ -44,23 +44,23 @@ namespace NodeApp.Core
                                 }
                             }
                         },
-                        new NodeListItemViewModel
+                        new CardViewModel
                         {
                             Title = "Przykład 2"
                         },
-                        new NodeListItemViewModel
+                        new CardViewModel
                         {
                             Title = "Przykład 3"
                         },
-                        new NodeListItemViewModel
+                        new CardViewModel
                         {
                             Title = "Przykład 4"
                         },
-                        new NodeListItemViewModel
+                        new CardViewModel
                         {
                             Title = "Przykład 5"
                         },
-                        new NodeListItemViewModel
+                        new CardViewModel
                         {
                             Title = "Przykład 6"
                         },
@@ -69,13 +69,13 @@ namespace NodeApp.Core
                 new NodeContentListViewModel
                 {
                     Title = "In Progress",
-                    Items = new ObservableCollection<NodeListItemViewModel>
+                    Cards = new ObservableCollection<CardViewModel>
                     {
-                        new NodeListItemViewModel
+                        new CardViewModel
                         {
                             Title = "Przykład 1"
                         },
-                        new NodeListItemViewModel
+                        new CardViewModel
                         {
                             Title = "Przykład 2",
                             Labels = new ObservableCollection<CardLabel>
@@ -100,7 +100,7 @@ namespace NodeApp.Core
                                 }
                             }
                         },
-                        new NodeListItemViewModel
+                        new CardViewModel
                         {
                             Title = "Przykład 3"
                         }
@@ -109,25 +109,25 @@ namespace NodeApp.Core
                 new NodeContentListViewModel
                 {
                     Title = "Done",
-                    Items = new ObservableCollection<NodeListItemViewModel>
+                    Cards = new ObservableCollection<CardViewModel>
                     {
-                        new NodeListItemViewModel
+                        new CardViewModel
                         {
                             Title = "Przykład 1"
                         },
-                        new NodeListItemViewModel
+                        new CardViewModel
                         {
                             Title = "Przykład 2"
                         },
-                        new NodeListItemViewModel
+                        new CardViewModel
                         {
                             Title = "Przykład 3"
                         },
-                        new NodeListItemViewModel
+                        new CardViewModel
                         {
                             Title = "Przykład 4"
                         },
-                        new NodeListItemViewModel
+                        new CardViewModel
                         {
                             Title = "Przykład 5"
                         }

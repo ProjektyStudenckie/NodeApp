@@ -2,7 +2,7 @@
 
 namespace NodeApp.Core
 {
-    public class NodeListItemViewModel : ViewModelBase
+    public class CardViewModel : ViewModelBase
     {
         public string Title { get; set; }
 

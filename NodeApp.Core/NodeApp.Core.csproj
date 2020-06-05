@@ -60,11 +60,10 @@
     <Compile Include="ViewModel\Base\RelayCommand.cs" />
     <Compile Include="ViewModel\Base\ViewModelBase.cs" />
     <Compile Include="ViewModel\LoginViewModel.cs" />
-    <Compile Include="ViewModel\NodesViewModel.cs" />
     <Compile Include="ViewModel\Nodes\Design\NodeContentListDesignModel.cs" />
-    <Compile Include="ViewModel\Nodes\Design\NodeListItemDesignModel.cs" />
+    <Compile Include="ViewModel\Nodes\Design\CardDesignModel.cs" />
     <Compile Include="ViewModel\Nodes\Design\NodesListDesignModel.cs" />
-    <Compile Include="ViewModel\Nodes\NodeListItemViewModel.cs" />
+    <Compile Include="ViewModel\Nodes\CardViewModel.cs" />
     <Compile Include="ViewModel\Nodes\NodeContentListViewModel.cs" />
     <Compile Include="ViewModel\Nodes\NodesListViewModel.cs" />
   </ItemGroup>

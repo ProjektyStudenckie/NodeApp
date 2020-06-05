@@ -32,7 +32,8 @@
                             <!-- Main Buttons -->
                             <StackPanel Orientation="Horizontal">
                                 <Button Style="{StaticResource IconButton}"
-                                        Content="{StaticResource FontAwesomeToDoIcon}"/>
+                                        Content="{StaticResource FontAwesomeToDoIcon}"
+                                        Command="{Binding RemoveSelectedCardCommand}"/>
                                 <Button Style="{StaticResource IconButton}"
                                         Content="{StaticResource FontAwesomeToolsIcon}"/>
                             </StackPanel>

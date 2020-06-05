@@ -5,6 +5,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:NodeApp"
              xmlns:core="clr-namespace:NodeApp.Core;assembly=NodeApp.Core"
+             xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
              mc:Ignorable="d" 
              d:DesignHeight="600" d:DesignWidth="300"
              Width="300">
@@ -34,18 +35,22 @@
                 </Grid.RowDefinitions>
 
                 <Viewbox Grid.RowSpan="2">
-                    <TextBlock Text="{Binding Title}"
-                       TextTrimming="CharacterEllipsis"
-                       FontSize="{StaticResource FontSizeXXLarge}"
-                       FontFamily="{StaticResource LatoBold}"
-                       Foreground="{StaticResource ForegroundLightBrush}"
-                       Padding="10"
-                       VerticalAlignment="Center"
-                       HorizontalAlignment="Center"/>
+                    <TextBox Text="{Binding Title}"
+                             Style="{StaticResource NodeTitleStyle}"
+                             Background="Transparent"
+                             FontSize="{StaticResource FontSizeXXLarge}"
+                             FontFamily="{StaticResource LatoBold}"
+                             Foreground="{StaticResource ForegroundLightBrush}"
+                             Padding="10"
+                             VerticalAlignment="Center"
+                             HorizontalAlignment="Center">
+                        <i:Interaction.Behaviors>
+                            <local:DoubleClickTextBoxBehaviour/>
+                        </i:Interaction.Behaviors>
+                    </TextBox>
                 </Viewbox>
-                
 
-                <Button Grid.Column="1" 
+                <Button Grid.Column="1"
                         Style="{StaticResource NoBackgroundHoverIconButton}"
                         Content="{StaticResource FontAwesomeThreeDotsIcon}"
                         Command="{Binding EditNodeCommand}"/>
@@ -57,13 +62,13 @@
 
 
             <ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Auto">
-                <ItemsControl ItemsSource="{Binding Items}">
-                    <ItemsControl.ItemTemplate>
+                <ListView ItemsSource="{Binding Cards}" SelectedItem="{Binding SelectedCard}">
+                    <ListView.ItemTemplate>
                         <DataTemplate>
-                            <local:NodeListItemControl Padding="7"/>
+                            <local:CardControl Padding="7"/>
                         </DataTemplate>
-                    </ItemsControl.ItemTemplate>
-                </ItemsControl>
+                    </ListView.ItemTemplate>
+                </ListView>
             </ScrollViewer>
 
         </Grid>

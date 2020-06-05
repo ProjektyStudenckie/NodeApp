@@ -172,5 +172,13 @@
             </DataTrigger>
         </Style.Triggers>
     </Style>
+    
+    
+    <!--NodeTitle-->
+    <Style x:Key="NodeTitleStyle" TargetType="{x:Type TextBox}" BasedOn="{StaticResource BaseStyle}">
+        <Setter Property="Padding" Value="0"/>
+        <Setter Property="Margin" Value="0"/>
+        <Setter Property="BorderThickness" Value="0"/>
+    </Style>
 
 </ResourceDictionary>
