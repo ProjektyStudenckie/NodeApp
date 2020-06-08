@@ -34,7 +34,12 @@
                         VerticalAlignment="Top"
                         Style="{StaticResource RoundedIconButton}"
                         Content="{StaticResource FontAwesomePlusIcon}"
-                        Command="{Binding AddNodeCommand}"/>
+                        Command="{Binding AddNodeCommand}">
+
+                    <Button.ToolTip>
+                        <ToolTip Content="Create new node"/>
+                    </Button.ToolTip>
+                </Button>
 
             </StackPanel>
         </ScrollViewer>

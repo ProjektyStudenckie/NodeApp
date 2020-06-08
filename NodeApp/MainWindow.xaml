@@ -152,22 +152,12 @@
                 <ImageBrush TileMode="Tile" ViewportUnits="Absolute" Viewport="0 0 500 500"
                             ImageSource="Images/Backgrounds/NodeApp_Background.png"/>
             </Grid.Background>
-            <!--<Grid.ColumnDefinitions>
-                <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="Auto"/>
-            </Grid.ColumnDefinitions>
-            
-            <local:SideMenuControl Width="300" Grid.Column="1"
-                                   local:AnimateSlideInFromRightProperty.Value="{
-                                        Binding ApplicationViewModel.SideMenuVisible,
-                                        Source={x:Static local:ViewModelLocator.Instance}}"/>-->
 
-            <local:PageHost
-                   d:DataContext=""
-                   DataContext="{Binding ApplicationViewModel.CurrentPage,
-                            Source={x:Static local:ViewModelLocator.Instance},
-                            Converter={local:ApplicationPageValueConverter}}"
-                   CurrentPage="{Binding}"/>
+            <local:PageHost d:DataContext=""
+                            DataContext="{Binding ApplicationViewModel.CurrentPage,
+                                        Source={x:Static local:ViewModelLocator.Instance},
+                                        Converter={local:ApplicationPageValueConverter}}"
+                            CurrentPage="{Binding}"/>
         </Grid>
     </Border>
 </Window>

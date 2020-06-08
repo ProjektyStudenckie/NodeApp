@@ -44,7 +44,7 @@ namespace NodeApp
             var delta = Stopwatch.GetTimestamp() - _timestamp;
             var timesp = new TimeSpan(delta);
 
-            if (timesp.TotalSeconds < 1)
+            if (timesp.TotalSeconds < 0.05)
                 return;
 
             AssociatedObject.Cursor = Cursors.Arrow;

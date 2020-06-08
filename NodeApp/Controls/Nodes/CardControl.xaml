@@ -27,12 +27,49 @@
                                     <RowDefinition Height="Auto"/>
                                 </Grid.RowDefinitions>
 
+                                <Grid.ContextMenu>
+                                    <ContextMenu>
+                                        <MenuItem Header="Move Card Up" Command="{Binding MoveCardUpCommand}">
+                                            <MenuItem.Icon>
+                                                <Image Margin="2 -5 -10 -5" Width="25" Height="25"
+                                                       Source="pack://application:,,,/Images/ContextMenuIcons/arrowUp.png"/>
+                                            </MenuItem.Icon>
+                                        </MenuItem>
+                                        <MenuItem Header="Move Card Down" Command="{Binding MoveCardDownCommand}">
+                                            <MenuItem.Icon>
+                                                <Image Margin="2 -5 -10 -5" Width="25" Height="25"
+                                                       Source="pack://application:,,,/Images/ContextMenuIcons/arrowDown.png"/>
+                                            </MenuItem.Icon>
+                                        </MenuItem>
+                                        <Separator/>
+                                        <MenuItem Header="Move Card Right" Command="{Binding MoveCardRightCommand}">
+                                            <MenuItem.Icon>
+                                                <Image Margin="2 -5 -10 -5" Width="25" Height="25"
+                                                       Source="pack://application:,,,/Images/ContextMenuIcons/arrowRight.png"/>
+                                            </MenuItem.Icon>
+                                        </MenuItem>
+                                        <MenuItem Header="Move Card Left" Command="{Binding MoveCardLeftCommand}">
+                                            <MenuItem.Icon>
+                                                <Image Margin="2 -5 -10 -5" Width="25" Height="25"
+                                                       Source="pack://application:,,,/Images/ContextMenuIcons/arrowLeft.png"/>
+                                            </MenuItem.Icon>
+                                        </MenuItem>
+                                        <Separator/>
+                                        <MenuItem Header="Delete This Card" Command="{Binding DeleteCardCommand}">
+                                            <MenuItem.Icon>
+                                                <Image Margin="2 -5 -10 -5" Width="25" Height="25"
+                                                       Source="pack://application:,,,/Images/ContextMenuIcons/redCross.png"/>
+                                            </MenuItem.Icon>
+                                        </MenuItem>
+                                    </ContextMenu>
+                                </Grid.ContextMenu>
+
 
                                 <TextBlock Text="{Binding Title}"
                                            FontSize="{StaticResource FontSizeRegular}"
                                            FontFamily="{StaticResource LatoBold}"
                                            Padding="10 10 10 0"
-                                           TextWrapping="WrapWithOverflow"
+                                           TextWrapping="Wrap"
                                            TextTrimming="CharacterEllipsis"
                                            MaxHeight="110"
                                            MinHeight="50"/>
