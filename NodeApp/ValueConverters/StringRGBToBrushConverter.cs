@@ -16,7 +16,10 @@ namespace NodeApp
 
         public override object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            throw new NotImplementedException();
+            if (value == null)
+                return null;
+
+            return new ColorConverter().ConvertToString(((SolidColorBrush)value).Color);
         }
     }
 }

@@ -101,6 +101,10 @@
                                         </DataTemplate>
                                     </ItemsControl.ItemTemplate>
                                 </ItemsControl>
+
+                                <Grid.ToolTip>
+                                    <ToolTip Content="Left click to edit content | Right click to navigate\delete"/>
+                                </Grid.ToolTip>
                             </Grid>
                             
                         </Border>

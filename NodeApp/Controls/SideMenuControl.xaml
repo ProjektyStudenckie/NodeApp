@@ -33,15 +33,22 @@
                             <StackPanel Orientation="Horizontal">
                                 <Button Style="{StaticResource IconButton}"
                                         Content="{StaticResource FontAwesomeToDoIcon}"
-                                        Command="{Binding RemoveSelectedCardCommand}"/>
-                                <Button Style="{StaticResource IconButton}"
-                                        Content="{StaticResource FontAwesomeToolsIcon}"/>
+                                        Command="{Binding OpenPropertiesCommand}">
+                                    <Button.ToolTip>
+                                        <ToolTip Content="Properties"/>
+                                    </Button.ToolTip>
+                                </Button>
                             </StackPanel>
 
                             <!-- Settings Button -->
                             <Button Grid.Column="2" Style="{StaticResource IconButton}"
                                     Content="{StaticResource FontAwesomeCogIcon}" 
-                                    Foreground="{StaticResource TonedLightBlueBrush}"/>
+                                    Foreground="{StaticResource TonedLightBlueBrush}"
+                                    Command="{Binding OpenSettingsCommand}">
+                                <Button.ToolTip>
+                                    <ToolTip Content="Settings"/>
+                                </Button.ToolTip>
+                            </Button>
 
                         </Grid>
 

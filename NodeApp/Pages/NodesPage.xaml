@@ -23,41 +23,216 @@
                                    local:AnimateSlideInFromRightProperty.Value="{
                                         Binding ApplicationViewModel.SideMenuVisible,
                                         Source={x:Static local:ViewModelLocator.Instance}}">
-
                 <Grid>
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="*"/>
-                        <RowDefinition Height="Auto"/>
-                    </Grid.RowDefinitions>
 
-                    <StackPanel>
-                        <TextBlock Text="Card Content"
-                               Foreground="{StaticResource ForegroundLightBrush}"
-                               FontSize="{StaticResource FontSizeXLarge}"
-                               HorizontalAlignment="Center"
-                               Margin="0 10"/>
+                    <!-- Card Properties -->
+                    <Grid Visibility="{Binding AreSettingsOpen, Converter={local:BooleanToVisiblityConverter}}">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="Auto"/>
+                        </Grid.RowDefinitions>
 
-                        <Border CornerRadius="5"
-                                Background="{StaticResource ForegroundLightBrush}"
-                                Margin="10 0" MinHeight="33" Padding="8">
-                            <TextBox Style="{StaticResource BaseStyle}" 
-                                     TextWrapping="Wrap"
-                                     Background="Transparent"
-                                     BorderThickness="0"
-                                     FontFamily="{StaticResource LatoRegular}"
-                                     VerticalAlignment="Center"
-                                     Text="{Binding Path=(core:NodesListViewModel.SelectedCardTitle)}"/>
-                        </Border>
-                        
-                    </StackPanel>
+                        <ScrollViewer Grid.Row="0">
+                            <StackPanel>
+                                <TextBlock Text="Card Content"
+                                   Foreground="{StaticResource ForegroundLightBrush}"
+                                   FontSize="{StaticResource FontSizeXLarge}"
+                                   HorizontalAlignment="Center"
+                                   Margin="0 10"/>
+
+                                <Border CornerRadius="5"
+                                    Background="{StaticResource ForegroundLightBrush}"
+                                    Margin="10 0" MinHeight="33" Padding="8">
+                                    <TextBox Style="{StaticResource BaseStyle}" 
+                                         TextWrapping="Wrap"
+                                         Background="Transparent"
+                                         BorderThickness="0"
+                                         FontFamily="{StaticResource LatoRegular}"
+                                         VerticalAlignment="Center"
+                                         Text="{Binding Path=(core:NodesListViewModel.SelectedCardTitle)}"/>
+                                </Border>
+
+                                <TextBlock Text="Labels"
+                                   Foreground="{StaticResource ForegroundLightBrush}"
+                                   FontSize="{StaticResource FontSizeXLarge}"
+                                   HorizontalAlignment="Center"
+                                   Margin="0 10"/>
+
+                                <ItemsControl ItemsSource="{Binding AvailableLabels}" Grid.Row="1" Margin="3 0">
+                                    <ItemsControl.ItemsPanel>
+                                        <ItemsPanelTemplate>
+                                            <WrapPanel Orientation="Horizontal"/>
+                                        </ItemsPanelTemplate>
+                                    </ItemsControl.ItemsPanel>
+                                    <ItemsControl.ItemTemplate>
+                                        <DataTemplate>
+                                            <Border CornerRadius="2" 
+                                                VerticalAlignment="Top"
+                                                HorizontalAlignment="Left"
+                                                Background="{Binding BackgroundRGBColor, Converter={local:StringRGBToBrushConverter}}"
+                                                Padding="3 2 3 1"
+                                                Margin="4 1 4 6">
+
+                                                <TextBlock Text="{Binding Text}"
+                                                       Foreground="{Binding ForegroundRGBColor, Converter={local:StringRGBToBrushConverter}}"
+                                                       FontFamily="{StaticResource LatoRegular}"
+                                                       FontSize="{StaticResource FontSizeSmall}"
+                                                       MaxWidth="135"
+                                                       TextTrimming="CharacterEllipsis">
+
+                                                    <TextBlock.InputBindings>
+                                                        <MouseBinding MouseAction="LeftClick"
+                                                                  Command="{Binding DataContext.LabelClickCommand, RelativeSource={RelativeSource AncestorType=ItemsControl}}"
+                                                                  CommandParameter="{Binding Text}"/>
+                                                    </TextBlock.InputBindings>
+                                                </TextBlock>
+                                            </Border>
+                                        </DataTemplate>
+                                    </ItemsControl.ItemTemplate>
+                                </ItemsControl>
+
+                            </StackPanel>
+                        </ScrollViewer>
+
+                        <Button Grid.Row="1" Margin="0 50"
+                                VerticalAlignment="Bottom"
+                                HorizontalAlignment="Center"
+                                Content="Save Changes"
+                                Command="{Binding UpdateCardCommand}"/>
+                    </Grid>
+
                     
-                    <Button Grid.Row="1" 
-                            VerticalAlignment="Bottom"
-                            HorizontalAlignment="Center"
-                            Content="Save Changes"
-                            Command="{Binding UpdateCardCommand}"/>
+                    <!-- Settings -->
+                    <Grid Visibility="{Binding AreSettingsOpen, Converter={local:BooleanToVisiblityConverter}, ConverterParameter=True}">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="*"/>
+                        </Grid.RowDefinitions>
+
+                        <Border BorderThickness="0 0 0 2"
+                                BorderBrush="White">
+                            <StackPanel>
+
+                                <TextBlock Text="Available Labels"
+                                           Foreground="{StaticResource ForegroundLightBrush}"
+                                           FontSize="{StaticResource FontSizeXLarge}"
+                                           HorizontalAlignment="Center"
+                                           Margin="0 10">
+                                    <TextBlock.ToolTip>
+                                        <ToolTip Content="Click on any label to delete it"/>
+                                    </TextBlock.ToolTip>
+                                </TextBlock>
+
+                                <ItemsControl ItemsSource="{Binding AvailableLabels}" Margin="3 0">
+                                    <ItemsControl.ItemsPanel>
+                                        <ItemsPanelTemplate>
+                                            <WrapPanel Orientation="Horizontal"/>
+                                        </ItemsPanelTemplate>
+                                    </ItemsControl.ItemsPanel>
+                                    <ItemsControl.ItemTemplate>
+                                        <DataTemplate>
+                                            <Border CornerRadius="2" 
+                                                    VerticalAlignment="Top"
+                                                    HorizontalAlignment="Left"
+                                                    Background="{Binding BackgroundRGBColor, Converter={local:StringRGBToBrushConverter}}"
+                                                    Padding="3 2 3 1"
+                                                    Margin="4 1 4 6">
+
+                                                <TextBlock Text="{Binding Text}"
+                                                               Foreground="{Binding ForegroundRGBColor, Converter={local:StringRGBToBrushConverter}}"
+                                                               FontFamily="{StaticResource LatoRegular}"
+                                                               FontSize="{StaticResource FontSizeSmall}"
+                                                               MaxWidth="135"
+                                                               TextTrimming="CharacterEllipsis">
+                                                    <TextBlock.InputBindings>
+                                                        <MouseBinding MouseAction="LeftClick"
+                                                                      Command="{Binding DataContext.RemoveLabelCommand, RelativeSource={RelativeSource AncestorType=ItemsControl}}"
+                                                                      CommandParameter="{Binding Text}"/>
+                                                    </TextBlock.InputBindings>
+                                                </TextBlock>
+
+                                                <Border.ToolTip>
+                                                    <ToolTip Content="Click to delete"/>
+                                                </Border.ToolTip>
+                                            </Border>
+                                        </DataTemplate>
+                                    </ItemsControl.ItemTemplate>
+                                </ItemsControl>
+
+                            </StackPanel>
+                        </Border>
+
+                        <ScrollViewer Grid.Row="1">
+                            <StackPanel>
+
+                                <TextBlock Text="Create New Label"
+                                           Foreground="{StaticResource ForegroundLightBrush}"
+                                           FontSize="{StaticResource FontSizeXXLarge}"
+                                           FontFamily="{StaticResource LatoBold}"
+                                           HorizontalAlignment="Center"
+                                           Margin="0 10"/>
+
+                                <TextBlock Text="Title"
+                                           Foreground="{StaticResource ForegroundLightBrush}"
+                                           FontSize="{StaticResource FontSizeXLarge}"
+                                           HorizontalAlignment="Center"
+                                           Margin="0 10"/>
+
+                                <Border CornerRadius="5"
+                                        Background="{StaticResource ForegroundLightBrush}" 
+                                        MinHeight="33" Padding="8" Width="150">
+
+                                    <TextBox Style="{StaticResource BaseStyle}" 
+                                             HorizontalContentAlignment="Center"
+                                             TextWrapping="Wrap"
+                                             Background="Transparent"
+                                             BorderThickness="0"
+                                             FontFamily="{StaticResource LatoRegular}"
+                                             VerticalAlignment="Center"
+                                             MaxLength="15"
+                                             Text="{Binding NewLabelTitle}">
+                                        <TextBox.ToolTip>
+                                            <ToolTip Content="Can't be already used title"/>
+                                        </TextBox.ToolTip>
+                                    </TextBox>
+                                </Border>
+
+                                <TextBlock Text="Background Color"
+                                           Foreground="{StaticResource ForegroundLightBrush}"
+                                           FontSize="{StaticResource FontSizeXLarge}"
+                                           HorizontalAlignment="Center"
+                                           Margin="10 20 0 10"/>
+
+                                <local:ColorPicker FinalColorString="{Binding NewLabelBackgroundColor, Mode=TwoWay}"/>
+
+
+                                <TextBlock Text="Foreground Color"
+                                           Foreground="{StaticResource ForegroundLightBrush}"
+                                           FontSize="{StaticResource FontSizeXLarge}"
+                                           HorizontalAlignment="Center"
+                                           Margin="10 20 0 10"/>
+
+                                <local:ColorPicker FinalColorString="{Binding NewLabelForegroundColor, Mode=TwoWay}"/>
+
+                                <Button Grid.Row="1"
+                                        VerticalAlignment="Bottom"
+                                        HorizontalAlignment="Center"
+                                        Content="Create"
+                                        Margin="0 20"
+                                        Command="{Binding CreateLabelCommand}"
+                                        ToolTipService.ShowOnDisabled="True">
+                                    <Button.ToolTip>
+                                        <ToolTip Content="Create new label based on the parameters above (title can't be duplicated)"/>
+                                    </Button.ToolTip>
+                                </Button>
+
+                            </StackPanel>
+                        </ScrollViewer>
+
+
+                        
+                    </Grid>
                 </Grid>
-                
 
             </local:SideMenuControl>
 
