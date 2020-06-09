@@ -9,7 +9,7 @@ namespace NodeApp.Core
         
         public string Title { get; set; }
 
-        public ObservableCollection<CardLabel> Labels { get; set; }
+        public ObservableCollection<CardLabel> Labels { get; set; } = new ObservableCollection<CardLabel>();
 
         #endregion
 
@@ -31,8 +31,6 @@ namespace NodeApp.Core
 
         public CardViewModel()
         {
-            Labels = new ObservableCollection<CardLabel>();
-
             DeleteCardCommand = new RelayCommand(DeleteCard);
 
             MoveCardRightCommand = new RelayCommand(MoveCardRight, (arg) => NodesListViewModel.CanMoveCardRight(this));

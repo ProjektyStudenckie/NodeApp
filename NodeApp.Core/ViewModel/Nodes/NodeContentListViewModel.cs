@@ -22,6 +22,8 @@ namespace NodeApp.Core
                 if (selectedCard == value)
                     return;
 
+                NodesListViewModel.DeselectCards();
+
                 selectedCard = value;
 
                 if (value == null)
@@ -39,6 +41,7 @@ namespace NodeApp.Core
         public bool EditMenuVisible { get; set; }
 
         #endregion
+
 
         #region Public Commands
 

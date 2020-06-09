@@ -260,6 +260,17 @@ namespace NodeApp.Core
             SelectedCardTitle = "";
         }
 
+        public static void DeselectCards()
+        {
+            for(int i=0; i<Nodes.Count; i++)
+                for(int j=0; j<Nodes[i].Cards.Count; j++)
+                {
+                    CardViewModel card = Nodes[i].Cards[j];
+                    Nodes[i].Cards.RemoveAt(j);
+                    Nodes[i].Cards.Insert(j, card);
+                }
+        }
+
         private bool IsLabelDuplicate()
         {
             for(int i=0; i<AvailableLabels.Count; i++)

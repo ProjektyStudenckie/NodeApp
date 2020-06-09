@@ -21,6 +21,10 @@
                                 Background="{StaticResource TonedVeryLightBlueBrush}"
                                 CornerRadius="6">
 
+                            <Border.InputBindings>
+                                <MouseBinding MouseAction="LeftClick" Command="{Binding CardClickCommand}"/>
+                            </Border.InputBindings>
+
                             <Grid x:Name="container" Background="Transparent">
                                 <Grid.RowDefinitions>
                                     <RowDefinition Height="Auto"/>
