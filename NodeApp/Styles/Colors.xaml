@@ -38,6 +38,17 @@
     <Color x:Key="WordGreen">#00c541</Color>
     <SolidColorBrush x:Key="WordGreenBrush" Color="{StaticResource WordGreen}"/>
 
+    <Color x:Key="NBlue">#4c556a</Color>
+    <SolidColorBrush x:Key="NBlueBrush" Color="{StaticResource NBlue}"/>
+
+    <Color x:Key="NSemiDarkBlue">#3c455a</Color>
+    <SolidColorBrush x:Key="NSemiDarkBlueBrush" Color="{StaticResource NSemiDarkBlue}"/>
+
+    <Color x:Key="NDarkBlue">#2c354a</Color>
+    <SolidColorBrush x:Key="NDarkBlueBrush" Color="{StaticResource NDarkBlue}"/>
+
+    <Color x:Key="NVeryDarkBlue">#1c253a</Color>
+    <SolidColorBrush x:Key="NVeryDarkBlueBrush" Color="{StaticResource NVeryDarkBlue}"/>
 
     <Color x:Key="BackgroundDarkBlue">#2e2e40</Color>
     <SolidColorBrush x:Key="BackgroundDarkBlueBrush" Color="{StaticResource BackgroundDarkBlue}"/>
@@ -56,5 +67,11 @@
 
     <Color x:Key="TonedLightBlue">#878dBF</Color>
     <SolidColorBrush x:Key="TonedLightBlueBrush" Color="{StaticResource TonedLightBlue}"/>
+
+    <Color x:Key="TonedVeryLightBlue">#b7cdef</Color>
+    <SolidColorBrush x:Key="TonedVeryLightBlueBrush" Color="{StaticResource TonedVeryLightBlue}"/>
+
+    <Color x:Key="TonedSuperLightBlue">#dfefff</Color>
+    <SolidColorBrush x:Key="TonedSuperLightBlueBrush" Color="{StaticResource TonedSuperLightBlue}"/>
 
 </ResourceDictionary>

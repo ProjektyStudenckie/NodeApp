@@ -1,0 +1,66 @@
+﻿<UserControl x:Class="NodeApp.SideMenuControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:NodeApp"
+             xmlns:core="clr-namespace:NodeApp.Core;assembly=NodeApp.Core"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="300">
+
+    <UserControl.Template>
+        <ControlTemplate TargetType="UserControl">
+
+            <Grid>
+                <Border Background="{StaticResource NDarkBlueBrush}">
+
+                    <!-- Content -->
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="*"/>
+                        </Grid.RowDefinitions>
+
+                        <Grid Height="60" Background="{StaticResource BackgroundDarkBlueBrush}">
+
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="Auto"/>
+                            </Grid.ColumnDefinitions>
+
+                            <!-- Main Buttons -->
+                            <StackPanel Orientation="Horizontal">
+                                <Button Style="{StaticResource IconButton}"
+                                        Content="{StaticResource FontAwesomeToDoIcon}"
+                                        Command="{Binding OpenPropertiesCommand}">
+                                    <Button.ToolTip>
+                                        <ToolTip Content="Properties"/>
+                                    </Button.ToolTip>
+                                </Button>
+                            </StackPanel>
+
+                            <!-- Settings Button -->
+                            <Button Grid.Column="2" Style="{StaticResource IconButton}"
+                                    Content="{StaticResource FontAwesomeCogIcon}" 
+                                    Foreground="{StaticResource TonedLightBlueBrush}"
+                                    Command="{Binding OpenSettingsCommand}">
+                                <Button.ToolTip>
+                                    <ToolTip Content="Settings"/>
+                                </Button.ToolTip>
+                            </Button>
+
+                        </Grid>
+
+
+                        <!--The User Content-->
+                        <ContentPresenter Grid.Row="1"/>
+                    </Grid>
+
+                </Border>
+            </Grid>
+
+        </ControlTemplate>
+    </UserControl.Template>
+
+</UserControl>

@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
+
 namespace NodeApp.DataBase
 {
     public class DataTask
@@ -55,9 +56,11 @@ namespace NodeApp.DataBase
                 string EDIT_PERSON = $"UPDATE TASK SET task_name='{task.task_name}', " +
                     $"WHERE task_id={idTask}";
 
+
                 SqlCommand command = new SqlCommand(EDIT_PERSON, connection);
                 connection.Open();
                 var n = command.ExecuteNonQuery();
+
                 if (n == 1) succ = true;
 
                 connection.Close();
@@ -81,6 +84,8 @@ namespace NodeApp.DataBase
                 connection.Close();
             }
             return succ;
+
+
         }
     }
 }

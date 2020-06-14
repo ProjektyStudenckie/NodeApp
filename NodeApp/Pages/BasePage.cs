@@ -11,7 +11,7 @@ namespace NodeApp
 
         public PageAnimation PageLoadAnimation { get; set; } = PageAnimation.SlideAndFadeInFromRight;
 
-        public PageAnimation PageUnloadAnimation { get; set; } = PageAnimation.SlidaAndFadeOutToLeft;
+        public PageAnimation PageUnloadAnimation { get; set; } = PageAnimation.SlideAndFadeOutToLeft;
 
         public float SlideSeconds { get; set; } = 0.4f;
 
@@ -68,7 +68,7 @@ namespace NodeApp
 
             switch (this.PageUnloadAnimation)
             {
-                case PageAnimation.SlidaAndFadeOutToLeft:
+                case PageAnimation.SlideAndFadeOutToLeft:
                     await this.SlideAndFadeOutToLeft(this.SlideSeconds);
                     break;
             }

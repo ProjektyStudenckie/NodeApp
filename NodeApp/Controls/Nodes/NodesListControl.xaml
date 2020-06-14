@@ -1,0 +1,49 @@
+﻿<UserControl x:Class="NodeApp.NodesListControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:NodeApp"
+             xmlns:core="clr-namespace:NodeApp.Core;assembly=NodeApp.Core"
+             mc:Ignorable="d" 
+             d:DesignHeight="750" d:DesignWidth="1250">
+
+    <Grid Background="Transparent"
+          d:DataContext="{x:Static core:NodesListDesignModel.Instance}"
+          HorizontalAlignment="Center">
+
+        <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Disabled">
+
+            <StackPanel Orientation="Horizontal">
+                <ItemsControl ItemsSource="{Binding Nodes}">
+                    <ItemsControl.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <StackPanel Orientation="Horizontal"/>
+                        </ItemsPanelTemplate>
+                    </ItemsControl.ItemsPanel>
+
+                    <ItemsControl.ItemTemplate>
+                        <DataTemplate>
+                            <local:NodeContentListControl Margin="20 50"/>
+                        </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+                </ItemsControl>
+
+                <Button Height="60"
+                        Margin="20 50"
+                        VerticalAlignment="Top"
+                        Style="{StaticResource RoundedIconButton}"
+                        Content="{StaticResource FontAwesomePlusIcon}"
+                        Command="{Binding AddNodeCommand}">
+
+                    <Button.ToolTip>
+                        <ToolTip Content="Create new node"/>
+                    </Button.ToolTip>
+                </Button>
+
+            </StackPanel>
+        </ScrollViewer>
+
+    </Grid>
+    
+</UserControl>

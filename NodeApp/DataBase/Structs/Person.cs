@@ -10,13 +10,12 @@ namespace NodeApp.DataBase
     public class Person
     {
 
+
         public int person_id { get; set; }
         public string first_name { get; set; }
         public string last_name { get; set; }
         public int active { get; set; }
- 
 
-  
 
         public Person(SqlDataReader reader)
         {
@@ -41,6 +40,7 @@ namespace NodeApp.DataBase
             last_name = person.last_name;
 
         }
+
 
 
         public override string ToString()
@@ -68,7 +68,7 @@ namespace NodeApp.DataBase
         {
             return base.GetHashCode();
         }
-   
+
     }
 
 

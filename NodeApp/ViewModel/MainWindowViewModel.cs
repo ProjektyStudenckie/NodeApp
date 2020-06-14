@@ -10,6 +10,8 @@ namespace NodeApp
 
         private Window mWindow;
 
+        private WindowResizer mWindowResizer;
+
         /// <summary>
         /// Margin around the window to allow for a drop shadow
         /// </summary>
@@ -24,7 +26,7 @@ namespace NodeApp
         #region Public Properties
 
         public double WindowMinimumWidth { get; set; } = 800;
-        public double WindowMinimumHeight { get; set; } = 400;
+        public double WindowMinimumHeight { get; set; } = 500;
 
 
         public bool Borderless
@@ -106,9 +108,10 @@ namespace NodeApp
             MenuCommand = new RelayCommand((arg) => SystemCommands.ShowSystemMenu(mWindow, GetMousePosition()));
 
             // Fix window resize issue
-            var resizer = new WindowResizer(mWindow);
+            mWindowResizer = new WindowResizer(mWindow);
 
-            resizer.WindowDockChanged += (dock) =>
+            // Listen out for dock changes
+            mWindowResizer.WindowDockChanged += (dock) =>
             {
                 // Store last position
                 mDockPosition = dock;
@@ -124,8 +127,7 @@ namespace NodeApp
 
         public Point GetMousePosition()
         {
-            var position = Mouse.GetPosition(mWindow);
-            return new Point(position.X + mWindow.Left, position.Y + mWindow.Top);
+            return mWindowResizer.GetCursorPosition();
         }
 
         private void WindowResized()
