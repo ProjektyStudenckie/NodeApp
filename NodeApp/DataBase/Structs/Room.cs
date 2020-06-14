@@ -5,9 +5,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace NodeApp
+
+namespace NodeApp.DataBase
 {
-    class Room
+    public class Room
+
     {
 
 

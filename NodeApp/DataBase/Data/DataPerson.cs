@@ -5,78 +5,74 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-
 namespace NodeApp.DataBase
 {
-    public class DataTask
+    public class DataPerson
     {
-        private const string ALL_TASKS = "SELECT * FROM TASK";
-        private const string ADD_TASK = "INSERT INTO `TASK`(`task_name`) VALUES ";
+
+        private const string ALL_USERS = "SELECT * FROM PERSON";
+        private const string ADD_PERSON = "INSERT INTO `PERSON`(`last_name`, `first_name`) VALUES ";
 
 
 
-        public static List<Task> DownloadTasks()
+        public static List<Person> DownloadUsers()
         {
-            List<Task> tasks = new List<Task>();
+            List<Person> users = new List<Person>();
             using (var connection = DBconnect.Instance.Connection)
             {
-                SqlCommand command = new SqlCommand(ALL_TASKS, connection);
+                SqlCommand command = new SqlCommand(ALL_USERS, connection);
                 connection.Open();
                 var reader = command.ExecuteReader();
                 while (reader.Read())
-                    tasks.Add(new Task(reader));
+                    users.Add(new Person(reader));
                 connection.Close();
             }
-            return tasks;
+            return users;
         }
 
-        public static bool AddTask(Task task)
+        public static bool AddPerson(Person person)
         {
             bool succ = false;
             using (var connection = DBconnect.Instance.Connection)
             {
-                SqlCommand command = new SqlCommand($"{ADD_TASK} {task.ToInsert()}", connection);
+                SqlCommand command = new SqlCommand($"{ADD_PERSON} {person.ToInsert()}", connection);
                 connection.Open();
                 var id = command.ExecuteNonQuery();
                 succ = true;
 
-                command = new SqlCommand($"SELECT MAX(ID) FROM TASK", connection);
-                task.task_id = (int)command.ExecuteNonQuery();
-
+                command = new SqlCommand($"SELECT MAX(ID) FROM PERSON", connection);
+                person.person_id = (int)command.ExecuteNonQuery();
                 connection.Close();
             }
             return succ;
         }
 
-        public static bool EditTask(Task task, int idTask)
+        public static bool EditPerson(Person person, int idPerson)
         {
             bool succ = false;
             using (var connection = DBconnect.Instance.Connection)
             {
-                string EDIT_PERSON = $"UPDATE TASK SET task_name='{task.task_name}', " +
-                    $"WHERE task_id={idTask}";
-
+                string EDIT_PERSON = $"UPDATE PERSON SET first_name='{person.first_name}', last_name='{person.last_name}', " +
+                    $"WHERE person_id={idPerson}";
 
                 SqlCommand command = new SqlCommand(EDIT_PERSON, connection);
                 connection.Open();
                 var n = command.ExecuteNonQuery();
-
                 if (n == 1) succ = true;
 
                 connection.Close();
             }
             return succ;
         }
-
-        public static bool DeleteTask(Task task)
+        public static bool DeletePerson(Person person)
         {
             bool succ = false;
             using (var connection = DBconnect.Instance.Connection)
             {
-                string DELETE_TASK = $"DELETE FROM TASK" +
-                    $"WHERE person_id={task.task_id}";
+                string DELETE_PERSON = $"DELETE FROM PERSON" +
+                    $"WHERE person_id={person.person_id}";
 
-                SqlCommand command = new SqlCommand(DELETE_TASK, connection);
+                SqlCommand command = new SqlCommand(DELETE_PERSON, connection);
                 connection.Open();
                 var n = command.ExecuteNonQuery();
                 if (n == 1) succ = true;
@@ -84,8 +80,6 @@ namespace NodeApp.DataBase
                 connection.Close();
             }
             return succ;
-
-
         }
     }
 }

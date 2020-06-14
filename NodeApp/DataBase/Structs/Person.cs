@@ -5,19 +5,17 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace NodeApp
+namespace NodeApp.DataBase
 {
-    class Person
+    public class Person
     {
 
-        #region Własności
+
         public int person_id { get; set; }
         public string first_name { get; set; }
         public string last_name { get; set; }
         public int active { get; set; }
-        #endregion
 
-        #region Konstruktory
 
         public Person(SqlDataReader reader)
         {
@@ -43,9 +41,7 @@ namespace NodeApp
 
         }
 
-        #endregion
 
-        #region Metody
 
         public override string ToString()
         {
@@ -72,7 +68,7 @@ namespace NodeApp
         {
             return base.GetHashCode();
         }
-        #endregion
+
     }
 
 
