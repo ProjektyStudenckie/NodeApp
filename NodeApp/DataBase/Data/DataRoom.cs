@@ -7,14 +7,14 @@ using System.Threading.Tasks;
 
 namespace NodeApp.DataBase
 {
-    class DataRoom
+    public class DataRoom
     {
         private const string All_ROOMS = "SELECT * FROM ROOM";
         private const string ADD_ROOM = "INSERT INTO `ROOM`(`room_name`) VALUES ";
 
 
 
-        public static List<Room> PobierzWszystkieOsoby()
+        public static List<Room> DownloadRooms()
         {
             List<Room> roooms = new List<Room>();
             using (var connection = DBconnect.Instance.Connection)
@@ -31,22 +31,25 @@ namespace NodeApp.DataBase
 
         public static bool AddRoom(Room room)
         {
-            bool stan = false;
+            bool succ = false;
             using (var connection = DBconnect.Instance.Connection)
             {
                 SqlCommand command = new SqlCommand($"{ADD_ROOM} {room.ToInsert()}", connection);
                 connection.Open();
                 var id = command.ExecuteNonQuery();
-                stan = true;
-                //room.room_id = (int)command.GetLastInsertId();
+                succ = true;
+
+                command = new SqlCommand($"SELECT MAX(ID) FROM ROOM", connection);
+                room.room_id = (int)command.ExecuteNonQuery();
+
                 connection.Close();
             }
-            return stan;
+            return succ;
         }
 
         public static bool EditRoom(Room room, int room_id)
         {
-            bool stan = false;
+            bool succ = false;
             using (var connection = DBconnect.Instance.Connection)
             {
                 string EDIT_ROOM = $"UPDATE PERSON SET room_name='{room.room_name}', " +
@@ -55,11 +58,29 @@ namespace NodeApp.DataBase
                 SqlCommand command = new SqlCommand(EDIT_ROOM, connection);
                 connection.Open();
                 var n = command.ExecuteNonQuery();
-                if (n == 1) stan = true;
+                if (n == 1) succ = true;
 
                 connection.Close();
             }
-            return stan;
+            return succ;
+        }
+
+        public static bool DeleteRoom(Room room, int room_id)
+        {
+            bool succ = false;
+            using (var connection = DBconnect.Instance.Connection)
+            {
+                string DELETE_ROOM = $"UPDATE PERSON SET room_name='{room.room_name}', " +
+                    $"WHERE room_id={room_id}";
+
+                SqlCommand command = new SqlCommand(DELETE_ROOM, connection);
+                connection.Open();
+                var n = command.ExecuteNonQuery();
+                if (n == 1) succ = true;
+
+                connection.Close();
+            }
+            return succ;
         }
     }
 }
