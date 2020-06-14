@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace NodeApp.DataBase
 {
-    class Task
+    public class Task
     {
         public int task_id { get; set; }
         public string task_name { get; set; }

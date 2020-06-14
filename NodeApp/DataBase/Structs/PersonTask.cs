@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace NodeApp.DataBase.Structs
+namespace NodeApp.DataBase
 {
     public class PersonTask
     {
@@ -27,6 +27,8 @@ namespace NodeApp.DataBase.Structs
 
         public PersonTask(Person person, Task task)
         {
+            person_id = person.person_id;
+            task_id = task.task_id;
 
 
         }

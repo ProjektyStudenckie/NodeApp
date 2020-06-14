@@ -65,13 +65,13 @@ namespace NodeApp.DataBase
             return succ;
         }
 
-        public static bool DeleteRoom(Room room, int room_id)
+        public static bool DeleteRoom(Room room)
         {
             bool succ = false;
             using (var connection = DBconnect.Instance.Connection)
             {
-                string DELETE_ROOM = $"UPDATE PERSON SET room_name='{room.room_name}', " +
-                    $"WHERE room_id={room_id}";
+                string DELETE_ROOM = $"DELETE FROM ROOM" +
+                    $"WHERE room_id={room.room_id}";
 
                 SqlCommand command = new SqlCommand(DELETE_ROOM, connection);
                 connection.Open();

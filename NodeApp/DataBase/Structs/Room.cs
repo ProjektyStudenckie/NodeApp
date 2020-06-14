@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace NodeApp.DataBase
 {
-    class Room
+    public class Room
     {
 
 
