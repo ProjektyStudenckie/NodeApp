@@ -7,35 +7,35 @@ using System.Threading.Tasks;
 
 namespace NodeApp.DataBase
 {
-    public class PersonTask
+    public class LableTask
     {
 
 
-        public int person_id { get; set; }
+        public int lable_id { get; set; }
         public int task_id { get; set; }
 
 
 
 
-        public PersonTask(SqlDataReader reader)
+        public LableTask(SqlDataReader reader)
         {
-            person_id = int.Parse(reader["person_id"].ToString());
+            lable_id = int.Parse(reader["lable_id"].ToString());
             task_id = int.Parse(reader["task_id"].ToString());
           
 
         }
 
-        public PersonTask(Person person, Task task)
+        public LableTask(Lable person, Task task)
         {
-            person_id = person.person_id;
+            lable_id = person.lable_id;
             task_id = task.task_id;
 
 
         }
 
-        public PersonTask(PersonTask persontask)
+        public LableTask(LableTask persontask)
         {
-            person_id = persontask.person_id;
+            lable_id = persontask.lable_id;
             task_id = persontask.task_id;
 
         }
@@ -43,21 +43,21 @@ namespace NodeApp.DataBase
 
         public override string ToString()
         {
-            return $"{person_id} {task_id} ";
+            return $"{lable_id} {task_id} ";
         }
 
         public string ToInsert()
         {
-            return $"('{person_id}', '{task_id}')";
+            return $"('{lable_id}', '{task_id}')";
         }
 
         public override bool Equals(object obj)
         {
 
-            var persontask = obj as PersonTask;
-            if (persontask is null) return false;
-            if (task_id != persontask.task_id) return false;
-            if (person_id != persontask.person_id) return false;
+            var labletask = obj as LableTask;
+            if (labletask is null) return false;
+            if (task_id != labletask.task_id) return false;
+            if (lable_id != labletask.lable_id) return false;
             return true;
         }
 

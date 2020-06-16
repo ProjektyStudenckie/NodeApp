@@ -131,7 +131,7 @@
     <Compile Include="DataBase\Data\DataRoom.cs" />
     <Compile Include="DataBase\Data\DataTask.cs" />
     <Compile Include="DataBase\DBconnect.cs" />
-    <Compile Include="DataBase\Structs\Person.cs" />
+    <Compile Include="DataBase\Structs\Lable.cs" />
     <Compile Include="DataBase\Structs\PersonTask.cs" />
     <Compile Include="DataBase\Structs\Room.cs" />
     <Compile Include="DataBase\Structs\Task.cs" />

@@ -7,55 +7,55 @@ using System.Threading.Tasks;
 
 namespace NodeApp.DataBase
 {
-    public class DataPerson
+    public class DataLable
     {
 
-        private const string ALL_USERS = "SELECT * FROM PERSON";
-        private const string ADD_PERSON = "INSERT INTO `PERSON`(`last_name`, `first_name`) VALUES ";
+        private const string ALL_LABLE = "SELECT * FROM LABLE";
+        private const string ADD_LABLE = "INSERT INTO `LABLE`('text','background','foreground') VALUES ";
 
 
 
-        public static List<Person> DownloadUsers()
+        public static List<Lable> DownloadLables()
         {
-            List<Person> users = new List<Person>();
+            List<Lable> users = new List<Lable>();
             using (var connection = DBconnect.Instance.Connection)
             {
-                SqlCommand command = new SqlCommand(ALL_USERS, connection);
+                SqlCommand command = new SqlCommand(ALL_LABLE, connection);
                 connection.Open();
                 var reader = command.ExecuteReader();
                 while (reader.Read())
-                    users.Add(new Person(reader));
+                    users.Add(new Lable(reader));
                 connection.Close();
             }
             return users;
         }
 
-        public static bool AddPerson(Person person)
+        public static bool AddLable(Lable lable)
         {
             bool succ = false;
             using (var connection = DBconnect.Instance.Connection)
             {
-                SqlCommand command = new SqlCommand($"{ADD_PERSON} {person.ToInsert()}", connection);
+                SqlCommand command = new SqlCommand($"{ADD_LABLE} {lable.ToInsert()}", connection);
                 connection.Open();
                 var id = command.ExecuteNonQuery();
                 succ = true;
 
-                command = new SqlCommand($"SELECT MAX(ID) FROM PERSON", connection);
-                person.person_id = (int)command.ExecuteNonQuery();
+                command = new SqlCommand($"SELECT MAX(lable_id) FROM LABLE", connection);
+                lable.lable_id = (int)command.ExecuteNonQuery();
                 connection.Close();
             }
             return succ;
         }
 
-        public static bool EditPerson(Person person, int idPerson)
+        public static bool EditLable(Lable lable, int idLable)
         {
             bool succ = false;
             using (var connection = DBconnect.Instance.Connection)
             {
-                string EDIT_PERSON = $"UPDATE PERSON SET first_name='{person.first_name}', last_name='{person.last_name}', " +
-                    $"WHERE person_id={idPerson}";
+                string EDIT_LABLE = $"UPDATE LABLE SET lable_text='{lable.lable_text}', lable_background='{lable.background}', " +
+                    $"WHERE lable_id={idLable}";
 
-                SqlCommand command = new SqlCommand(EDIT_PERSON, connection);
+                SqlCommand command = new SqlCommand(EDIT_LABLE, connection);
                 connection.Open();
                 var n = command.ExecuteNonQuery();
                 if (n == 1) succ = true;
@@ -64,15 +64,15 @@ namespace NodeApp.DataBase
             }
             return succ;
         }
-        public static bool DeletePerson(Person person)
+        public static bool DeleteLable(Lable lable)
         {
             bool succ = false;
             using (var connection = DBconnect.Instance.Connection)
             {
-                string DELETE_PERSON = $"DELETE FROM PERSON" +
-                    $"WHERE person_id={person.person_id}";
+                string DELETE_LABLE = $"DELETE FROM LABLE" +
+                    $"WHERE lable_id={lable.lable_id}";
 
-                SqlCommand command = new SqlCommand(DELETE_PERSON, connection);
+                SqlCommand command = new SqlCommand(DELETE_LABLE, connection);
                 connection.Open();
                 var n = command.ExecuteNonQuery();
                 if (n == 1) succ = true;

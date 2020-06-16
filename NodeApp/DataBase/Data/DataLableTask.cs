@@ -7,35 +7,35 @@ using System.Threading.Tasks;
 
 namespace NodeApp.DataBase
 {
-    public class DataPersonTask
+    public class DataLableTask
     {
 
-        private const string ALL_TASKPERSON = "SELECT * FROM TaskPersonRelation";
-        private const string ADD_TASKPERSON = "INSERT INTO `TaskPersonRelation`(`person_id`, `task_id`) VALUES ";
+        private const string ALL_TASKLABLE = "SELECT * FROM TaskLableRelation";
+        private const string ADD_TASKLABLE = "INSERT INTO `TaskLableRelation`(`lable_id`, `task_id`) VALUES ";
 
 
 
-        public static List<PersonTask> DownloadPersonTask()
+        public static List<LableTask> DownloadLableTask()
         {
-            List<PersonTask> relations = new List<PersonTask>();
+            List<LableTask> relations = new List<LableTask>();
             using (var connection = DBconnect.Instance.Connection)
             {
-                SqlCommand command = new SqlCommand(ALL_TASKPERSON, connection);
+                SqlCommand command = new SqlCommand(ALL_TASKLABLE, connection);
                 connection.Open();
                 var reader = command.ExecuteReader();
                 while (reader.Read())
-                    relations.Add(new PersonTask(reader));
+                    relations.Add(new LableTask(reader));
                 connection.Close();
             }
             return relations;
         }
 
-        public static bool AddPersonTask(PersonTask relation)
+        public static bool AddLableTask(LableTask relation)
         {
             bool succ = false;
             using (var connection = DBconnect.Instance.Connection)
             {
-                SqlCommand command = new SqlCommand($"{ADD_TASKPERSON} {relation.ToInsert()}", connection);
+                SqlCommand command = new SqlCommand($"{ADD_TASKLABLE} {relation.ToInsert()}", connection);
                 connection.Open();
                 var id = command.ExecuteNonQuery();
                 succ = true;
@@ -45,13 +45,13 @@ namespace NodeApp.DataBase
             return succ;
         }
 
-        public static bool DeletePersonTask(PersonTask relation)
+        public static bool DeleteLableTask(LableTask relation)
         {
             bool succ = false;
             using (var connection = DBconnect.Instance.Connection)
             {
                 string DELETE_RELATION = $"DELETE FROM PERSON" +
-                    $"WHERE person_id={relation.person_id}"+$"AND task_id={relation.task_id}";
+                    $"WHERE lable_id={relation.lable_id}"+$"AND task_id={relation.task_id}";
 
                 SqlCommand command = new SqlCommand(DELETE_RELATION, connection);
                 connection.Open();
