@@ -26,7 +26,7 @@ namespace NodeApp
 
         }
 
-        public LableTask(Lable person, DataBase.Task task)
+        public LableTask(Lable person, Task task)
         {
             lable_id = person.lable_id;
             task_id = task.task_id;

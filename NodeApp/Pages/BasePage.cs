@@ -48,7 +48,7 @@ namespace NodeApp
                 await AnimateIn();
         }
 
-        public async System.Threading.Tasks.Task AnimateIn()
+        public async Task AnimateIn()
         {
             if (this.PageLoadAnimation == PageAnimation.None)
                 return;
@@ -61,7 +61,7 @@ namespace NodeApp
             }
         }
 
-        public async System.Threading.Tasks.Task AnimateOut()
+        public async Task AnimateOut()
         {
             if (this.PageUnloadAnimation == PageAnimation.None)
                 return;
