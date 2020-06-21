@@ -6,7 +6,7 @@ namespace NodeApp
 {
     public static class FrameworkElementAnimations
     {
-        public static async System.Threading.Tasks.Task SlideAndFadeInFromLeft(this FrameworkElement element, float seconds = 0.3f, bool keepMargin = true)
+        public static async Task SlideAndFadeInFromLeft(this FrameworkElement element, float seconds = 0.3f, bool keepMargin = true)
         {
             var sb = new Storyboard();
 
@@ -18,10 +18,10 @@ namespace NodeApp
 
             element.Visibility = Visibility.Visible;
 
-            await System.Threading.Tasks.Task.Delay((int)(seconds * 1000));
+            await Task.Delay((int)(seconds * 1000));
         }
 
-        public static async System.Threading.Tasks.Task SlideAndFadeInFromRight(this FrameworkElement element, float seconds = 0.3f, bool keepMargin = true)
+        public static async Task SlideAndFadeInFromRight(this FrameworkElement element, float seconds = 0.3f, bool keepMargin = true)
         {
             var sb = new Storyboard();
 
@@ -33,10 +33,10 @@ namespace NodeApp
 
             element.Visibility = Visibility.Visible;
 
-            await System.Threading.Tasks.Task.Delay((int)(seconds * 1000));
+            await Task.Delay((int)(seconds * 1000));
         }
 
-        public static async System.Threading.Tasks.Task SlideAndFadeOutToLeft(this FrameworkElement element, float seconds = 0.3f, bool keepMargin = true)
+        public static async Task SlideAndFadeOutToLeft(this FrameworkElement element, float seconds = 0.3f, bool keepMargin = true)
         {
             var sb = new Storyboard();
 
@@ -48,10 +48,10 @@ namespace NodeApp
 
             element.Visibility = Visibility.Visible;
 
-            await System.Threading.Tasks.Task.Delay((int)(seconds * 1000));
+            await Task.Delay((int)(seconds * 1000));
         }
 
-        public static async System.Threading.Tasks.Task SlideAndFadeOutToRight(this FrameworkElement element, float seconds = 0.3f, bool keepMargin = true)
+        public static async Task SlideAndFadeOutToRight(this FrameworkElement element, float seconds = 0.3f, bool keepMargin = true)
         {
             var sb = new Storyboard();
 
@@ -63,7 +63,7 @@ namespace NodeApp
 
             element.Visibility = Visibility.Visible;
 
-            await System.Threading.Tasks.Task.Delay((int)(seconds * 1000));
+            await Task.Delay((int)(seconds * 1000));
         }
     }
 }

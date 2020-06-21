@@ -5,7 +5,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
+<<<<<<< HEAD
 namespace NodeApp
+=======
+namespace NodeApp.DataBase
+>>>>>>> 926d6b67812bb128536bc42fe89d022c4ae005e6
 {
     public class Column
     {
@@ -22,8 +26,15 @@ namespace NodeApp
 
         public Column(string text, int room_id)
         {
+<<<<<<< HEAD
             this.column_name = text.Trim();
             this.room_id = room_id;
+=======
+
+            this.column_name = text.Trim();
+            this.room_id = room_id;
+
+>>>>>>> 926d6b67812bb128536bc42fe89d022c4ae005e6
         }
 
         public Column(Column lable)
@@ -31,6 +42,10 @@ namespace NodeApp
             column_id = lable.column_id;
             column_name = lable.column_name;
             room_id = lable.room_id;
+<<<<<<< HEAD
+=======
+
+>>>>>>> 926d6b67812bb128536bc42fe89d022c4ae005e6
         }
 
         public override string ToString()
@@ -45,6 +60,10 @@ namespace NodeApp
 
         public override bool Equals(object obj)
         {
+<<<<<<< HEAD
+=======
+
+>>>>>>> 926d6b67812bb128536bc42fe89d022c4ae005e6
             var lable = obj as Column;
             if (lable is null) return false;
             if (column_name.ToLower() != lable.column_name.ToLower()) return false;

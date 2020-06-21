@@ -5,13 +5,21 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
+<<<<<<< HEAD
 namespace NodeApp
+=======
+namespace NodeApp.DataBase
+>>>>>>> 926d6b67812bb128536bc42fe89d022c4ae005e6
 {
     class DataColumn
     {
 
         private const string ALL_COLUMN = "SELECT * FROM COLUM";
+<<<<<<< HEAD
         private const string ADD_COLUMN = "INSERT INTO COLUM VALUES ";
+=======
+        private const string ADD_COLUMN = "INSERT INTO `COLUM`('column_name','room_id') VALUES ";
+>>>>>>> 926d6b67812bb128536bc42fe89d022c4ae005e6
 
 
 
@@ -40,10 +48,15 @@ namespace NodeApp
                 var id = command.ExecuteNonQuery();
                 succ = true;
 
+<<<<<<< HEAD
                 command = new SqlCommand($"SELECT MAX(column_id) ID FROM COLUM", connection);
                 var reader = command.ExecuteReader();
                 reader.Read();
                 column.column_id = int.Parse(reader["ID"].ToString());
+=======
+                command = new SqlCommand($"SELECT MAX(column_id) FROM COLUM", connection);
+                column.column_id = (int)command.ExecuteNonQuery();
+>>>>>>> 926d6b67812bb128536bc42fe89d022c4ae005e6
                 connection.Close();
             }
             return succ;
@@ -72,7 +85,11 @@ namespace NodeApp
             using (var connection = DBconnect.Instance.Connection)
             {
                 string DELETE_COLUMN = $"DELETE FROM COLUM" +
+<<<<<<< HEAD
                     $" WHERE column_id={column.column_id}";
+=======
+                    $"WHERE column_id={column.column_id}";
+>>>>>>> 926d6b67812bb128536bc42fe89d022c4ae005e6
 
                 SqlCommand command = new SqlCommand(DELETE_COLUMN, connection);
                 connection.Open();
@@ -84,14 +101,22 @@ namespace NodeApp
             return succ;
         }
 
+<<<<<<< HEAD
         public static List<Column> ReturnColumnsOfRoom(Room room)
+=======
+        public List<Column> ReturnColumnsOfRoom(Room room)
+>>>>>>> 926d6b67812bb128536bc42fe89d022c4ae005e6
         {
             List<Column> columns = new List<Column>();
             using (var connection = DBconnect.Instance.Connection)
             {
 
                 string TASKS_OF_COLUMN = $"SELECT * FROM COLUM" +
+<<<<<<< HEAD
                     $" WHERE room_id={room.room_id}";
+=======
+                    $"WHERE room_id={room.room_id}";
+>>>>>>> 926d6b67812bb128536bc42fe89d022c4ae005e6
                 SqlCommand command = new SqlCommand(TASKS_OF_COLUMN, connection);
                 connection.Open();
                 var reader = command.ExecuteReader();
