@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace NodeApp.DataBase
+namespace NodeApp
 {
     public class Task
     {
@@ -51,7 +51,7 @@ namespace NodeApp.DataBase
         public override bool Equals(object obj)
         {
 
-            var task = obj as DataBase.Task;
+            var task = obj as Task;
             if (task is null) return false;
             if (task_name.ToLower() != task.task_name.ToLower()) return false;
             return true;

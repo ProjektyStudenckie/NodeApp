@@ -4,7 +4,7 @@
     {
         None = 0,
         SlideAndFadeInFromRight = 1,
-        SlidaAndFadeOutToLeft = 2
+        SlideAndFadeOutToLeft = 2
     }
 }
 

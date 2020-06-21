@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:NodeApp"
         mc:Ignorable="d"
-        Title="MainWindow" Height="600" Width="900"
+        Title="MainWindow" Height="650" Width="1000"
         WindowStyle="None"
         AllowsTransparency="True"
         WindowStartupLocation="CenterScreen"
@@ -73,7 +73,8 @@
                                         <!-- Title -->
                                         <Viewbox Grid.ColumnSpan="3" Margin="0">
                                             <StackPanel>
-                                                <TextBlock FontSize="{StaticResource FontSizeRegular}" FontFamily="{StaticResource LatoBold}" Margin="0 0 0 -5">
+                                                <TextBlock FontSize="{StaticResource FontSizeLarge}" 
+                                                           FontFamily="{StaticResource LatoBold}" Margin="0 0 0 -5">
                                                     <Run Text="NODE" Foreground="{StaticResource ForegroundGreyBrush}"/>
                                                     <Run Text="APP" Foreground="{StaticResource ForegroundVeryDarkBrush}"/>
                                                 </TextBlock>
@@ -120,7 +121,9 @@
 
 
                                     <!-- Page Content -->
-                                    <Border Grid.Row="1" Padding="{Binding InnerContentPadding}">
+                                    <Border Grid.Row="1"
+                                            Padding="{Binding InnerContentPadding}"
+                                            ClipToBounds="True">
                                         <ContentPresenter Content="{TemplateBinding Content}"/>
                                     </Border>
                                 </Grid>
@@ -144,17 +147,17 @@
     <Border Background="{StaticResource BackgroundDarkBlueBrush}">
         <Grid>
 
-            <!-- Blue background image -->
+            <!-- Background image -->
             <Grid.Background>
-                <ImageBrush TileMode="Tile" ViewportUnits="Absolute" Viewport="0 0 500 500" ImageSource="Images/Backgrounds/NodeApp_Background.png"/>
+                <ImageBrush TileMode="Tile" ViewportUnits="Absolute" Viewport="0 0 500 500"
+                            ImageSource="Images/Backgrounds/NodeApp_Background.png"/>
             </Grid.Background>
 
-            <local:PageHost Grid.Column="1"
-                   d:DataContext=""
-                   DataContext="{Binding ApplicationViewModel.CurrentPage,
-                            Source={x:Static local:ViewModelLocator.Instance},
-                            Converter={local:ApplicationPageValueConverter}}"
-                   CurrentPage="{Binding}"/>
+            <local:PageHost d:DataContext=""
+                            DataContext="{Binding ApplicationViewModel.CurrentPage,
+                                        Source={x:Static local:ViewModelLocator.Instance},
+                                        Converter={local:ApplicationPageValueConverter}}"
+                            CurrentPage="{Binding}"/>
         </Grid>
     </Border>
 </Window>

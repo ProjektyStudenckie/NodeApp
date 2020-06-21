@@ -52,7 +52,7 @@ namespace NodeApp.DataBase
             bool succ = false;
             using (var connection = DBconnect.Instance.Connection)
             {
-                string EDIT_LABLE = $"UPDATE LABLE SET lable_text='{lable.lable_text}', lable_background='{lable.background}', column_id='{lable.column_id}', " +
+                string EDIT_LABLE = $"UPDATE LABLE SET lable_text='{lable.lable_text}', lable_background='{lable.background}', column_id='??', " +
                     $"WHERE lable_id={idLable}";
 
                 SqlCommand command = new SqlCommand(EDIT_LABLE, connection);

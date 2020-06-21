@@ -1,11 +1,12 @@
-﻿using System;
+﻿using NodeApp.DataBase;
+using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace NodeApp.DataBase
+namespace NodeApp
 {
     public class LableTask
     {
@@ -21,7 +22,7 @@ namespace NodeApp.DataBase
         {
             lable_id = int.Parse(reader["lable_id"].ToString());
             task_id = int.Parse(reader["task_id"].ToString());
-          
+
 
         }
 
@@ -67,5 +68,8 @@ namespace NodeApp.DataBase
             return base.GetHashCode();
         }
 
+        class PersonTask
+        {
+        }
     }
 }

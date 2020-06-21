@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace NodeApp.DataBase
+namespace NodeApp
 {
     public class Room
     {
@@ -51,7 +51,7 @@ namespace NodeApp.DataBase
         public override bool Equals(object obj)
         {
 
-            var room = obj as DataBase.Room;
+            var room = obj as Room;
             if (room is null) return false;
             if (room_name.ToLower() != room.room_name.ToLower()) return false;
             return true;

@@ -58,4 +58,15 @@ namespace NodeApp
                 await element.SlideAndFadeOutToLeft(FirstLoad ? 0 : 0.3f, keepMargin: false);
         }
     }
+
+    public class AnimateSlideInFromRightProperty : AnimateBaseProperty<AnimateSlideInFromRightProperty>
+    {
+        protected override async void DoAnimation(FrameworkElement element, bool value)
+        {
+            if (value)
+                await element.SlideAndFadeInFromRight(FirstLoad ? 0 : 0.3f, keepMargin: false);
+            else
+                await element.SlideAndFadeOutToRight(FirstLoad ? 0 : 0.3f, keepMargin: false);
+        }
+    }
 }
