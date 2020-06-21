@@ -17,7 +17,7 @@ namespace NodeApp.DataBase
         public string lable_text { get; set; }
         public string background { get; set; }
         public string foreground { get; set; }
-        public int column_id { get; set; }
+
 
         public Lable(SqlDataReader reader)
         {
@@ -25,7 +25,6 @@ namespace NodeApp.DataBase
             lable_text = reader["lable_text"].ToString();
             background = reader["background"].ToString();
             foreground = reader["foreground"].ToString();
-            column_id = int.Parse(reader["column_id"].ToString());
         }
 
         public Lable(string text, string background, string foreground,int column_id)
@@ -34,8 +33,6 @@ namespace NodeApp.DataBase
             this.lable_text = text.Trim();
             this.background = background.Trim();
             this.foreground = foreground.Trim();
-            this.column_id = column_id;
-
         }
 
         public Lable(Lable lable)
@@ -44,19 +41,18 @@ namespace NodeApp.DataBase
             lable_text = lable.lable_text;
             background = lable.background;
             foreground = lable.foreground;
-            column_id = lable.column_id;
 
         }
 
 
         public override string ToString()
         {
-            return $"{lable_text}, {background},{foreground},{column_id}";
+            return $"{lable_text}, {background},{foreground}";
         }
 
         public string ToInsert()
         {
-            return $"('{lable_text}','{background}','{foreground}','{column_id}')";
+            return $"('{lable_text}','{background}','{foreground}')";
         }
 
         public override bool Equals(object obj)

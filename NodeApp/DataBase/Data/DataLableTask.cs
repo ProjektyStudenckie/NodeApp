@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
@@ -63,22 +64,27 @@ namespace NodeApp.DataBase
             return succ;
         }
 
-        public static List<Lable> ReturnLabelsOfTask(Task task)
+        public static List<Lable> ReturnLabelsOfTask(List<Lable> lables,Task task)
         {
-            List<Lable> lables = new List<Task>();
+            List<Lable> tasklables = new List<Lable>();
             using (var connection = DBconnect.Instance.Connection)
             {
 
-                string COLUMNS_OF_ROOM = $"SELECT * FROM TASK" +
-                    $"WHERE column_id={column.room_id}";
+                string COLUMNS_OF_ROOM = $"SELECT lable_id FROM TaskLableRelation" +
+                    $"WHERE task_id={task.task_id}";
                 SqlCommand command = new SqlCommand(COLUMNS_OF_ROOM, connection);
                 connection.Open();
                 var reader = command.ExecuteReader();
-                while (reader.Read())
-                    lables.Add(new Task(reader));
+                foreach( Lable x in lables)
+                {
+                    if (x.lable_id == int.Parse(reader["lable_id"].ToString()))
+                    {
+                        tasklables.Add(x);
+                    }
+                }
                 connection.Close();
             }
-            return lables;
+            return tasklables;
 
         }
     }
