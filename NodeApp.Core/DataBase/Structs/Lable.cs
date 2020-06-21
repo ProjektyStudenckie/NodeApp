@@ -1,15 +1,8 @@
 ﻿using System.Data.SqlClient;
 
-<<<<<<< HEAD
+
 namespace NodeApp
 {
-=======
-namespace NodeApp.DataBase
-{
-
-
-
->>>>>>> 926d6b67812bb128536bc42fe89d022c4ae005e6
     public class Lable
     {
         public int lable_id { get; set; }
@@ -26,11 +19,7 @@ namespace NodeApp.DataBase
             foreground = reader["foreground"].ToString();
         }
 
-<<<<<<< HEAD
         public Lable(string text, string background, string foreground)
-=======
-        public Lable(string text, string background, string foreground,int column_id)
->>>>>>> 926d6b67812bb128536bc42fe89d022c4ae005e6
         {
            
             this.lable_text = text.Trim();
@@ -46,11 +35,6 @@ namespace NodeApp.DataBase
             foreground = lable.foreground;
 
         }
-
-<<<<<<< HEAD
-=======
-
->>>>>>> 926d6b67812bb128536bc42fe89d022c4ae005e6
         public override string ToString()
         {
             return $"{lable_text}, {background},{foreground}";
@@ -63,10 +47,6 @@ namespace NodeApp.DataBase
 
         public override bool Equals(object obj)
         {
-<<<<<<< HEAD
-=======
-
->>>>>>> 926d6b67812bb128536bc42fe89d022c4ae005e6
             var lable = obj as Lable;
             if (lable is null) return false;
             if (lable_text.ToLower() != lable.lable_text.ToLower()) return false;
@@ -75,19 +55,10 @@ namespace NodeApp.DataBase
             return true;
         }
 
-<<<<<<< HEAD
-=======
-
->>>>>>> 926d6b67812bb128536bc42fe89d022c4ae005e6
         public override int GetHashCode()
         {
             return base.GetHashCode();
         }
    
     }
-<<<<<<< HEAD
-=======
-
-
->>>>>>> 926d6b67812bb128536bc42fe89d022c4ae005e6
 }

@@ -5,20 +5,14 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-<<<<<<< HEAD
+
 namespace NodeApp
-=======
-namespace NodeApp.DataBase
->>>>>>> 926d6b67812bb128536bc42fe89d022c4ae005e6
 {
     public class DataRoom
     {
         private const string All_ROOMS = "SELECT * FROM ROOM";
-<<<<<<< HEAD
         private const string ADD_ROOM = "INSERT INTO ROOM VALUES ";
-=======
-        private const string ADD_ROOM = "INSERT INTO `ROOM`(`room_name`) VALUES ";
->>>>>>> 926d6b67812bb128536bc42fe89d022c4ae005e6
+
 
 
 
@@ -47,17 +41,11 @@ namespace NodeApp.DataBase
                 var id = command.ExecuteNonQuery();
                 succ = true;
 
-<<<<<<< HEAD
                 command = new SqlCommand($"SELECT MAX(room_id) ID FROM ROOM", connection);
                 var reader = command.ExecuteReader();
                 reader.Read();
                 room.room_id = int.Parse(reader["ID"].ToString());
                 
-=======
-                command = new SqlCommand($"SELECT MAX(ID) FROM ROOM", connection);
-                room.room_id = (int)command.ExecuteNonQuery();
-
->>>>>>> 926d6b67812bb128536bc42fe89d022c4ae005e6
                 connection.Close();
             }
             return succ;
@@ -87,11 +75,8 @@ namespace NodeApp.DataBase
             using (var connection = DBconnect.Instance.Connection)
             {
                 string DELETE_ROOM = $"DELETE FROM ROOM" +
-<<<<<<< HEAD
                     $" WHERE room_id ={room.room_id}";
-=======
-                    $"WHERE room_id={room.room_id}";
->>>>>>> 926d6b67812bb128536bc42fe89d022c4ae005e6
+
 
                 SqlCommand command = new SqlCommand(DELETE_ROOM, connection);
                 connection.Open();

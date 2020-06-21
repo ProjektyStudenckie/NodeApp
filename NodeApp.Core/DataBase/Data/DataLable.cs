@@ -5,21 +5,14 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-<<<<<<< HEAD
 namespace NodeApp
-=======
-namespace NodeApp.DataBase
->>>>>>> 926d6b67812bb128536bc42fe89d022c4ae005e6
 {
     public class DataLable
     {
 
         private const string ALL_LABLE = "SELECT * FROM LABLE";
-<<<<<<< HEAD
         private const string ADD_LABLE = "INSERT INTO LABLE VALUES ";
-=======
-        private const string ADD_LABLE = "INSERT INTO `LABLE`('lable_text','background','foreground','column_id') VALUES ";
->>>>>>> 926d6b67812bb128536bc42fe89d022c4ae005e6
+
 
 
 
@@ -47,17 +40,12 @@ namespace NodeApp.DataBase
                 connection.Open();
                 var id = command.ExecuteNonQuery();
                 succ = true;
-<<<<<<< HEAD
                 
                 command = new SqlCommand($"SELECT MAX(lable_id) ID FROM LABLE", connection);
                 var reader = command.ExecuteReader();
                 reader.Read();
                 lable.lable_id = int.Parse(reader["ID"].ToString());
-=======
 
-                command = new SqlCommand($"SELECT MAX(lable_id) FROM LABLE", connection);
-                lable.lable_id = (int)command.ExecuteNonQuery();
->>>>>>> 926d6b67812bb128536bc42fe89d022c4ae005e6
                 connection.Close();
             }
             return succ;
@@ -98,15 +86,10 @@ namespace NodeApp.DataBase
             return succ;
         }
 
-<<<<<<< HEAD
+
         public List<Tasks> ReturnTasksOfColumn(Column column)
         {
             List<Tasks> tasks = new List<Tasks>();
-=======
-        public List<Task> ReturnTasksOfColumn(Column column)
-        {
-            List<Task> tasks = new List<Task>();
->>>>>>> 926d6b67812bb128536bc42fe89d022c4ae005e6
             using (var connection = DBconnect.Instance.Connection)
             {
 
@@ -116,11 +99,8 @@ namespace NodeApp.DataBase
                 connection.Open();
                 var reader = command.ExecuteReader();
                 while (reader.Read())
-<<<<<<< HEAD
+
                     tasks.Add(new Tasks(reader));
-=======
-                    tasks.Add(new Task(reader));
->>>>>>> 926d6b67812bb128536bc42fe89d022c4ae005e6
                 connection.Close();
             }
             return tasks;
