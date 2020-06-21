@@ -1,9 +1,6 @@
-﻿using System;
+﻿using NodeApp.DataBase;
 using System.Collections.Generic;
 using System.Data.SqlClient;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace NodeApp
 {
@@ -11,7 +8,6 @@ namespace NodeApp
     {
         private const string WSZYSTKIE_OSOBY = "SELECT * FROM TASK";
         private const string DODAJ_OSOBE = "INSERT INTO `TASK`(`task_name`) VALUES ";
-
 
 
         public static List<Task> PobierzWszystkieOsoby()

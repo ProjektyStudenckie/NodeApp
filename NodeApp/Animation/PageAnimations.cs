@@ -10,7 +10,7 @@ namespace NodeApp
     /// </summary>
     public static class PageAnimations
     {
-        public static async System.Threading.Tasks.Task SlideAndFadeInFromRight(this Page page, float seconds)
+        public static async Task SlideAndFadeInFromRight(this Page page, float seconds)
         {
             var sb = new Storyboard();
 
@@ -22,10 +22,10 @@ namespace NodeApp
 
             page.Visibility = Visibility.Visible;
 
-            await System.Threading.Tasks.Task.Delay((int)(seconds * 1000));
+            await Task.Delay((int)(seconds * 1000));
         }
 
-        public static async System.Threading.Tasks.Task SlideAndFadeOutToLeft(this Page page, float seconds)
+        public static async Task SlideAndFadeOutToLeft(this Page page, float seconds)
         {
             var sb = new Storyboard();
 
@@ -37,7 +37,7 @@ namespace NodeApp
 
             page.Visibility = Visibility.Visible;
 
-            await System.Threading.Tasks.Task.Delay((int)(seconds * 1000));
+            await Task.Delay((int)(seconds * 1000));
         }
     }
 }
