@@ -5,12 +5,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace NodeApp.DataBase
+namespace NodeApp
 {
     public class DataRoom
     {
         private const string All_ROOMS = "SELECT * FROM ROOM";
-        private const string ADD_ROOM = "INSERT INTO `ROOM`(`room_name`) VALUES ";
+        private const string ADD_ROOM = "INSERT INTO ROOM VALUES ";
 
 
 
@@ -39,9 +39,11 @@ namespace NodeApp.DataBase
                 var id = command.ExecuteNonQuery();
                 succ = true;
 
-                command = new SqlCommand($"SELECT MAX(ID) FROM ROOM", connection);
-                room.room_id = (int)command.ExecuteNonQuery();
-
+                command = new SqlCommand($"SELECT MAX(room_id) ID FROM ROOM", connection);
+                var reader = command.ExecuteReader();
+                reader.Read();
+                room.room_id = int.Parse(reader["ID"].ToString());
+                
                 connection.Close();
             }
             return succ;
@@ -71,7 +73,7 @@ namespace NodeApp.DataBase
             using (var connection = DBconnect.Instance.Connection)
             {
                 string DELETE_ROOM = $"DELETE FROM ROOM" +
-                    $"WHERE room_id={room.room_id}";
+                    $" WHERE room_id ={room.room_id}";
 
                 SqlCommand command = new SqlCommand(DELETE_ROOM, connection);
                 connection.Open();

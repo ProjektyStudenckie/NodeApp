@@ -1,0 +1,18 @@
+﻿<?xml version='1.0' encoding='utf-8'?>
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="NodeApp.Properties" GeneratedClassName="Settings">
+  <Profiles />
+  <Settings>
+    <Setting Name="server" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">tcp:projekt-poig-bd.database.windows.net,1433</Value>
+    </Setting>
+    <Setting Name="database" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">projekt-poig-bd</Value>
+    </Setting>
+    <Setting Name="userID" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">projekt-poig-bd</Value>
+    </Setting>
+    <Setting Name="paswd" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">Ziemniaczki2020</Value>
+    </Setting>
+  </Settings>
+</SettingsFile>

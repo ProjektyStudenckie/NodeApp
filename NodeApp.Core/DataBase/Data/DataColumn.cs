@@ -5,13 +5,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace NodeApp.DataBase
+namespace NodeApp
 {
     class DataColumn
     {
 
         private const string ALL_COLUMN = "SELECT * FROM COLUM";
-        private const string ADD_COLUMN = "INSERT INTO `COLUM`('column_name','room_id') VALUES ";
+        private const string ADD_COLUMN = "INSERT INTO COLUM VALUES ";
 
 
 
@@ -40,8 +40,10 @@ namespace NodeApp.DataBase
                 var id = command.ExecuteNonQuery();
                 succ = true;
 
-                command = new SqlCommand($"SELECT MAX(column_id) FROM COLUM", connection);
-                column.column_id = (int)command.ExecuteNonQuery();
+                command = new SqlCommand($"SELECT MAX(column_id) ID FROM COLUM", connection);
+                var reader = command.ExecuteReader();
+                reader.Read();
+                column.column_id = int.Parse(reader["ID"].ToString());
                 connection.Close();
             }
             return succ;
@@ -70,7 +72,7 @@ namespace NodeApp.DataBase
             using (var connection = DBconnect.Instance.Connection)
             {
                 string DELETE_COLUMN = $"DELETE FROM COLUM" +
-                    $"WHERE column_id={column.column_id}";
+                    $" WHERE column_id={column.column_id}";
 
                 SqlCommand command = new SqlCommand(DELETE_COLUMN, connection);
                 connection.Open();
@@ -82,14 +84,14 @@ namespace NodeApp.DataBase
             return succ;
         }
 
-        public List<Column> ReturnColumnsOfRoom(Room room)
+        public static List<Column> ReturnColumnsOfRoom(Room room)
         {
             List<Column> columns = new List<Column>();
             using (var connection = DBconnect.Instance.Connection)
             {
 
                 string TASKS_OF_COLUMN = $"SELECT * FROM COLUM" +
-                    $"WHERE room_id={room.room_id}";
+                    $" WHERE room_id={room.room_id}";
                 SqlCommand command = new SqlCommand(TASKS_OF_COLUMN, connection);
                 connection.Open();
                 var reader = command.ExecuteReader();

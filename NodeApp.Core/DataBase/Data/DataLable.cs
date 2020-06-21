@@ -5,13 +5,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace NodeApp.DataBase
+namespace NodeApp
 {
     public class DataLable
     {
 
         private const string ALL_LABLE = "SELECT * FROM LABLE";
-        private const string ADD_LABLE = "INSERT INTO `LABLE`('lable_text','background','foreground','column_id') VALUES ";
+        private const string ADD_LABLE = "INSERT INTO LABLE VALUES ";
 
 
 
@@ -39,9 +39,11 @@ namespace NodeApp.DataBase
                 connection.Open();
                 var id = command.ExecuteNonQuery();
                 succ = true;
-
-                command = new SqlCommand($"SELECT MAX(lable_id) FROM LABLE", connection);
-                lable.lable_id = (int)command.ExecuteNonQuery();
+                
+                command = new SqlCommand($"SELECT MAX(lable_id) ID FROM LABLE", connection);
+                var reader = command.ExecuteReader();
+                reader.Read();
+                lable.lable_id = int.Parse(reader["ID"].ToString());
                 connection.Close();
             }
             return succ;
@@ -82,9 +84,9 @@ namespace NodeApp.DataBase
             return succ;
         }
 
-        public List<Task> ReturnTasksOfColumn(Column column)
+        public List<Tasks> ReturnTasksOfColumn(Column column)
         {
-            List<Task> tasks = new List<Task>();
+            List<Tasks> tasks = new List<Tasks>();
             using (var connection = DBconnect.Instance.Connection)
             {
 
@@ -94,7 +96,7 @@ namespace NodeApp.DataBase
                 connection.Open();
                 var reader = command.ExecuteReader();
                 while (reader.Read())
-                    tasks.Add(new Task(reader));
+                    tasks.Add(new Tasks(reader));
                 connection.Close();
             }
             return tasks;

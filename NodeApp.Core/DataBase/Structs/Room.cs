@@ -9,19 +9,14 @@ namespace NodeApp
 {
     public class Room
     {
-
-
         public int room_id { get; set; }
         public string room_name { get; set; }
-
 
 
         public Room(SqlDataReader reader)
         {
             room_id = int.Parse(reader["room_id"].ToString());
             room_name = reader["room_name"].ToString();
-           
-
         }
 
         public Room(string name)
@@ -33,10 +28,7 @@ namespace NodeApp
         {
             room_id = room.room_id;
             room_name = room.room_name;
-
         }
-
-
 
         public override string ToString()
         {

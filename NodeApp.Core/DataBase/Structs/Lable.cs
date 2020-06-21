@@ -1,10 +1,7 @@
 ﻿using System.Data.SqlClient;
 
-namespace NodeApp.DataBase
+namespace NodeApp
 {
-
-
-
     public class Lable
     {
         public int lable_id { get; set; }
@@ -21,7 +18,7 @@ namespace NodeApp.DataBase
             foreground = reader["foreground"].ToString();
         }
 
-        public Lable(string text, string background, string foreground,int column_id)
+        public Lable(string text, string background, string foreground)
         {
            
             this.lable_text = text.Trim();
@@ -38,7 +35,6 @@ namespace NodeApp.DataBase
 
         }
 
-
         public override string ToString()
         {
             return $"{lable_text}, {background},{foreground}";
@@ -51,7 +47,6 @@ namespace NodeApp.DataBase
 
         public override bool Equals(object obj)
         {
-
             var lable = obj as Lable;
             if (lable is null) return false;
             if (lable_text.ToLower() != lable.lable_text.ToLower()) return false;
@@ -60,13 +55,10 @@ namespace NodeApp.DataBase
             return true;
         }
 
-
         public override int GetHashCode()
         {
             return base.GetHashCode();
         }
    
     }
-
-
 }
