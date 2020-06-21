@@ -5,6 +5,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:NodeApp"
              xmlns:core="clr-namespace:NodeApp.Core;assembly=NodeApp.Core"
+             xmlns:resx="clr-namespace:NodeApp.Properties"
              mc:Ignorable="d" 
              d:DesignWidth="300">
 
@@ -20,7 +21,7 @@
                     <ColumnDefinition/>
                     <ColumnDefinition Width="2*"/>
                 </Grid.ColumnDefinitions>
-                <TextBlock Text="Red"
+                <TextBlock Text="{Binding Source={x:Static resx:Resources.Red}}"
                            Foreground="{StaticResource ForegroundLightBrush}"
                            FontSize="{StaticResource FontSizeLarge}"
                            HorizontalAlignment="Center"
@@ -36,7 +37,7 @@
                     <ColumnDefinition/>
                     <ColumnDefinition Width="2*"/>
                 </Grid.ColumnDefinitions>
-                <TextBlock Text="Green"
+                <TextBlock Text="{Binding Source={x:Static resx:Resources.Green}}"
                            Foreground="{StaticResource ForegroundLightBrush}"
                            FontSize="{StaticResource FontSizeLarge}"
                            HorizontalAlignment="Center"
@@ -53,7 +54,7 @@
                     <ColumnDefinition Width="2*"/>
                 </Grid.ColumnDefinitions>
 
-                <TextBlock Text="Blue"
+                <TextBlock Text="{Binding Source={x:Static resx:Resources.Blue}}"
                            Foreground="{StaticResource ForegroundLightBrush}"
                            FontSize="{StaticResource FontSizeLarge}"
                            HorizontalAlignment="Center"
@@ -77,11 +78,10 @@
                                      RelativeSource={RelativeSource Mode=FindAncestor, 
                                      AncestorType={x:Type UserControl}}, 
                                      Converter={local:StringRGBToBrushConverter}}">
-            
-            <!-- Display hexadecimal color in tooltip -->
+
             <Border.ToolTip>
                 <ToolTip Content="{Binding Path=FinalColorString,
-                                     Mode=TwoWay,
+                                     Mode=OneWay,
                                      UpdateSourceTrigger=PropertyChanged,
                                      RelativeSource={RelativeSource Mode=FindAncestor, 
                                      AncestorType={x:Type UserControl}}}"/>

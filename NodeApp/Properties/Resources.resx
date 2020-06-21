@@ -46,7 +46,7 @@
     
     mimetype: application/x-microsoft.net.object.binary.base64
     value   : The object must be serialized with 
-            : System.Serialization.Formatters.Binary.BinaryFormatter
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
             : and then encoded with base64 encoding.
     
     mimetype: application/x-microsoft.net.object.soap.base64
@@ -60,6 +60,7 @@
             : and then encoded with base64 encoding.
     -->
   <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
     <xsd:element name="root" msdata:IsDataSet="true">
       <xsd:complexType>
         <xsd:choice maxOccurs="unbounded">
@@ -68,9 +69,10 @@
               <xsd:sequence>
                 <xsd:element name="value" type="xsd:string" minOccurs="0" />
               </xsd:sequence>
-              <xsd:attribute name="name" type="xsd:string" />
+              <xsd:attribute name="name" use="required" type="xsd:string" />
               <xsd:attribute name="type" type="xsd:string" />
               <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
             </xsd:complexType>
           </xsd:element>
           <xsd:element name="assembly">
@@ -85,9 +87,10 @@
                 <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
                 <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
               </xsd:sequence>
-              <xsd:attribute name="name" type="xsd:string" msdata:Ordinal="1" />
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
               <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
               <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
             </xsd:complexType>
           </xsd:element>
           <xsd:element name="resheader">
@@ -109,9 +112,135 @@
     <value>2.0</value>
   </resheader>
   <resheader name="reader">
-    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <resheader name="writer">
-    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="AddNewCard" xml:space="preserve">
+    <value>Add new card</value>
+  </data>
+  <data name="AddNewNodeTooltip" xml:space="preserve">
+    <value>Create new node</value>
+  </data>
+  <data name="ArrowDown" xml:space="preserve">
+    <value>pack://application:,,,/Images/ContextMenuIcons/arrowDown.png</value>
+  </data>
+  <data name="ArrowLeft" xml:space="preserve">
+    <value>pack://application:,,,/Images/ContextMenuIcons/arrowLeft.png</value>
+  </data>
+  <data name="ArrowRight" xml:space="preserve">
+    <value>pack://application:,,,/Images/ContextMenuIcons/arrowRight.png</value>
+  </data>
+  <data name="ArrowUp" xml:space="preserve">
+    <value>pack://application:,,,/Images/ContextMenuIcons/arrowUp.png</value>
+  </data>
+  <data name="AvailableLabels" xml:space="preserve">
+    <value>Available Labels</value>
+  </data>
+  <data name="AvailableLabelsTooltip" xml:space="preserve">
+    <value>Click on any label to delete it</value>
+  </data>
+  <data name="BackgroundColor" xml:space="preserve">
+    <value>Background Color</value>
+  </data>
+  <data name="Blue" xml:space="preserve">
+    <value>Blue</value>
+  </data>
+  <data name="byWWS" xml:space="preserve">
+    <value>by WWS</value>
+  </data>
+  <data name="CardContent" xml:space="preserve">
+    <value>Card Content</value>
+  </data>
+  <data name="CardTooltip" xml:space="preserve">
+    <value>Left click to edit content | Right click to navigate\delete</value>
+  </data>
+  <data name="CreateNewLabel" xml:space="preserve">
+    <value>Create New Label</value>
+  </data>
+  <data name="DeleteCard" xml:space="preserve">
+    <value>Delete This Card</value>
+  </data>
+  <data name="DeleteLabelsTooltip" xml:space="preserve">
+    <value>Click to delete</value>
+  </data>
+  <data name="DeleteNode" xml:space="preserve">
+    <value>Delete This Node</value>
+  </data>
+  <data name="EditNode" xml:space="preserve">
+    <value>Edit</value>
+  </data>
+  <data name="EnterRoom" xml:space="preserve">
+    <value>Enter Room</value>
+  </data>
+  <data name="EnterRoomName" xml:space="preserve">
+    <value>Enter room name to proceed!</value>
+  </data>
+  <data name="ForegroundColor" xml:space="preserve">
+    <value>Foreground Color</value>
+  </data>
+  <data name="Green" xml:space="preserve">
+    <value>Green</value>
+  </data>
+  <data name="Help" xml:space="preserve">
+    <value>Help me!</value>
+  </data>
+  <data name="InvalidLabelNameTooltip" xml:space="preserve">
+    <value>Can't be already used title</value>
+  </data>
+  <data name="InvalidLabelNameTooltip2" xml:space="preserve">
+    <value>Create new label based on the parameters above (title can't be duplicated)</value>
+  </data>
+  <data name="Labels" xml:space="preserve">
+    <value>Labels</value>
+  </data>
+  <data name="Login" xml:space="preserve">
+    <value>Login</value>
+  </data>
+  <data name="MoveCardDown" xml:space="preserve">
+    <value>Move Card Down</value>
+  </data>
+  <data name="MoveCardLeft" xml:space="preserve">
+    <value>Move Card Left</value>
+  </data>
+  <data name="MoveCardRight" xml:space="preserve">
+    <value>Move Card Right</value>
+  </data>
+  <data name="MoveCardUp" xml:space="preserve">
+    <value>Move Card Up</value>
+  </data>
+  <data name="MoveNodeLeft" xml:space="preserve">
+    <value>Move Node Left</value>
+  </data>
+  <data name="MoveNodeRight" xml:space="preserve">
+    <value>Move Node Right</value>
+  </data>
+  <data name="NewCard" xml:space="preserve">
+    <value>New Card</value>
+  </data>
+  <data name="NewNode" xml:space="preserve">
+    <value>New Node</value>
+  </data>
+  <data name="NodeTitleTooltip" xml:space="preserve">
+    <value>Click twice to edit</value>
+  </data>
+  <data name="PropertiesTooltip" xml:space="preserve">
+    <value>Properties</value>
+  </data>
+  <data name="Red" xml:space="preserve">
+    <value>Red</value>
+  </data>
+  <data name="RedCross" xml:space="preserve">
+    <value>pack://application:,,,/Images/ContextMenuIcons/redCross.png</value>
+  </data>
+  <data name="RoomName" xml:space="preserve">
+    <value>Room Name</value>
+  </data>
+  <data name="SaveChanges" xml:space="preserve">
+    <value>Save Changes</value>
+  </data>
+  <data name="SettingsTooltip" xml:space="preserve">
+    <value>Settings</value>
+  </data>
 </root>

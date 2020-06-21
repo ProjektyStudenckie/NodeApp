@@ -5,6 +5,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:NodeApp"
              xmlns:core="clr-namespace:NodeApp.Core;assembly=NodeApp.Core"
+             xmlns:resx="clr-namespace:NodeApp.Properties"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="300">
 
@@ -35,7 +36,7 @@
                                         Content="{StaticResource FontAwesomeToDoIcon}"
                                         Command="{Binding OpenPropertiesCommand}">
                                     <Button.ToolTip>
-                                        <ToolTip Content="Properties"/>
+                                        <ToolTip Content="{Binding Source={x:Static resx:Resources.PropertiesTooltip}}"/>
                                     </Button.ToolTip>
                                 </Button>
                             </StackPanel>
@@ -46,7 +47,7 @@
                                     Foreground="{StaticResource TonedLightBlueBrush}"
                                     Command="{Binding OpenSettingsCommand}">
                                 <Button.ToolTip>
-                                    <ToolTip Content="Settings"/>
+                                    <ToolTip Content="{Binding Source={x:Static resx:Resources.SettingsTooltip}}"/>
                                 </Button.ToolTip>
                             </Button>
 

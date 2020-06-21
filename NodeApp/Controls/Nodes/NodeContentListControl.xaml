@@ -5,6 +5,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:NodeApp"
              xmlns:core="clr-namespace:NodeApp.Core;assembly=NodeApp.Core"
+             xmlns:resx="clr-namespace:NodeApp.Properties"
              xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
              mc:Ignorable="d" 
              d:DesignHeight="600" d:DesignWidth="300"
@@ -46,7 +47,7 @@
                              HorizontalAlignment="Center">
 
                         <TextBox.ToolTip>
-                            <ToolTip Content="Click twice to edit"/>
+                            <ToolTip Content="{Binding Source={x:Static resx:Resources.NodeTitleTooltip}}"/>
                         </TextBox.ToolTip>
                         
                         <i:Interaction.Behaviors>
@@ -60,7 +61,7 @@
                         Content="{StaticResource FontAwesomeThreeDotsIcon}">
 
                     <Button.ToolTip>
-                        <ToolTip Content="Edit"/>
+                        <ToolTip Content="{Binding Source={x:Static resx:Resources.EditNode}}"/>
                     </Button.ToolTip>
                     
                     <i:Interaction.Behaviors>
@@ -69,23 +70,23 @@
                     
                     <Button.ContextMenu>
                         <ContextMenu>
-                            <MenuItem Header="Move Node Right" Command="{Binding MoveNodeRightCommand}" >
+                            <MenuItem Header="{Binding Source={x:Static resx:Resources.MoveNodeRight}}" Command="{Binding MoveNodeRightCommand}" >
                                 <MenuItem.Icon>
                                     <Image Margin="2 -5 -10 -5" Width="25" Height="25"
-                                           Source="pack://application:,,,/Images/ContextMenuIcons/arrowRight.png"/>
+                                           Source="{Binding Source={x:Static resx:Resources.ArrowRight}}"/>
                                 </MenuItem.Icon>
                             </MenuItem>
-                            <MenuItem Header="Move Node Left" Command="{Binding MoveNodeLeftCommand}">
+                            <MenuItem Header="{Binding Source={x:Static resx:Resources.MoveNodeLeft}}" Command="{Binding MoveNodeLeftCommand}">
                                 <MenuItem.Icon>
                                     <Image Margin="2 -5 -10 -5" Width="25" Height="25"
-                                           Source="pack://application:,,,/Images/ContextMenuIcons/arrowLeft.png"/>
+                                           Source="{Binding Source={x:Static resx:Resources.ArrowLeft}}"/>
                                 </MenuItem.Icon>
                             </MenuItem>
                             <Separator/>
-                            <MenuItem Header="Delete This Node" Command="{Binding DeleteNodeCommand}">
+                            <MenuItem Header="{Binding Source={x:Static resx:Resources.DeleteNode}}" Command="{Binding DeleteNodeCommand}">
                                 <MenuItem.Icon>
                                     <Image Margin="2 -5 -10 -5" Width="25" Height="25"
-                                           Source="pack://application:,,,/Images/ContextMenuIcons/redCross.png"/>
+                                           Source="{Binding Source={x:Static resx:Resources.RedCross}}"/>
                                 </MenuItem.Icon>
                             </MenuItem>
                         </ContextMenu>
@@ -98,7 +99,7 @@
                         Content="{StaticResource FontAwesomePlusIcon}"
                         Command="{Binding AddCardCommand}">
                     <Button.ToolTip>
-                        <ToolTip Content="Add new card"/>
+                        <ToolTip Content="{Binding Source={x:Static resx:Resources.AddNewCard}}"/>
                     </Button.ToolTip>
                 </Button>
             </Grid>

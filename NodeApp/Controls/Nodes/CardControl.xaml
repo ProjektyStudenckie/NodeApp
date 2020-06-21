@@ -5,6 +5,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:NodeApp"
              xmlns:core="clr-namespace:NodeApp.Core;assembly=NodeApp.Core"
+             xmlns:resx="clr-namespace:NodeApp.Properties"
              mc:Ignorable="d"
              d:DesignHeight="100" d:DesignWidth="270"
              MaxWidth="270"
@@ -33,36 +34,36 @@
 
                                 <Grid.ContextMenu>
                                     <ContextMenu>
-                                        <MenuItem Header="Move Card Up" Command="{Binding MoveCardUpCommand}">
+                                        <MenuItem Header="{Binding Source={x:Static resx:Resources.MoveCardUp}}" Command="{Binding MoveCardUpCommand}">
                                             <MenuItem.Icon>
                                                 <Image Margin="2 -5 -10 -5" Width="25" Height="25"
-                                                       Source="pack://application:,,,/Images/ContextMenuIcons/arrowUp.png"/>
+                                                       Source="{Binding Source={x:Static resx:Resources.ArrowUp}}"/>
                                             </MenuItem.Icon>
                                         </MenuItem>
-                                        <MenuItem Header="Move Card Down" Command="{Binding MoveCardDownCommand}">
+                                        <MenuItem Header="{Binding Source={x:Static resx:Resources.MoveCardDown}}" Command="{Binding MoveCardDownCommand}">
                                             <MenuItem.Icon>
                                                 <Image Margin="2 -5 -10 -5" Width="25" Height="25"
-                                                       Source="pack://application:,,,/Images/ContextMenuIcons/arrowDown.png"/>
-                                            </MenuItem.Icon>
-                                        </MenuItem>
-                                        <Separator/>
-                                        <MenuItem Header="Move Card Right" Command="{Binding MoveCardRightCommand}">
-                                            <MenuItem.Icon>
-                                                <Image Margin="2 -5 -10 -5" Width="25" Height="25"
-                                                       Source="pack://application:,,,/Images/ContextMenuIcons/arrowRight.png"/>
-                                            </MenuItem.Icon>
-                                        </MenuItem>
-                                        <MenuItem Header="Move Card Left" Command="{Binding MoveCardLeftCommand}">
-                                            <MenuItem.Icon>
-                                                <Image Margin="2 -5 -10 -5" Width="25" Height="25"
-                                                       Source="pack://application:,,,/Images/ContextMenuIcons/arrowLeft.png"/>
+                                                       Source="{Binding Source={x:Static resx:Resources.ArrowDown}}"/>
                                             </MenuItem.Icon>
                                         </MenuItem>
                                         <Separator/>
-                                        <MenuItem Header="Delete This Card" Command="{Binding DeleteCardCommand}">
+                                        <MenuItem Header="{Binding Source={x:Static resx:Resources.MoveCardRight}}" Command="{Binding MoveCardRightCommand}">
                                             <MenuItem.Icon>
                                                 <Image Margin="2 -5 -10 -5" Width="25" Height="25"
-                                                       Source="pack://application:,,,/Images/ContextMenuIcons/redCross.png"/>
+                                                       Source="{Binding Source={x:Static resx:Resources.ArrowRight}}"/>
+                                            </MenuItem.Icon>
+                                        </MenuItem>
+                                        <MenuItem Header="{Binding Source={x:Static resx:Resources.MoveCardLeft}}" Command="{Binding MoveCardLeftCommand}">
+                                            <MenuItem.Icon>
+                                                <Image Margin="2 -5 -10 -5" Width="25" Height="25"
+                                                       Source="{Binding Source={x:Static resx:Resources.ArrowLeft}}"/>
+                                            </MenuItem.Icon>
+                                        </MenuItem>
+                                        <Separator/>
+                                        <MenuItem Header="{Binding Source={x:Static resx:Resources.DeleteCard}}" Command="{Binding DeleteCardCommand}">
+                                            <MenuItem.Icon>
+                                                <Image Margin="2 -5 -10 -5" Width="25" Height="25"
+                                                       Source="{Binding Source={x:Static resx:Resources.RedCross}}"/>
                                             </MenuItem.Icon>
                                         </MenuItem>
                                     </ContextMenu>
@@ -107,7 +108,7 @@
                                 </ItemsControl>
 
                                 <Grid.ToolTip>
-                                    <ToolTip Content="Left click to edit content | Right click to navigate\delete"/>
+                                    <ToolTip Content="{Binding Source={x:Static resx:Resources.CardTooltip}}"/>
                                 </Grid.ToolTip>
                             </Grid>
                             

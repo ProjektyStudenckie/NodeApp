@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using System.Data;
 using System.Threading.Tasks;
 using System.Windows.Input;
 
@@ -38,9 +37,6 @@ namespace NodeApp.Core
 
             await RunCommand(() => this.LoginIsRunning, async () =>
             {
-                await Task.Delay(500);
-
-
                 //Change page to nodes page if everything is ok
                 IoC.Get<ApplicationViewModel>().GoToPage(ApplicationPage.Nodes);
 
@@ -54,15 +50,13 @@ namespace NodeApp.Core
                 DataTask.AddTask(task);
                 LableTask lt = new LableTask(lable, task);
                 DataLableTask.AddLableTask(lt);
-                List<LableTask> list=DataLableTask.DownloadLableTask();
+                List<LableTask> list = DataLableTask.DownloadLableTask();
                 List<Lable> lables = DataLable.DownloadLables();
                 List<Lable> list2 = DataLableTask.ReturnLabelsOfTask(lables, task);
                 List<Column> listcol = DataColumn.ReturnColumnsOfRoom(room);
                 DataLableTask.DeleteLableTask(lt);
                 DataTask.DeleteTask(task);
                 DataColumn.DeleteColumn(column);
-
-                //var roomName = RoomName;
             });
         }
     }

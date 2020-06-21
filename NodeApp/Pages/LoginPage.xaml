@@ -6,6 +6,7 @@
                 xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
                 xmlns:local="clr-namespace:NodeApp"
                 xmlns:core="clr-namespace:NodeApp.Core;assembly=NodeApp.Core"
+                xmlns:resx="clr-namespace:NodeApp.Properties"
                 mc:Ignorable="d" 
                 d:DesignHeight="450" d:DesignWidth="800"
                 Title="LoginPage">
@@ -28,22 +29,22 @@
                         <StackPanel>
 
                             <!-- Sign up header -->
-                            <TextBlock Text="Enter Room"
+                            <TextBlock Text="{Binding Source={x:Static resx:Resources.EnterRoom}}"
                                    FontSize="{StaticResource FontSizeXXLarge}"
                                    FontFamily="{StaticResource LatoRegular}"
                                    Foreground="{StaticResource WordBlueBrush}"/>
 
                             <!-- Sign up subtext -->
-                            <TextBlock Text="Enter room name to proceed!"
+                            <TextBlock Text="{Binding Source={x:Static resx:Resources.EnterRoomName}}"
                                        FontSize="{StaticResource FontSizeLarge}"
                                        Foreground="{StaticResource ForegroundDarkBrush}"
                                        Margin="0 0 0 20"/>
 
                             <!-- Room -->
-                            <TextBox Tag="Room Name" Text="{Binding Email}"
+                            <TextBox Tag="{Binding Source={x:Static resx:Resources.RoomName}}" Text="{Binding Email}"
                                      Background="{StaticResource ForegroundVeryLightBlueBrush}"/>
 
-                            <Button Content="Login"
+                            <Button Content="{Binding Source={x:Static resx:Resources.Login}}"
                                     Command="{Binding LoginCommand}" 
                                     HorizontalAlignment="Center"
                                     local:IsBusyProperty.Value="{Binding LoginIsRunning}"/>
@@ -51,7 +52,7 @@
 
                     </Border>
 
-                    <Button Content="Help me!" HorizontalAlignment="Center"
+                    <Button Content="{Binding Source={x:Static resx:Resources.Help}}" HorizontalAlignment="Center"
                             Style="{StaticResource TextButton}"/>
 
                 </StackPanel>

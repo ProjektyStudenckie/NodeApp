@@ -5,6 +5,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:NodeApp"
              xmlns:core="clr-namespace:NodeApp.Core;assembly=NodeApp.Core"
+             xmlns:resx="clr-namespace:NodeApp.Properties"
              mc:Ignorable="d" 
              d:DesignHeight="750" d:DesignWidth="1250">
 
@@ -12,7 +13,8 @@
           d:DataContext="{x:Static core:NodesListDesignModel.Instance}"
           HorizontalAlignment="Center">
 
-        <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Disabled">
+        <ScrollViewer HorizontalScrollBarVisibility="Auto"
+                      VerticalScrollBarVisibility="Disabled">
 
             <StackPanel Orientation="Horizontal">
                 <ItemsControl ItemsSource="{Binding Nodes}">
@@ -37,7 +39,7 @@
                         Command="{Binding AddNodeCommand}">
 
                     <Button.ToolTip>
-                        <ToolTip Content="Create new node"/>
+                        <ToolTip Content="{Binding Source={x:Static resx:Resources.AddNewNodeTooltip}}"/>
                     </Button.ToolTip>
                 </Button>
 

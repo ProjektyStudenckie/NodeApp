@@ -4,6 +4,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:NodeApp"
+        xmlns:resx="clr-namespace:NodeApp.Properties"
         mc:Ignorable="d"
         Title="MainWindow" Height="650" Width="1000"
         WindowStyle="None"
@@ -78,7 +79,7 @@
                                                     <Run Text="NODE" Foreground="{StaticResource ForegroundGreyBrush}"/>
                                                     <Run Text="APP" Foreground="{StaticResource ForegroundVeryDarkBrush}"/>
                                                 </TextBlock>
-                                                <TextBlock Text="by WWS" Foreground="{StaticResource ForegroundDarkBrush}" HorizontalAlignment="Center">
+                                                <TextBlock Text="{Binding Source={x:Static resx:Resources.byWWS}}" Foreground="{StaticResource ForegroundDarkBrush}" HorizontalAlignment="Center">
 
                                                 </TextBlock>
                                             </StackPanel>
