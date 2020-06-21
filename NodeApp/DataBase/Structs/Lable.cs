@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MySqlX.XDevAPI.Relational;
+using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Linq;
@@ -16,42 +17,46 @@ namespace NodeApp.DataBase
         public string lable_text { get; set; }
         public string background { get; set; }
         public string foreground { get; set; }
+        public int column_id { get; set; }
 
         public Lable(SqlDataReader reader)
         {
             lable_id = int.Parse(reader["lable_id"].ToString());
-            lable_text = reader["text"].ToString();
+            lable_text = reader["lable_text"].ToString();
             background = reader["background"].ToString();
             foreground = reader["foreground"].ToString();
+            column_id = int.Parse(reader["column_id"].ToString());
         }
 
-        public Lable(string text, string background, string foreground)
+        public Lable(string text, string background, string foreground,int column_id)
         {
            
             this.lable_text = text.Trim();
             this.background = background.Trim();
             this.foreground = foreground.Trim();
+            this.column_id = column_id;
 
         }
 
         public Lable(Lable lable)
         {
-            tes = lable.lable_id;
+            lable_id = lable.lable_id;
             lable_text = lable.lable_text;
             background = lable.background;
             foreground = lable.foreground;
+            column_id = lable.column_id;
 
         }
 
 
         public override string ToString()
         {
-            return $"{lable_text}, {background},{foreground}";
+            return $"{lable_text}, {background},{foreground},{column_id}";
         }
 
         public string ToInsert()
         {
-            return $"('{lable_text}','{background}','{foreground}')";
+            return $"('{lable_text}','{background}','{foreground}','{column_id}')";
         }
 
         public override bool Equals(object obj)

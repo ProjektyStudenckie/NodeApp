@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace NodeApp.DataBase.Structs
+namespace NodeApp.DataBase
 {
     class Column
     {

@@ -11,7 +11,7 @@ namespace NodeApp.DataBase
     {
 
         private const string ALL_LABLE = "SELECT * FROM LABLE";
-        private const string ADD_LABLE = "INSERT INTO `LABLE`('text','background','foreground') VALUES ";
+        private const string ADD_LABLE = "INSERT INTO `LABLE`('lable_text','background','foreground','column_id') VALUES ";
 
 
 
@@ -52,7 +52,7 @@ namespace NodeApp.DataBase
             bool succ = false;
             using (var connection = DBconnect.Instance.Connection)
             {
-                string EDIT_LABLE = $"UPDATE LABLE SET lable_text='{lable.lable_text}', lable_background='{lable.background}', " +
+                string EDIT_LABLE = $"UPDATE LABLE SET lable_text='{lable.lable_text}', lable_background='{lable.background}', column_id='{lable.column_id}', " +
                     $"WHERE lable_id={idLable}";
 
                 SqlCommand command = new SqlCommand(EDIT_LABLE, connection);
@@ -80,6 +80,25 @@ namespace NodeApp.DataBase
                 connection.Close();
             }
             return succ;
+        }
+
+        public List<Task> ReturnTasksOfColumn(Column column)
+        {
+            List<Task> tasks = new List<Task>();
+            using (var connection = DBconnect.Instance.Connection)
+            {
+
+                string COLUMNS_OF_ROOM = $"SELECT * FROM TASK" +
+                    $"WHERE column_id={column.room_id}";
+                SqlCommand command = new SqlCommand(COLUMNS_OF_ROOM, connection);
+                connection.Open();
+                var reader = command.ExecuteReader();
+                while (reader.Read())
+                    tasks.Add(new Task(reader));
+                connection.Close();
+            }
+            return tasks;
+
         }
     }
 }

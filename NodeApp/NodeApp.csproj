@@ -126,13 +126,15 @@
     <Compile Include="Controls\PageHost.xaml.cs">
       <DependentUpon>PageHost.xaml</DependentUpon>
     </Compile>
-    <Compile Include="DataBase\Data\DataPerson.cs" />
-    <Compile Include="DataBase\Data\DataPersonTask.cs" />
+    <Compile Include="DataBase\Data\DataColumn.cs" />
+    <Compile Include="DataBase\Data\DataLable.cs" />
+    <Compile Include="DataBase\Data\DataLableTask.cs" />
     <Compile Include="DataBase\Data\DataRoom.cs" />
     <Compile Include="DataBase\Data\DataTask.cs" />
     <Compile Include="DataBase\DBconnect.cs" />
+    <Compile Include="DataBase\Structs\Column.cs" />
     <Compile Include="DataBase\Structs\Lable.cs" />
-    <Compile Include="DataBase\Structs\PersonTask.cs" />
+    <Compile Include="DataBase\Structs\LableTask.cs" />
     <Compile Include="DataBase\Structs\Room.cs" />
     <Compile Include="DataBase\Structs\Task.cs" />
     <Compile Include="Pages\BasePage.cs" />

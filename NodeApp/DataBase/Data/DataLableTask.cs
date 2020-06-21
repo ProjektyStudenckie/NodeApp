@@ -50,7 +50,7 @@ namespace NodeApp.DataBase
             bool succ = false;
             using (var connection = DBconnect.Instance.Connection)
             {
-                string DELETE_RELATION = $"DELETE FROM PERSON" +
+                string DELETE_RELATION = $"DELETE FROM TaskLableRelation" +
                     $"WHERE lable_id={relation.lable_id}"+$"AND task_id={relation.task_id}";
 
                 SqlCommand command = new SqlCommand(DELETE_RELATION, connection);
@@ -61,6 +61,25 @@ namespace NodeApp.DataBase
                 connection.Close();
             }
             return succ;
+        }
+
+        public static List<Lable> ReturnLabelsOfTask(Task task)
+        {
+            List<Lable> lables = new List<Task>();
+            using (var connection = DBconnect.Instance.Connection)
+            {
+
+                string COLUMNS_OF_ROOM = $"SELECT * FROM TASK" +
+                    $"WHERE column_id={column.room_id}";
+                SqlCommand command = new SqlCommand(COLUMNS_OF_ROOM, connection);
+                connection.Open();
+                var reader = command.ExecuteReader();
+                while (reader.Read())
+                    lables.Add(new Task(reader));
+                connection.Close();
+            }
+            return lables;
+
         }
     }
 }

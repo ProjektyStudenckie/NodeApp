@@ -70,7 +70,7 @@ namespace NodeApp.DataBase
             using (var connection = DBconnect.Instance.Connection)
             {
                 string DELETE_COLUMN = $"DELETE FROM COLUM" +
-                    $"WHERE lable_id={column.column_id}";
+                    $"WHERE column_id={column.column_id}";
 
                 SqlCommand command = new SqlCommand(DELETE_COLUMN, connection);
                 connection.Open();
@@ -80,6 +80,25 @@ namespace NodeApp.DataBase
                 connection.Close();
             }
             return succ;
+        }
+
+        public List<Column> ReturnColumnsOfRoom(Room room)
+        {
+            List<Column> columns = new List<Column>();
+            using (var connection = DBconnect.Instance.Connection)
+            {
+
+                string TASKS_OF_COLUMN = $"SELECT * FROM COLUM" +
+                    $"WHERE room_id={room.room_id}";
+                SqlCommand command = new SqlCommand(TASKS_OF_COLUMN, connection);
+                connection.Open();
+                var reader = command.ExecuteReader();
+                while (reader.Read())
+                    columns.Add(new Column(reader));
+                connection.Close();
+            }
+            return columns;
+
         }
     }
 }
