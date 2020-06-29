@@ -1,4 +1,5 @@
 ﻿using System.Collections.ObjectModel;
+using System.Threading.Tasks;
 using System.Windows.Input;
 
 namespace NodeApp.Core
@@ -9,6 +10,8 @@ namespace NodeApp.Core
         
         public string Title { get; set; }
 
+        public Tasks Task { get; set; }
+            
         public ObservableCollection<CardLabel> Labels { get; set; } = new ObservableCollection<CardLabel>();
 
         #endregion
@@ -29,8 +32,10 @@ namespace NodeApp.Core
 
         #region Constructor
 
-        public CardViewModel()
+        public CardViewModel(Tasks Task)
         {
+            this.Task = Task;
+            Title = this.Task.task_name;
             DeleteCardCommand = new RelayCommand(DeleteCard);
 
             MoveCardRightCommand = new RelayCommand(MoveCardRight, (arg) => NodesListViewModel.CanMoveCardRight(this));

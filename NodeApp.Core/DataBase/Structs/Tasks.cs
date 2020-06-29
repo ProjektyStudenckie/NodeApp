@@ -6,7 +6,7 @@ namespace NodeApp
     {
         public int task_id { get; set; }
         public string task_name { get; set; }
-        public int active { get; set; }
+        public int task_order { get; set; }
         public int column_id { get; set; }
 
 
@@ -14,14 +14,14 @@ namespace NodeApp
         {
             task_id = int.Parse(reader["task_id"].ToString());
             task_name = reader["task_name"].ToString();
-            active= int.Parse(reader["active"].ToString());
+            task_order= int.Parse(reader["task_order"].ToString());
             column_id= int.Parse(reader["column_id"].ToString());
         }
 
-        public Tasks(string task_name, int active, int column_id)
+        public Tasks(string task_name, int task_order, int column_id)
         {
             this.task_name = task_name.Trim();
-            this.active = active;
+            this.task_order = task_order;
             this.column_id = column_id;
         }
 
@@ -39,7 +39,7 @@ namespace NodeApp
 
         public string ToInsert()
         {
-            return $"('{active}','{task_name}','{column_id}')";
+            return $"('{task_order}','{task_name}','{column_id}')";
         }
 
         public override bool Equals(object obj)

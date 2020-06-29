@@ -1,48 +1,20 @@
 ﻿using System.Collections.ObjectModel;
+using System.Threading.Tasks;
 
 namespace NodeApp.Core
 {
    public class CardDesignModel : CardViewModel
     {
-        public static CardDesignModel Instance => new CardDesignModel();
+        public static CardDesignModel Instance => new CardDesignModel(new Tasks("Mistrze Jest Nasz", 0,1));
 
         #region Constructor
 
-        public CardDesignModel()
+        public CardDesignModel(Tasks Task):base(Task)
         {
             Title = "Przykładowy kafelek";
             Labels = new ObservableCollection<CardLabel>
             {
-                new CardLabel
-                {
-                    Text = "STUDIA",
-                    BackgroundRGBColor = "46a",
-                    ForegroundRGBColor = "fff"
-                },
-                new CardLabel
-                {
-                    Text = "WAŻNE",
-                    BackgroundRGBColor = "D64",
-                    ForegroundRGBColor = "fff"
-                },
-                new CardLabel
-                {
-                    Text = "ĆWICZENIA",
-                    BackgroundRGBColor = "4a6",
-                    ForegroundRGBColor = "fff"
-                },
-                new CardLabel
-                {
-                    Text = "NUDNE",
-                    BackgroundRGBColor = "999",
-                    ForegroundRGBColor = "fff"
-                },
-                new CardLabel
-                {
-                    Text = "PROGRAMOWANIE",
-                    BackgroundRGBColor = "EEE",
-                    ForegroundRGBColor = "000"
-                }
+               
             };
         }
 

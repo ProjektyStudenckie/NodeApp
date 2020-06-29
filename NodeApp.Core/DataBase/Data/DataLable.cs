@@ -52,8 +52,8 @@ namespace NodeApp
             bool succ = false;
             using (var connection = DBconnect.Instance.Connection)
             {
-                string EDIT_LABLE = $"UPDATE LABLE SET lable_text='{lable.lable_text}', lable_background='{lable.background}', column_id='??', " +
-                    $"WHERE lable_id={idLable}";
+                string EDIT_LABLE = $"UPDATE LABLE SET lable_text='{lable.lable_text}', lable_background='{lable.background}'" +
+                    $" WHERE lable_id={idLable}";
 
                 SqlCommand command = new SqlCommand(EDIT_LABLE, connection);
                 connection.Open();
@@ -83,23 +83,23 @@ namespace NodeApp
         }
 
 
-        public List<Tasks> ReturnTasksOfColumn(Column column)
+        public static List<Lable> ReturnLabelsOfRoom(Room room)
         {
-            List<Tasks> tasks = new List<Tasks>();
+            List<Lable> lables = new List<Lable>();
             using (var connection = DBconnect.Instance.Connection)
             {
 
-                string COLUMNS_OF_ROOM = $"SELECT * FROM TASK" +
-                    $"WHERE column_id={column.room_id}";
-                SqlCommand command = new SqlCommand(COLUMNS_OF_ROOM, connection);
+                string TASKS_OF_LABLE = $"SELECT * FROM LABLE" +
+                    $" WHERE room_id={room.room_id}";
+
+                SqlCommand command = new SqlCommand(TASKS_OF_LABLE, connection);
                 connection.Open();
                 var reader = command.ExecuteReader();
                 while (reader.Read())
-
-                    tasks.Add(new Tasks(reader));
+                    lables.Add(new Lable(reader));
                 connection.Close();
             }
-            return tasks;
+            return lables;
 
         }
     }

@@ -1,5 +1,8 @@
-﻿using System.Collections.ObjectModel;
+﻿using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
+using System.Reflection;
+using System.Runtime.InteropServices;
 using System.Windows.Input;
 
 namespace NodeApp.Core
@@ -10,6 +13,8 @@ namespace NodeApp.Core
 
         #region Public Properties
 
+        public Column column { get; set; }
+        
         public string Title { get; set; }
 
         public ObservableCollection<CardViewModel> Cards { get; set; }
@@ -58,8 +63,10 @@ namespace NodeApp.Core
 
         #region Constructor
 
-        public NodeContentListViewModel()
+        public NodeContentListViewModel(Column column)
         {
+            this.column = column;
+            Title = column.column_name;
             Cards = new ObservableCollection<CardViewModel>();
 
             AddCardCommand = new RelayCommand(AddCard);
@@ -71,6 +78,9 @@ namespace NodeApp.Core
             MoveNodeLeftCommand = new RelayCommand(MoveNodeLeft,
                 (arg) => { return NodesListViewModel.Nodes.Count > 1 && 
                     NodesListViewModel.Nodes.IndexOf(this) >= 1; });
+
+            List<Tasks> taskList = DataTask.ReturnTasksOfColumn(column);
+            AddCards(taskList);
         }
 
         #endregion
@@ -83,7 +93,18 @@ namespace NodeApp.Core
             if (Cards == null)
                 Cards = new ObservableCollection<CardViewModel>();
 
-            Cards.Add(new CardViewModel { Title = "New Card" });
+            Cards.Add(new CardViewModel(new Tasks("New",0,1)));
+        }
+
+        public void AddCards(List<Tasks> task)
+        {
+            if (Cards == null)
+                Cards = new ObservableCollection<CardViewModel>();
+
+            foreach (Tasks x in task)
+            {
+                Cards.Add(new CardViewModel(x));
+            }
         }
 
         public void RemoveNode(object parameter = null)

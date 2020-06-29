@@ -84,5 +84,25 @@ namespace NodeApp
             return succ;
         }
 
+        public static List<Tasks> ReturnTasksOfColumn(Column column)
+        {
+            List<Tasks> columns = new List<Tasks>();
+            using (var connection = DBconnect.Instance.Connection)
+            {
+
+                string TASKS_OF_TASKS = $"SELECT * FROM TASK" +
+                    $" WHERE column_id={column.column_id}";
+
+                SqlCommand command = new SqlCommand(TASKS_OF_TASKS, connection);
+                connection.Open();
+                var reader = command.ExecuteReader();
+                while (reader.Read())
+                    columns.Add(new Tasks(reader));
+                connection.Close();
+            }
+            return columns;
+
+        }
+
     }
 }

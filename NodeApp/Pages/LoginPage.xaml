@@ -41,7 +41,7 @@
                                        Margin="0 0 0 20"/>
 
                             <!-- Room -->
-                            <TextBox Tag="{Binding Source={x:Static resx:Resources.RoomName}}" Text="{Binding Email}"
+                            <TextBox Tag="{Binding Source={x:Static resx:Resources.RoomName}}" Text="{Binding RoomName}"
                                      Background="{StaticResource ForegroundVeryLightBlueBrush}"/>
 
                             <Button Content="{Binding Source={x:Static resx:Resources.Login}}"

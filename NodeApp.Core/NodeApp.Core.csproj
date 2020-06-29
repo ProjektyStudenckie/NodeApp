@@ -57,6 +57,7 @@
     <Compile Include="DataBase\Data\DataRoom.cs" />
     <Compile Include="DataBase\Data\DataTask.cs" />
     <Compile Include="DataBase\DBconnect.cs" />
+    <Compile Include="DataBase\Static\DataProgram.cs" />
     <Compile Include="DataBase\Structs\Column.cs" />
     <Compile Include="DataBase\Structs\Lable.cs" />
     <Compile Include="DataBase\Structs\LableTask.cs" />

@@ -1,4 +1,5 @@
-﻿using System.Collections.ObjectModel;
+﻿using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Windows.Input;
 
@@ -78,6 +79,16 @@ namespace NodeApp.Core
             OpenSettingsCommand = new RelayCommand(OpenSettings);
             OpenPropertiesCommand = new RelayCommand(OpenProperties);
             CreateLabelCommand = new RelayCommand(CreateLabel, (arg) => !string.IsNullOrEmpty(NewLabelTitle) && !IsLabelDuplicate());
+
+            List<Column> colList = DataColumn.ReturnColumnsOfRoom(DataProgram.Room);
+            AddNodes(colList);
+            List<Lable> labList = DataLable.ReturnLabelsOfRoom(DataProgram.Room);
+
+            foreach(Lable x in labList)
+            {
+                AvailableLabels.Add(new CardLabel(x));
+            }
+            
         }
 
         #endregion
@@ -102,12 +113,7 @@ namespace NodeApp.Core
 
         public void CreateLabel(object parameter = null)
         {
-            var newLabel = new CardLabel
-            {
-                Text = NewLabelTitle,
-                BackgroundRGBColor = NewLabelBackgroundColor,
-                ForegroundRGBColor = NewLabelForegroundColor
-            };
+            var newLabel = new CardLabel(NewLabelTitle, NewLabelBackgroundColor, NewLabelForegroundColor);
 
             AvailableLabels.Add(newLabel);
         }
@@ -142,10 +148,15 @@ namespace NodeApp.Core
 
         public void AddNode(object parameter)
         {
-            Nodes.Add(new NodeContentListViewModel
+            Nodes.Add(new NodeContentListViewModel(new Column("LeGIAPANY", 0)));
+        }
+
+        public void AddNodes(List<Column> columns)
+        {
+            foreach( Column x in columns)
             {
-                Title = "New Node"
-            });
+                Nodes.Add(new NodeContentListViewModel(x));
+            }  
         }
 
         public static void RemoveSelectedCard(object parameter)

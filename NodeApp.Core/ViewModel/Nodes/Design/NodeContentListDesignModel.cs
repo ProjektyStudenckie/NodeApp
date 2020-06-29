@@ -4,36 +4,16 @@ namespace NodeApp.Core
 {
     public class NodeContentListDesignModel : NodeContentListViewModel
     {
-        public static NodeContentListDesignModel Instance => new NodeContentListDesignModel();
+        public static NodeContentListDesignModel Instance => new NodeContentListDesignModel(new Column("LeGIAPANY",0));
 
         #region Constructor
 
-        public NodeContentListDesignModel()
+        public NodeContentListDesignModel(Column column):base(column)
         {
-            Title = "Przykładowy node";
 
             Cards = new ObservableCollection<CardViewModel>
             {
-                new CardViewModel
-                {
-                    Title = "Przykładowy kafelek 1"
-                },
-                new CardViewModel
-                {
-                    Title = "Przykładowy kafelek 2"
-                },
-                new CardViewModel
-                {
-                    Title = "Przykładowy kafelek 3"
-                },
-                new CardViewModel
-                {
-                    Title = "Przykładowy kafelek 4"
-                },
-                new CardViewModel
-                {
-                    Title = "Przykładowy kafelek 5"
-                }
+                new CardViewModel(new Tasks("Mistrze Jest Nasz", 0,1)),
             };
         }
 

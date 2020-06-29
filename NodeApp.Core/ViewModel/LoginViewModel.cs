@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Security.Cryptography.X509Certificates;
 using System.Threading.Tasks;
 using System.Windows.Input;
 
@@ -21,6 +22,7 @@ namespace NodeApp.Core
 
         public ICommand LoginCommand { get; set; }
 
+
         #endregion
 
         #region Constructor
@@ -34,29 +36,20 @@ namespace NodeApp.Core
 
         public async Task Login(object parameter)
         {
-
             await RunCommand(() => this.LoginIsRunning, async () =>
             {
-                //Change page to nodes page if everything is ok
+                Room room = new Room(RoomName);
+                List<Room> Rooms = DataRoom.DownloadRooms();
+                if (Rooms.Contains(room))
+                { 
+                    DataProgram.Room = Rooms.Find(x => x.room_name == room.room_name);
+                }
+                else
+                {
+                    DataRoom.AddRoom(room);
+                    DataProgram.Room = room;
+                }
                 IoC.Get<ApplicationViewModel>().GoToPage(ApplicationPage.Nodes);
-
-                Room room = new Room("Kasza");
-                DataRoom.AddRoom(room);
-                Column column = new Column("Wtorek", room.room_id);
-                DataColumn.AddColumn(column);
-                Lable lable = new Lable("kuczak", "ffff", "ffff");
-                DataLable.AddLable(lable);
-                Tasks task = new Tasks("zadanie domowe", 2, column.column_id);
-                DataTask.AddTask(task);
-                LableTask lt = new LableTask(lable, task);
-                DataLableTask.AddLableTask(lt);
-                List<LableTask> list = DataLableTask.DownloadLableTask();
-                List<Lable> lables = DataLable.DownloadLables();
-                List<Lable> list2 = DataLableTask.ReturnLabelsOfTask(lables, task);
-                List<Column> listcol = DataColumn.ReturnColumnsOfRoom(room);
-                DataLableTask.DeleteLableTask(lt);
-                DataTask.DeleteTask(task);
-                DataColumn.DeleteColumn(column);
             });
         }
     }
