@@ -36,21 +36,23 @@ namespace NodeApp.Core
 
         public async Task Login(object parameter)
         {
-            await RunCommand(() => this.LoginIsRunning, async () =>
-            {
-                Room room = new Room(RoomName);
-                List<Room> Rooms = DataRoom.DownloadRooms();
-                if (Rooms.Contains(room))
-                { 
-                    DataProgram.Room = Rooms.Find(x => x.room_name == room.room_name);
-                }
-                else
+            if(!string.IsNullOrEmpty(RoomName))
+                await RunCommand(() => LoginIsRunning, async () =>
                 {
-                    DataRoom.AddRoom(room);
-                    DataProgram.Room = room;
-                }
-                IoC.Get<ApplicationViewModel>().GoToPage(ApplicationPage.Nodes);
-            });
+                    await Task.Run(() =>
+                    {
+                        Room room = new Room(RoomName);
+                        List<Room> Rooms = DataRoom.DownloadRooms();
+                        if (Rooms.Contains(room))
+                            DataProgram.Room = Rooms.Find(x => x.room_name == room.room_name);
+                        else
+                        {
+                            DataRoom.AddRoom(room);
+                            DataProgram.Room = room;
+                        }
+                        IoC.Get<ApplicationViewModel>().GoToPage(ApplicationPage.Nodes);
+                    });
+                });
         }
     }
 }

@@ -63,6 +63,8 @@ namespace NodeApp.Core
 
         public ICommand CreateLabelCommand { get; set; }
 
+        public ICommand RefreshCommand { get; set; }
+
         #endregion
 
         #region Constructor
@@ -70,7 +72,20 @@ namespace NodeApp.Core
         public NodesListViewModel()
         {
             Nodes = new ObservableCollection<NodeContentListViewModel>();
+            InitializeCommands();
 
+            List<Column> colList = DataColumn.ReturnColumnsOfRoom(DataProgram.Room);
+            AddNodes(colList);
+            List<Lable> labList = DataLable.ReturnLabelsOfRoom(DataProgram.Room);
+
+            foreach (Lable x in labList)
+            {
+                AvailableLabels.Add(new CardLabel(x));
+            }
+        }
+
+        private void InitializeCommands()
+        {
             AddNodeCommand = new RelayCommand(AddNode);
             RemoveSelectedCardCommand = new RelayCommand(RemoveSelectedCard);
             UpdateCardCommand = new RelayCommand(UpdateSelectedCard);
@@ -79,21 +94,17 @@ namespace NodeApp.Core
             OpenSettingsCommand = new RelayCommand(OpenSettings);
             OpenPropertiesCommand = new RelayCommand(OpenProperties);
             CreateLabelCommand = new RelayCommand(CreateLabel, (arg) => !string.IsNullOrEmpty(NewLabelTitle) && !IsLabelDuplicate());
-
-            List<Column> colList = DataColumn.ReturnColumnsOfRoom(DataProgram.Room);
-            AddNodes(colList);
-            List<Lable> labList = DataLable.ReturnLabelsOfRoom(DataProgram.Room);
-
-            foreach(Lable x in labList)
-            {
-                AvailableLabels.Add(new CardLabel(x));
-            }
-            
+            RefreshCommand = new RelayCommand(Refresh);
         }
 
         #endregion
 
         #region Command Methods
+
+        public void Refresh(object parameter = null)
+        {
+            // ToDo: Implement refresh method
+        }
 
         public void RemoveLabel(object parameter)
         {

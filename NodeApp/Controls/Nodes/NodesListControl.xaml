@@ -10,11 +10,25 @@
              d:DesignHeight="750" d:DesignWidth="1250">
 
     <Grid Background="Transparent"
-          d:DataContext="{x:Static core:NodesListDesignModel.Instance}"
-          HorizontalAlignment="Center">
+          d:DataContext="{x:Static core:NodesListDesignModel.Instance}">
+
+        <Button Style="{StaticResource NoBackgroundHoverIconButton}"
+                Width="50"
+                Height="{Binding ActualWidth, RelativeSource={RelativeSource Self}}"
+                HorizontalAlignment="Left"
+                VerticalAlignment="Top"
+                FontFamily="{StaticResource FontAwesomeSolid}"
+                Content="{StaticResource FontAwesomeRefesh}"
+                Command="{Binding RefreshCommand}">
+            <Button.ToolTip>
+                <ToolTip Content="Refresh Data"/>
+            </Button.ToolTip>
+        </Button>
 
         <ScrollViewer HorizontalScrollBarVisibility="Auto"
-                      VerticalScrollBarVisibility="Disabled">
+                      VerticalScrollBarVisibility="Disabled"
+                      Margin="0 50 0 0"
+                      HorizontalAlignment="Center">
 
             <StackPanel Orientation="Horizontal">
                 <ItemsControl ItemsSource="{Binding Nodes}">
@@ -26,13 +40,13 @@
 
                     <ItemsControl.ItemTemplate>
                         <DataTemplate>
-                            <local:NodeContentListControl Margin="20 50"/>
+                            <local:NodeContentListControl Margin="20 0 20 50"/>
                         </DataTemplate>
                     </ItemsControl.ItemTemplate>
                 </ItemsControl>
 
                 <Button Height="60"
-                        Margin="20 50"
+                        Margin="20 0"
                         VerticalAlignment="Top"
                         Style="{StaticResource RoundedIconButton}"
                         Content="{StaticResource FontAwesomePlusIcon}"
