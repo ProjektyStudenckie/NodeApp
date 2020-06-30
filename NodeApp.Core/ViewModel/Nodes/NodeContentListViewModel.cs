@@ -80,7 +80,8 @@ namespace NodeApp.Core
                     NodesListViewModel.Nodes.IndexOf(this) >= 1; });
 
             List<Tasks> taskList = DataTask.ReturnTasksOfColumn(column);
-            AddCards(taskList);
+            AddCardsWithLabel(taskList);
+
         }
 
         #endregion
@@ -96,7 +97,7 @@ namespace NodeApp.Core
             Cards.Add(new CardViewModel(new Tasks("New",0,1)));
         }
 
-        public void AddCards(List<Tasks> task)
+        public void AddCardsWithLabel(List<Tasks> task)
         {
             if (Cards == null)
                 Cards = new ObservableCollection<CardViewModel>();

@@ -10,7 +10,8 @@ namespace NodeApp
         public NodesPage()
         {
             InitializeComponent();
-            DataContext = new NodesListViewModel();
+            DataProgram.nodesListViewModel = new NodesListViewModel();
+            DataContext = DataProgram.nodesListViewModel;
         }
     }
 }

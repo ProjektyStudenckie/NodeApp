@@ -21,6 +21,7 @@ namespace NodeApp.Core
 
         public static CardViewModel SelectedCard => NodeContentListViewModel.SelectedCard;
 
+        public ObservableCollection<CardLabel> AvailableLabels => DataProgram.availableLabels;
 
         public static string SelectedCardTitle
         {
@@ -35,10 +36,6 @@ namespace NodeApp.Core
                 StaticPropertyChanged?.Invoke(null, SelectedCardTitlePropertyEventArgs);
             }
         }
-
-
-        public ObservableCollection<CardLabel> AvailableLabels { get; set; } = new ObservableCollection<CardLabel>();
-
 
         #endregion
 
@@ -80,7 +77,7 @@ namespace NodeApp.Core
 
             foreach (Lable x in labList)
             {
-                AvailableLabels.Add(new CardLabel(x));
+                DataProgram.availableLabels.Add(new CardLabel(x));
             }
         }
 
@@ -110,9 +107,9 @@ namespace NodeApp.Core
         {
             string labelText = parameter.ToString();
 
-            for(int i=0; i<AvailableLabels.Count; i++)
-                if (AvailableLabels[i].Text.Equals(labelText))
-                    AvailableLabels.RemoveAt(i);
+            for(int i=0; i< DataProgram.availableLabels.Count; i++)
+                if (DataProgram.availableLabels[i].Text.Equals(labelText))
+                    DataProgram.availableLabels.RemoveAt(i);
 
             // Remove labels already placed on cards
             for(int i=0; i<Nodes.Count; i++)
@@ -126,7 +123,7 @@ namespace NodeApp.Core
         {
             var newLabel = new CardLabel(NewLabelTitle, NewLabelBackgroundColor, NewLabelForegroundColor);
 
-            AvailableLabels.Add(newLabel);
+            DataProgram.availableLabels.Add(newLabel);
         }
 
 
@@ -146,16 +143,17 @@ namespace NodeApp.Core
             {
                 string labelText = parameter.ToString();
 
-                for (int i = 0; i < AvailableLabels.Count; i++)
-                    if (AvailableLabels[i].Text == labelText)
+                for (int i = 0; i < DataProgram.availableLabels.Count; i++)
+                    if (DataProgram.availableLabels[i].Text == labelText)
                     {
-                        if (SelectedCard.Labels.Contains(AvailableLabels[i]))
-                            SelectedCard.Labels.Remove(AvailableLabels[i]);
+                        if (SelectedCard.Labels.Contains(DataProgram.availableLabels[i]))
+                            SelectedCard.Labels.Remove(DataProgram.availableLabels[i]);
                         else
-                            SelectedCard.Labels.Add(AvailableLabels[i]);
+                            SelectedCard.Labels.Add(DataProgram.availableLabels[i]);
                     }
             }
         }
+
 
         public void AddNode(object parameter)
         {
@@ -293,8 +291,8 @@ namespace NodeApp.Core
 
         private bool IsLabelDuplicate()
         {
-            for(int i=0; i<AvailableLabels.Count; i++)
-                if (AvailableLabels[i].Text.Equals(NewLabelTitle))
+            for(int i=0; i< DataProgram.availableLabels.Count; i++)
+                if (DataProgram.availableLabels[i].Text.Equals(NewLabelTitle))
                     return true;
 
             return false;

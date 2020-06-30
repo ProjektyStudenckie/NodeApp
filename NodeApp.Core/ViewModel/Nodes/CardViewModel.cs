@@ -1,4 +1,5 @@
-﻿using System.Collections.ObjectModel;
+﻿using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Threading.Tasks;
 using System.Windows.Input;
 
@@ -43,14 +44,36 @@ namespace NodeApp.Core
 
             MoveCardUpCommand = new RelayCommand(MoveCardUp, (arg) => NodesListViewModel.CanMoveCardUp(this));
             MoveCardDownCommand = new RelayCommand(MoveCardDown, (arg) => NodesListViewModel.CanMoveCardDown(this));
+
+            AddLabels();
         }
+
+
 
         #endregion
 
+        public void AddLabels()
+        {
+            List<Lable> labels = DataLableTask.ReturnLabelsOfTask(DataLable.DownloadLables(), Task);
+            if (labels.Count > 0)
+            {
+                foreach (Lable y in labels)
+                {
+                    string labelText = y.lable_text.ToString();
 
-        #region Command Methods
+                    for (int x = 0; x < DataProgram.availableLabels.Count; x++)
+                        if (DataProgram.availableLabels[x].Text == labelText)
+                        {
+                            Labels.Add(DataProgram.availableLabels[x]);
+                        }
 
-        public void DeleteCard(object parameter = null)
+                }
+            }
+        }
+
+#region Command Methods
+
+public void DeleteCard(object parameter = null)
         {
             NodesListViewModel.DeleteCard(this);
         }
