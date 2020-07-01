@@ -1,11 +1,5 @@
 ﻿using NodeApp.Core;
-using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Dynamic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace NodeApp
 {
@@ -20,10 +14,6 @@ namespace NodeApp
         }  
 
         public static NodesListViewModel nodesListViewModel;
-        public static ObservableCollection<CardLabel> availableLabels 
-        {
-            get;
-            set;
-        }= new ObservableCollection<CardLabel>();
+        public static ObservableCollection<CardLabel> availableLabels { get; set; } = new ObservableCollection<CardLabel>();
     }
 }

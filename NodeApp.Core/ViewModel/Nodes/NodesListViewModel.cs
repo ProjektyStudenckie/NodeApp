@@ -76,9 +76,20 @@ namespace NodeApp.Core
             List<Lable> labList = DataLable.ReturnLabelsOfRoom(DataProgram.Room);
 
             foreach (Lable x in labList)
-            {
-                DataProgram.availableLabels.Add(new CardLabel(x));
-            }
+                if(!UpdateDuplicates(x))
+                    DataProgram.availableLabels.Add(new CardLabel(x));
+        }
+
+        private static bool UpdateDuplicates(Lable x)
+        {
+            bool containsDuplicates = false;
+            for (int i = 0; i < DataProgram.availableLabels.Count; i++)
+                if (DataProgram.availableLabels[i].Text == x.lable_text)
+                {
+                    DataProgram.availableLabels[i] = new CardLabel(x);
+                    containsDuplicates = true;
+                }
+            return containsDuplicates;
         }
 
         private void InitializeCommands()
