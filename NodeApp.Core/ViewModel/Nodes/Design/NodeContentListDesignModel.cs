@@ -4,7 +4,7 @@ namespace NodeApp.Core
 {
     public class NodeContentListDesignModel : NodeContentListViewModel
     {
-        public static NodeContentListDesignModel Instance => new NodeContentListDesignModel(new Column("LeGIAPANY",0));
+        public static NodeContentListDesignModel Instance => new NodeContentListDesignModel(new Column("New Node",0));
 
         #region Constructor
 

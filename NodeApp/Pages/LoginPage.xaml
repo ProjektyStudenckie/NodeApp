@@ -24,7 +24,7 @@
                             CornerRadius="10"
                             Padding="15 50 15 15"
                             Width="330"
-                            Margin="50 50 50 0">
+                            Margin="50 50 50 50">
 
                         <StackPanel>
 
@@ -51,9 +51,6 @@
                         </StackPanel>
 
                     </Border>
-
-                    <Button Content="{Binding Source={x:Static resx:Resources.Help}}" HorizontalAlignment="Center"
-                            Style="{StaticResource TextButton}"/>
 
                 </StackPanel>
             </ScrollViewer>

@@ -10,24 +10,24 @@ namespace NodeApp.Core
 
         public NodesListDesignModel()
         {
-            var l1 = new NodeContentListViewModel(new Column("LeGIAPANY", 0));
+            var l1 = new NodeContentListViewModel(new Column("New Node", 0));
 
             Nodes = new ObservableCollection<NodeContentListViewModel>
             {
-                new NodeContentListViewModel(new Column("LeGIAPANY",0))
+                new NodeContentListViewModel(new Column("New Node",0))
                 {
                     Cards = new ObservableCollection<CardViewModel>
                     {
                       
                     }
                 },
-                new NodeContentListViewModel(new Column("LeGIAPANY",0))
+                new NodeContentListViewModel(new Column("New Node",0))
                 {
                     Cards = new ObservableCollection<CardViewModel>
                     {
                     }
                 },
-                new NodeContentListViewModel(new Column("LeGIAPANY",0))
+                new NodeContentListViewModel(new Column("New Node",0))
                 {
                    
                 }

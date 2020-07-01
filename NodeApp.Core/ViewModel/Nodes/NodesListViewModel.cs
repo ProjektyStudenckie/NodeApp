@@ -168,7 +168,7 @@ namespace NodeApp.Core
 
         public void AddNode(object parameter)
         {
-            Nodes.Add(new NodeContentListViewModel(new Column("LeGIAPANY", 0)));
+            Nodes.Add(new NodeContentListViewModel(new Column("New Node", 0)));
         }
 
         public void AddNodes(List<Column> columns)
