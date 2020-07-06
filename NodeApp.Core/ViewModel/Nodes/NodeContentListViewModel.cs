@@ -13,9 +13,39 @@ namespace NodeApp.Core
 
         #region Public Properties
 
-        public Column column { get; set; }
-        
-        public string Title { get; set; }
+        private Column _Column;
+        public Column Column
+        {
+            get
+            {
+                return _Column;
+            }
+            set
+            {
+                if (_Column == null)
+                {
+                    _Column = value;
+                }
+                else
+                {
+                    _Column = value;
+                    DataColumn.EditColumn(_Column, _Column.column_id);
+                }
+            }
+        }
+
+        private string _Title;
+        public string Title {
+            get
+            {
+                return _Title;
+            }
+            set
+            {
+                _Title = value;
+                Column = new Column(Column.column_id, _Title, Column.room_id);
+            }
+        }
 
         public ObservableCollection<CardViewModel> Cards { get; set; }
 
@@ -65,7 +95,7 @@ namespace NodeApp.Core
 
         public NodeContentListViewModel(Column column)
         {
-            this.column = column;
+            this.Column = column;
             Title = column.column_name;
             Cards = new ObservableCollection<CardViewModel>();
 
@@ -94,7 +124,7 @@ namespace NodeApp.Core
             if (Cards == null)
                 Cards = new ObservableCollection<CardViewModel>();
 
-            Cards.Add(new CardViewModel(new Tasks("New",0,1)));
+            Cards.Add(new CardViewModel(new Tasks("New",Cards.Count, Column.column_id)));
         }
 
         public void AddCardsWithLabel(List<Tasks> task)

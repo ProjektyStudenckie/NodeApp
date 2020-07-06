@@ -91,5 +91,50 @@ namespace NodeApp
             return tasklables;
 
         }
+
+
+        public static List<LableTask> ReturnRelationsOfTask(Tasks task)
+
+        {
+            List<LableTask> tasklables = new List<LableTask>();
+            using (var connection = DBconnect.Instance.Connection)
+            {
+
+                string RelationsOfTask = ALL_TASKLABLE +
+                    $" WHERE task_id={task.task_id}";
+                SqlCommand command = new SqlCommand(RelationsOfTask, connection);
+                connection.Open();
+                var reader = command.ExecuteReader();
+                while (reader.Read())
+                    tasklables.Add(new LableTask(reader));
+                connection.Close();
+            }
+            return tasklables;
+
+        }
+
+        public static List<LableTask> ReturnRelationsOfLable(Lable label)
+        {
+            List<LableTask> tasklables = new List<LableTask>();
+            using (var connection = DBconnect.Instance.Connection)
+            {
+
+                string RelationsOfTask = ALL_TASKLABLE +
+                    $" WHERE lable_id={label.lable_id}";
+                SqlCommand command = new SqlCommand(RelationsOfTask, connection);
+                connection.Open();
+                var reader = command.ExecuteReader();
+                while (reader.Read())
+                    tasklables.Add(new LableTask(reader));
+                connection.Close();
+            }
+            return tasklables;
+
+        }
+
+
+
+
+
     }
 }

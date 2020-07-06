@@ -52,10 +52,10 @@ namespace NodeApp
             bool succ = false;
             using (var connection = DBconnect.Instance.Connection)
             {
-                string EDIT_LABLE = $"UPDATE COLUM SET column_name='{column.column_name}', room_id='{column.room_id}', " +
-                    $"WHERE room_id={idColumn}";
+                string EDIT_COLUMN = $"UPDATE COLUM SET column_name='{column.column_name}', room_id='{column.room_id}' " +
+                    $"WHERE column_id={idColumn}";
 
-                SqlCommand command = new SqlCommand(EDIT_LABLE, connection);
+                SqlCommand command = new SqlCommand(EDIT_COLUMN, connection);
                 connection.Open();
                 var n = command.ExecuteNonQuery();
                 if (n == 1) succ = true;

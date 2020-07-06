@@ -52,7 +52,7 @@ namespace NodeApp
             bool succ = false;
             using (var connection = DBconnect.Instance.Connection)
             {
-                string EDIT_LABLE = $"UPDATE LABLE SET lable_text='{lable.lable_text}', lable_background='{lable.background}'" +
+                string EDIT_LABLE = $"UPDATE LABLE SET lable_text='{lable.lable_text}', lable_background='{lable.background}', lable_foreground='{lable.foreground}'" +
                     $" WHERE lable_id={idLable}";
 
                 SqlCommand command = new SqlCommand(EDIT_LABLE, connection);
@@ -70,7 +70,7 @@ namespace NodeApp
             using (var connection = DBconnect.Instance.Connection)
             {
                 string DELETE_LABLE = $"DELETE FROM LABLE" +
-                    $"WHERE lable_id={lable.lable_id}";
+                    $" WHERE lable_id={lable.lable_id}";
 
                 SqlCommand command = new SqlCommand(DELETE_LABLE, connection);
                 connection.Open();

@@ -18,10 +18,16 @@ namespace NodeApp
 
         public Column(string text, int room_id)
         {
-
             this.column_name = text.Trim();
             this.room_id = room_id;
+            DataColumn.AddColumn(this);
+        }
 
+        public Column(int column_id,string text, int room_id)
+        {
+            this.column_id = column_id;
+            this.column_name = text;
+            this.room_id = room_id;
         }
 
         public Column(Column lable)

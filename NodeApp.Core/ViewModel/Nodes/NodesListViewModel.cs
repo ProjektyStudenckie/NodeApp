@@ -118,9 +118,17 @@ namespace NodeApp.Core
         {
             string labelText = parameter.ToString();
 
-            for(int i=0; i< DataProgram.availableLabels.Count; i++)
+            for (int i = 0; i < DataProgram.availableLabels.Count; i++)
                 if (DataProgram.availableLabels[i].Text.Equals(labelText))
+                {
+                    List<LableTask> relationsToDestroy = DataLableTask.ReturnRelationsOfLable(DataProgram.availableLabels[i].lable);
+                    foreach(LableTask x in relationsToDestroy)
+                    {
+                        DataLableTask.DeleteLableTask(x);
+                    }
+                    DataLable.DeleteLable(DataProgram.availableLabels[i].lable);
                     DataProgram.availableLabels.RemoveAt(i);
+                }
 
             // Remove labels already placed on cards
             for(int i=0; i<Nodes.Count; i++)
@@ -128,6 +136,7 @@ namespace NodeApp.Core
                     for(int k=0; k<Nodes[i].Cards[j].Labels.Count; k++)
                         if (Nodes[i].Cards[j].Labels[k].Text == labelText)
                             Nodes[i].Cards[j].Labels.RemoveAt(k);
+
         }
 
         public void CreateLabel(object parameter = null)
@@ -150,17 +159,21 @@ namespace NodeApp.Core
 
         public void LabelClick(object parameter)
         {
-            if(SelectedCard != null)
+            if (SelectedCard != null)
             {
                 string labelText = parameter.ToString();
-
                 for (int i = 0; i < DataProgram.availableLabels.Count; i++)
                     if (DataProgram.availableLabels[i].Text == labelText)
                     {
-                        if (SelectedCard.Labels.Contains(DataProgram.availableLabels[i]))
-                            SelectedCard.Labels.Remove(DataProgram.availableLabels[i]);
-                        else
-                            SelectedCard.Labels.Add(DataProgram.availableLabels[i]);
+                        for (int j = 0; j < SelectedCard.Labels.Count; j++)
+                            if (SelectedCard.Labels[j].Text == labelText)
+                            {
+                                SelectedCard.Labels.RemoveAt(j);
+                                DataLableTask.DeleteLableTask(new LableTask(DataProgram.availableLabels[i].lable, SelectedCard.Task));
+                                return;
+                            }
+                        SelectedCard.Labels.Add(DataProgram.availableLabels[i]);
+                        new LableTask(DataProgram.availableLabels[i].lable, SelectedCard.Task);
                     }
             }
         }
@@ -168,7 +181,7 @@ namespace NodeApp.Core
 
         public void AddNode(object parameter)
         {
-            Nodes.Add(new NodeContentListViewModel(new Column("New Node", 0)));
+            Nodes.Add(new NodeContentListViewModel(new Column("New Node", DataProgram.Room.room_id)));
         }
 
         public void AddNodes(List<Column> columns)
@@ -191,7 +204,15 @@ namespace NodeApp.Core
         {
             for (int i = 0; i < Nodes.Count; i++)
                 if (Nodes[i].Cards.Contains(card))
+                {
+                    List<LableTask> relationsToDestroy = DataLableTask.ReturnRelationsOfTask(card.Task);
+                    foreach (LableTask x in relationsToDestroy)
+                    {
+                        DataLableTask.DeleteLableTask(x);
+                    }
+                    DataTask.DeleteTask(card.Task);
                     Nodes[i].Cards.Remove(card);
+                }
         }
 
         public static void MoveCardRight(CardViewModel card)
@@ -276,6 +297,7 @@ namespace NodeApp.Core
             if (SelectedCard == null)
                 return;
             SelectedCard.Title = SelectedCardTitle;
+            SelectedCard.Task=new Tasks(SelectedCard.Task.task_id,SelectedCardTitle, SelectedCard.Task.task_order, SelectedCard.Task.column_id);
             onPropertyChanged(nameof(SelectedCard));
         }
 

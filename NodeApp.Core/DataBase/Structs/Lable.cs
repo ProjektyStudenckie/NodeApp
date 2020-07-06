@@ -28,6 +28,7 @@ namespace NodeApp
             this.background = background.Trim();
             this.foreground = foreground.Trim();
             this.room_id = room_id;
+            DataLable.AddLable(this);
         }
 
         public Lable(Lable lable)

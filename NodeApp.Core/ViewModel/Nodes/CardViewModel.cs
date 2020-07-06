@@ -11,7 +11,27 @@ namespace NodeApp.Core
         
         public string Title { get; set; }
 
-        public Tasks Task { get; set; }
+        private Tasks _Task;
+
+        public Tasks Task {
+            get
+            {
+                return _Task;
+            } 
+            set 
+            {
+                if(_Task == null)
+                {
+                    _Task = value; 
+                }
+                else
+                {
+                    _Task = value;
+                    DataTask.EditTask(_Task, _Task.task_id);
+                }
+            } 
+            
+        }
             
         public ObservableCollection<CardLabel> Labels { get; set; } = new ObservableCollection<CardLabel>();
 

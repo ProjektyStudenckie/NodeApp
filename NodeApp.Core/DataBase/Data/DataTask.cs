@@ -47,16 +47,16 @@ namespace NodeApp
             return stan;
         }
 
-        public static bool EditTask(Tasks person, int idOsoby)
+        public static bool EditTask(Tasks task, int taksID)
 
         {
             bool stan = false;
             using (var connection = DBconnect.Instance.Connection)
             {
-                string EDIT_PERSON = $"UPDATE TASK SET task_name='{person.task_name}', " +
-                    $"WHERE id_o={idOsoby}";
+                string EDIT_TASK = $"UPDATE TASK SET task_name='{task.task_name}', task_order='{task.task_order}', column_id='{task.column_id}' " +
+                    $"WHERE task_id={taksID}";
 
-                SqlCommand command = new SqlCommand(EDIT_PERSON, connection);
+                SqlCommand command = new SqlCommand(EDIT_TASK, connection);
                 connection.Open();
                 var n = command.ExecuteNonQuery();
                 if (n == 1) stan = true;

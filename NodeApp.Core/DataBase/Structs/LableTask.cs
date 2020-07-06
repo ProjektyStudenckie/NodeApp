@@ -20,7 +20,7 @@ namespace NodeApp
         {
             lable_id = person.lable_id;
             task_id = task.task_id;
-
+            DataLableTask.AddLableTask(this);
 
         }
 
