@@ -21,7 +21,6 @@ namespace NodeApp
             lable_id = person.lable_id;
             task_id = task.task_id;
             DataLableTask.AddLableTask(this);
-
         }
 
 
@@ -29,9 +28,7 @@ namespace NodeApp
         {
             lable_id = persontask.lable_id;
             task_id = persontask.task_id;
-
         }
-
 
         public override string ToString()
         {
@@ -40,9 +37,7 @@ namespace NodeApp
 
         public string ToInsert()
         {
-
             return $"('{task_id}','{lable_id}')";
-
         }
 
         public override bool Equals(object obj)
