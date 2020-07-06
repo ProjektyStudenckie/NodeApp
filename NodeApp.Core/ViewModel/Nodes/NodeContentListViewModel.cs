@@ -141,6 +141,13 @@ namespace NodeApp.Core
         public void RemoveNode(object parameter = null)
         {
             NodesListViewModel.Nodes.Remove(this);
+            List<Tasks> tasks = DataTask.ReturnTasksOfColumn(Column);
+            foreach(Tasks x in tasks)
+            {
+                DataProgram.DeleteRelationsTask(x);
+                DataTask.DeleteTask(x);
+            }
+            DataColumn.DeleteColumn(Column);
         }
 
         public void MoveNodeRight(object parameter = null)

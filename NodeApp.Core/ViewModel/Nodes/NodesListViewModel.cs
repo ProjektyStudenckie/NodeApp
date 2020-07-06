@@ -205,12 +205,7 @@ namespace NodeApp.Core
             for (int i = 0; i < Nodes.Count; i++)
                 if (Nodes[i].Cards.Contains(card))
                 {
-                    List<LableTask> relationsToDestroy = DataLableTask.ReturnRelationsOfTask(card.Task);
-                    foreach (LableTask x in relationsToDestroy)
-                    {
-                        DataLableTask.DeleteLableTask(x);
-                    }
-                    DataTask.DeleteTask(card.Task);
+                    DataProgram.DeleteRelationsTask(card.Task);
                     Nodes[i].Cards.Remove(card);
                 }
         }

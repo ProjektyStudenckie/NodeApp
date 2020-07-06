@@ -1,4 +1,5 @@
 ﻿using NodeApp.Core;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 
 namespace NodeApp
@@ -15,5 +16,16 @@ namespace NodeApp
 
         public static NodesListViewModel nodesListViewModel;
         public static ObservableCollection<CardLabel> availableLabels { get; set; } = new ObservableCollection<CardLabel>();
+
+        public static void DeleteRelationsTask(Tasks task)
+        {
+            List<LableTask> relationsToDestroy = DataLableTask.ReturnRelationsOfTask(task);
+            foreach (LableTask x in relationsToDestroy)
+            {
+                DataLableTask.DeleteLableTask(x);
+            }
+            DataTask.DeleteTask(task);
+            
+        }
     }
 }
