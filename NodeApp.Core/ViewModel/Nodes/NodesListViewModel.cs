@@ -108,13 +108,14 @@ namespace NodeApp.Core
 
         public void Refresh(object parameter = null)
         {
+            DataProgram.nodesListViewModel = new NodesListViewModel();
             // ToDo: Implement refresh method
             IoC.Get<ApplicationViewModel>().GoToPage(ApplicationPage.Login);
             IoC.Get<ApplicationViewModel>().GoToPage(ApplicationPage.Nodes);
         }
 
         public void RemoveLabel(object parameter)
-        {
+        { 
             string labelText = parameter.ToString();
 
             for (int i = 0; i < DataProgram.availableLabels.Count; i++)
