@@ -70,6 +70,8 @@ namespace NodeApp.Core
             }
         }
 
+        public int NodeId { get; set; }
+
         private static readonly PropertyChangedEventArgs SelectedCardPropertyEventArgs = new PropertyChangedEventArgs(nameof(SelectedCard));
         public static event PropertyChangedEventHandler StaticPropertyChanged;
 
@@ -111,7 +113,6 @@ namespace NodeApp.Core
 
             List<Tasks> taskList = DataTask.ReturnTasksOfColumn(column);
             AddCardsWithLabel(taskList);
-
         }
 
         #endregion
@@ -124,7 +125,7 @@ namespace NodeApp.Core
             if (Cards == null)
                 Cards = new ObservableCollection<CardViewModel>();
 
-            Cards.Add(new CardViewModel(new Tasks("New",Cards.Count, Column.column_id)));
+            Cards.Add(new CardViewModel(new Tasks("New", Cards.Count, Column.column_id)) { Id = Cards.Count });
         }
 
         public void AddCardsWithLabel(List<Tasks> task)
@@ -140,7 +141,12 @@ namespace NodeApp.Core
 
         public void RemoveNode(object parameter = null)
         {
+            int index = NodesListViewModel.Nodes.IndexOf(this);
+            for(int i=index+1; i< NodesListViewModel.Nodes.Count; i++)
+                NodesListViewModel.Nodes[i].NodeId--;
+
             NodesListViewModel.Nodes.Remove(this);
+
             List<Tasks> tasks = DataTask.ReturnTasksOfColumn(Column);
             foreach(Tasks x in tasks)
             {
@@ -153,12 +159,18 @@ namespace NodeApp.Core
         public void MoveNodeRight(object parameter = null)
         {
             int oldIndex = NodesListViewModel.Nodes.IndexOf(this);
+            NodeId = NodesListViewModel.Nodes[oldIndex + 1].NodeId;
+            NodesListViewModel.Nodes[oldIndex + 1].NodeId = oldIndex;
+
             NodesListViewModel.Nodes.Move(oldIndex, ++oldIndex);
         }
 
         public void MoveNodeLeft(object parameter = null)
         {
             int oldIndex = NodesListViewModel.Nodes.IndexOf(this);
+            NodeId = NodesListViewModel.Nodes[oldIndex - 1].NodeId;
+            NodesListViewModel.Nodes[oldIndex - 1].NodeId = oldIndex;
+
             NodesListViewModel.Nodes.Move(oldIndex, --oldIndex);
         }
 

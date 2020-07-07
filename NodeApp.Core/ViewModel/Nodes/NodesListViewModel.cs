@@ -46,8 +46,6 @@ namespace NodeApp.Core
 
         public ICommand AddNodeCommand { get; set; }
 
-        public ICommand RemoveSelectedCardCommand { get; set; }
-
         public ICommand UpdateCardCommand { get; set; }
 
         public ICommand LabelClickCommand { get; set; }
@@ -95,7 +93,6 @@ namespace NodeApp.Core
         private void InitializeCommands()
         {
             AddNodeCommand = new RelayCommand(AddNode);
-            RemoveSelectedCardCommand = new RelayCommand(RemoveSelectedCard);
             UpdateCardCommand = new RelayCommand(UpdateSelectedCard);
             LabelClickCommand = new RelayCommand(LabelClick, (arg) => SelectedCard != null);
             RemoveLabelCommand = new RelayCommand(RemoveLabel);
@@ -112,6 +109,8 @@ namespace NodeApp.Core
         public void Refresh(object parameter = null)
         {
             // ToDo: Implement refresh method
+            IoC.Get<ApplicationViewModel>().GoToPage(ApplicationPage.Login);
+            IoC.Get<ApplicationViewModel>().GoToPage(ApplicationPage.Nodes);
         }
 
         public void RemoveLabel(object parameter)
@@ -181,7 +180,7 @@ namespace NodeApp.Core
 
         public void AddNode(object parameter)
         {
-            Nodes.Add(new NodeContentListViewModel(new Column("New Node", DataProgram.Room.room_id)));
+            Nodes.Add(new NodeContentListViewModel(new Column("New Node", DataProgram.Room.room_id)) { NodeId = Nodes.Count });
         }
 
         public void AddNodes(List<Column> columns)
@@ -192,20 +191,18 @@ namespace NodeApp.Core
             }  
         }
 
-        public static void RemoveSelectedCard(object parameter)
-        {
-            if (SelectedCard != null)
-                for (int i = 0; i < Nodes.Count; i++)
-                    if (Nodes[i].Cards.Contains(SelectedCard))
-                        Nodes[i].Cards.Remove(SelectedCard);
-        }
-
         public static void DeleteCard(CardViewModel card)
         {
             for (int i = 0; i < Nodes.Count; i++)
                 if (Nodes[i].Cards.Contains(card))
                 {
                     DataProgram.DeleteRelationsTask(card.Task);
+
+                    // Decrement all cards with higher id in the column
+                    int indexOfRemoved = Nodes[i].Cards.IndexOf(card);
+                    for(int x=indexOfRemoved+1; x<Nodes[i].Cards.Count; x++)
+                        Nodes[i].Cards[x].Id--;
+
                     Nodes[i].Cards.Remove(card);
                 }
         }
@@ -216,8 +213,15 @@ namespace NodeApp.Core
             for (int i = 0; i < Nodes.Count; i++)
                 if (Nodes[i].Cards.Contains(card))
                 {
+                    // Decrement ids of cards below moved one
+                    int indexOfRemoved = Nodes[i].Cards.IndexOf(card);
+                    for (int x = indexOfRemoved + 1; x < Nodes[i].Cards.Count; x++)
+                        Nodes[i].Cards[x].Id--;
+
                     Nodes[i].Cards.Remove(card);
                     Nodes[i + 1].Cards.Add(card);
+
+                    card.Id = Nodes[i + 1].Cards.Count-1;
                     break;
                 }
         }
@@ -227,8 +231,15 @@ namespace NodeApp.Core
             for (int i = 0; i < Nodes.Count; i++)
                 if (Nodes[i].Cards.Contains(card))
                 {
+                    // Decrement ids of cards below moved one
+                    int indexOfRemoved = Nodes[i].Cards.IndexOf(card);
+                    for (int x = indexOfRemoved + 1; x < Nodes[i].Cards.Count; x++)
+                        Nodes[i].Cards[x].Id--;
+
                     Nodes[i].Cards.Remove(card);
                     Nodes[i - 1].Cards.Add(card);
+
+                    card.Id = Nodes[i - 1].Cards.Count-1;
                     break;
                 }
         }
@@ -238,9 +249,16 @@ namespace NodeApp.Core
             for (int i = 0; i < Nodes.Count; i++)
                 if (Nodes[i].Cards.IndexOf(card) > 0)
                 {
-                    Nodes[i].Cards.Move(Nodes[i].Cards.IndexOf(card), Nodes[i].Cards.IndexOf(card) - 1);
+                    int indexOfMovedCard = Nodes[i].Cards.IndexOf(card);
+
+                    // Swap Id's with card above
+                    int tmp = Nodes[i].Cards[indexOfMovedCard - 1].Id;
+                    Nodes[i].Cards[indexOfMovedCard - 1].Id = card.Id;
+                    card.Id = tmp;
+
+                    Nodes[i].Cards.Move(indexOfMovedCard, indexOfMovedCard - 1);
                     break;
-                }
+                }   
         }
 
         public static void MoveCardDown(CardViewModel card)
@@ -248,6 +266,13 @@ namespace NodeApp.Core
             for (int i = 0; i < Nodes.Count; i++)
                 if (Nodes[i].Cards.IndexOf(card) != -1 && Nodes[i].Cards.IndexOf(card) < Nodes[i].Cards.Count - 1)
                 {
+                    int indexOfMovedCard = Nodes[i].Cards.IndexOf(card);
+
+                    // Swap Id's with card below
+                    int tmp = Nodes[i].Cards[indexOfMovedCard + 1].Id;
+                    Nodes[i].Cards[indexOfMovedCard + 1].Id = card.Id;
+                    card.Id = tmp;
+
                     Nodes[i].Cards.Move(Nodes[i].Cards.IndexOf(card), Nodes[i].Cards.IndexOf(card) + 1);
                     break;
                 }
@@ -297,7 +322,6 @@ namespace NodeApp.Core
         }
 
         #endregion
-
 
         #region Methods
 

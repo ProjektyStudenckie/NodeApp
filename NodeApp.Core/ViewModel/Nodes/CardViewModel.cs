@@ -35,6 +35,8 @@ namespace NodeApp.Core
             
         public ObservableCollection<CardLabel> Labels { get; set; } = new ObservableCollection<CardLabel>();
 
+        public int Id { get; set; }
+
         #endregion
 
 
@@ -72,6 +74,14 @@ namespace NodeApp.Core
 
         #endregion
 
+        //public void SetId()
+        //{
+        //    for(int i=0; i<NodesListViewModel.Nodes.Count; i++)
+        //        for(int j=0; j<NodesListViewModel.Nodes[i].Cards.Count; j++)
+        //            if (this == NodesListViewModel.Nodes[i].Cards[j])
+        //                Id = NodesListViewModel.Nodes[i].Cards.Count;
+        //}
+
         public void AddLabels()
         {
             List<Lable> labels = DataLableTask.ReturnLabelsOfTask(DataLable.DownloadLables(), Task);
@@ -91,9 +101,9 @@ namespace NodeApp.Core
             }
         }
 
-#region Command Methods
+        #region Command Methods
 
-public void DeleteCard(object parameter = null)
+        public void DeleteCard(object parameter = null)
         {
             NodesListViewModel.DeleteCard(this);
         }
