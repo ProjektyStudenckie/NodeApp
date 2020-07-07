@@ -43,7 +43,7 @@ namespace NodeApp.Core
             set
             {
                 _Title = value;
-                Column = new Column(Column.column_id, _Title, Column.room_id);
+                Column = new Column(Column.column_id, Title, Column.room_id,Column.column_order);
             }
         }
 
@@ -70,7 +70,15 @@ namespace NodeApp.Core
             }
         }
 
-        public int NodeId { get; set; }
+        public int NodeId {     
+            get {
+                return Column.column_order;
+            } 
+            set {
+                Column.column_order = value;
+                DataColumn.EditColumn(Column, Column.column_id);
+            } 
+        }
 
         private static readonly PropertyChangedEventArgs SelectedCardPropertyEventArgs = new PropertyChangedEventArgs(nameof(SelectedCard));
         public static event PropertyChangedEventHandler StaticPropertyChanged;
@@ -112,6 +120,7 @@ namespace NodeApp.Core
                     NodesListViewModel.Nodes.IndexOf(this) >= 1; });
 
             List<Tasks> taskList = DataTask.ReturnTasksOfColumn(column);
+            taskList.Sort();
             AddCardsWithLabel(taskList);
         }
 
@@ -125,7 +134,7 @@ namespace NodeApp.Core
             if (Cards == null)
                 Cards = new ObservableCollection<CardViewModel>();
 
-            Cards.Add(new CardViewModel(new Tasks("New", Cards.Count, Column.column_id)) { Id = Cards.Count });
+            Cards.Add(new CardViewModel(new Tasks("New", Cards.Count, Column.column_id)));
         }
 
         public void AddCardsWithLabel(List<Tasks> task)
@@ -150,7 +159,7 @@ namespace NodeApp.Core
             List<Tasks> tasks = DataTask.ReturnTasksOfColumn(Column);
             foreach(Tasks x in tasks)
             {
-                DataProgram.DeleteRelationsTask(x);
+                DataProgram.DeleteTaskWithRelations(x);
                 DataTask.DeleteTask(x);
             }
             DataColumn.DeleteColumn(Column);

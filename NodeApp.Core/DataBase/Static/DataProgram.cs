@@ -17,7 +17,7 @@ namespace NodeApp
         public static NodesListViewModel nodesListViewModel;
         public static ObservableCollection<CardLabel> availableLabels { get; set; } = new ObservableCollection<CardLabel>();
 
-        public static void DeleteRelationsTask(Tasks task)
+        public static void DeleteTaskWithRelations(Tasks task)
         {
             List<LableTask> relationsToDestroy = DataLableTask.ReturnRelationsOfTask(task);
             foreach (LableTask x in relationsToDestroy)

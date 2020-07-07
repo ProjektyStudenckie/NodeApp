@@ -35,7 +35,15 @@ namespace NodeApp.Core
             
         public ObservableCollection<CardLabel> Labels { get; set; } = new ObservableCollection<CardLabel>();
 
-        public int Id { get; set; }
+        public int Id
+        {
+            get { return Task.task_order; }
+            set
+            {
+                Task.task_order = value;
+                DataTask.EditTask(Task, Task.task_id);
+            }
+        }
 
         #endregion
 

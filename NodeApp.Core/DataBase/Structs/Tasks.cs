@@ -3,7 +3,7 @@ using System.Threading.Tasks;
 
 namespace NodeApp
 {
-    public class Tasks
+    public class Tasks: System.IComparable<Tasks>
     {
         public int task_id { get; set; }
         public string task_name { get; set; }
@@ -65,7 +65,15 @@ namespace NodeApp
 
         public override int GetHashCode()
         {
-            return base.GetHashCode();
+            return base.GetHashCode(); 
+        }
+
+        public int CompareTo(Tasks comparePart)
+        {
+            if (comparePart == null)
+                return 1;
+            else
+                return this.task_order.CompareTo(comparePart.task_order);
         }
     }
 }

@@ -3,7 +3,7 @@
 
 namespace NodeApp
 {
-    public class Column
+    public class Column : System.IComparable<Column>
     {
         public int column_id { get; set; }
         public string column_name { get; set; }
@@ -58,6 +58,14 @@ namespace NodeApp
             if (lable is null) return false;
             if (column_name.ToLower() != lable.column_name.ToLower()) return false;
             return true;
+        }
+
+        public int CompareTo(Column comparePart)
+        {
+            if (comparePart == null)
+                return 1;
+            else
+                return this.column_order.CompareTo(comparePart.column_order);
         }
 
         public override int GetHashCode()

@@ -70,6 +70,7 @@ namespace NodeApp.Core
             InitializeCommands();
 
             List<Column> colList = DataColumn.ReturnColumnsOfRoom(DataProgram.Room);
+            colList.Sort();
             AddNodes(colList);
             List<Lable> labList = DataLable.ReturnLabelsOfRoom(DataProgram.Room);
 
@@ -181,7 +182,7 @@ namespace NodeApp.Core
 
         public void AddNode(object parameter)
         {
-            Nodes.Add(new NodeContentListViewModel(new Column("New Node", DataProgram.Room.room_id)) { NodeId = Nodes.Count });
+            Nodes.Add(new NodeContentListViewModel(new Column("New Node", DataProgram.Room.room_id, Nodes.Count)));
         }
 
         public void AddNodes(List<Column> columns)
@@ -197,7 +198,7 @@ namespace NodeApp.Core
             for (int i = 0; i < Nodes.Count; i++)
                 if (Nodes[i].Cards.Contains(card))
                 {
-                    DataProgram.DeleteRelationsTask(card.Task);
+                    DataProgram.DeleteTaskWithRelations(card.Task);
 
                     // Decrement all cards with higher id in the column
                     int indexOfRemoved = Nodes[i].Cards.IndexOf(card);
@@ -223,6 +224,8 @@ namespace NodeApp.Core
                     Nodes[i + 1].Cards.Add(card);
 
                     card.Id = Nodes[i + 1].Cards.Count-1;
+                    card.Task.column_id = Nodes[i+1].Column.column_id;
+                    DataTask.EditTask(card.Task, card.Task.task_id);
                     break;
                 }
         }
@@ -241,6 +244,8 @@ namespace NodeApp.Core
                     Nodes[i - 1].Cards.Add(card);
 
                     card.Id = Nodes[i - 1].Cards.Count-1;
+                    card.Task.column_id = Nodes[i-1].Column.column_id;
+                    DataTask.EditTask(card.Task, card.Task.task_id);
                     break;
                 }
         }
