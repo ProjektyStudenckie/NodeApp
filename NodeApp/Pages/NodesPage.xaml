@@ -207,7 +207,7 @@
                                 <local:ColorPicker FinalColorString="{Binding NewLabelBackgroundColor, Mode=TwoWay}"/>
 
 
-                                <TextBlock Text="{Binding Source={x:Static resx:Resources.CreateNewLabel}}"
+                                <TextBlock Text="{Binding Source={x:Static resx:Resources.ForegroundColor}}"
                                            Foreground="{StaticResource ForegroundLightBrush}"
                                            FontSize="{StaticResource FontSizeXLarge}"
                                            HorizontalAlignment="Center"
