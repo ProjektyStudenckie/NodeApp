@@ -9,8 +9,7 @@
              mc:Ignorable="d" 
              d:DesignHeight="750" d:DesignWidth="1250">
 
-    <Grid Background="Transparent"
-          d:DataContext="{x:Static core:NodesListDesignModel.Instance}">
+    <Grid Background="Transparent">
 
         <Button Style="{StaticResource NoBackgroundHoverIconButton}"
                 Width="50"

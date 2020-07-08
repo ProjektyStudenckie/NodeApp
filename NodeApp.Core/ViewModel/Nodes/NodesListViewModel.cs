@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
+using System.Threading.Tasks;
 using System.Windows.Input;
 
 namespace NodeApp.Core
@@ -12,6 +13,8 @@ namespace NodeApp.Core
         #region Public Properties
 
         public bool AreSettingsOpen { get; set; } = false;
+
+        public bool RefreshIsRunning { get; set; }
 
         public string NewLabelTitle { get; set; }
         public string NewLabelBackgroundColor { get; set; } = "2c354a";
@@ -110,7 +113,6 @@ namespace NodeApp.Core
         public void Refresh(object parameter = null)
         {
             DataProgram.nodesListViewModel = new NodesListViewModel();
-            // ToDo: Implement refresh method
             IoC.Get<ApplicationViewModel>().GoToPage(ApplicationPage.Login);
             IoC.Get<ApplicationViewModel>().GoToPage(ApplicationPage.Nodes);
         }

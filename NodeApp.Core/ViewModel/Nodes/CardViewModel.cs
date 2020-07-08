@@ -82,13 +82,8 @@ namespace NodeApp.Core
 
         #endregion
 
-        //public void SetId()
-        //{
-        //    for(int i=0; i<NodesListViewModel.Nodes.Count; i++)
-        //        for(int j=0; j<NodesListViewModel.Nodes[i].Cards.Count; j++)
-        //            if (this == NodesListViewModel.Nodes[i].Cards[j])
-        //                Id = NodesListViewModel.Nodes[i].Cards.Count;
-        //}
+
+        #region Methods
 
         public void AddLabels()
         {
@@ -108,8 +103,6 @@ namespace NodeApp.Core
                 }
             }
         }
-
-        #region Command Methods
 
         public void DeleteCard(object parameter = null)
         {

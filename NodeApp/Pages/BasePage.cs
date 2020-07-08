@@ -13,7 +13,7 @@ namespace NodeApp
 
         public PageAnimation PageUnloadAnimation { get; set; } = PageAnimation.SlideAndFadeOutToLeft;
 
-        public float SlideSeconds { get; set; } = 0.2f;
+        public float SlideSeconds { get; set; } = 0.4f;
 
         public bool ShouldAnimateOut { get; set; }
 
@@ -72,6 +72,7 @@ namespace NodeApp
                     await this.SlideAndFadeOutToLeft(this.SlideSeconds);
                     break;
             }
+            PageUnloadAnimation = PageAnimation.None;
         }
 
         #endregion
