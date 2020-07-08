@@ -295,6 +295,15 @@ namespace NodeApp.Properties {
         }
         
         /// <summary>
+        /// Wyszukuje zlokalizowany ciąg podobny do ciągu Label Settings.
+        /// </summary>
+        public static string LabelsTooltip {
+            get {
+                return ResourceManager.GetString("LabelsTooltip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         /// Wyszukuje zlokalizowany ciąg podobny do ciągu Login.
         /// </summary>
         public static string Login {
@@ -426,15 +435,6 @@ namespace NodeApp.Properties {
         public static string SaveChanges {
             get {
                 return ResourceManager.GetString("SaveChanges", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        /// Wyszukuje zlokalizowany ciąg podobny do ciągu Settings.
-        /// </summary>
-        public static string SettingsTooltip {
-            get {
-                return ResourceManager.GetString("SettingsTooltip", resourceCulture);
             }
         }
     }

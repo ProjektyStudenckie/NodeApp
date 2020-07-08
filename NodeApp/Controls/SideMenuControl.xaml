@@ -41,13 +41,12 @@
                                 </Button>
                             </StackPanel>
 
-                            <!-- Settings Button -->
+                            <!-- Label Button -->
                             <Button Grid.Column="2" Style="{StaticResource IconButton}"
-                                    Content="{StaticResource FontAwesomeCogIcon}" 
-                                    Foreground="{StaticResource TonedLightBlueBrush}"
+                                    Content="{StaticResource FontAwesomeLabelIcon}"
                                     Command="{Binding OpenSettingsCommand}">
                                 <Button.ToolTip>
-                                    <ToolTip Content="{Binding Source={x:Static resx:Resources.SettingsTooltip}}"/>
+                                    <ToolTip Content="{Binding Source={x:Static resx:Resources.LabelsTooltip}}"/>
                                 </Button.ToolTip>
                             </Button>
 

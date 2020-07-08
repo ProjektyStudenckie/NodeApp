@@ -195,6 +195,9 @@
   <data name="Labels" xml:space="preserve">
     <value>Labels</value>
   </data>
+  <data name="LabelsTooltip" xml:space="preserve">
+    <value>Label Settings</value>
+  </data>
   <data name="Login" xml:space="preserve">
     <value>Login</value>
   </data>
@@ -239,8 +242,5 @@
   </data>
   <data name="SaveChanges" xml:space="preserve">
     <value>Save Changes</value>
-  </data>
-  <data name="SettingsTooltip" xml:space="preserve">
-    <value>Settings</value>
   </data>
 </root>

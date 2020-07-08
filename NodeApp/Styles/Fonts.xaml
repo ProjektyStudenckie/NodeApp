@@ -37,6 +37,7 @@
     
 
     <system:String x:Key="FontAwesomeCogIcon">&#xf013;</system:String>
+    <system:String x:Key="FontAwesomeLabelIcon">&#xf02b;</system:String>
     <system:String x:Key="FontAwesomeToolsIcon">&#xf7d9;</system:String>
     <system:String x:Key="FontAwesomeToDoIcon">&#xf0ae;</system:String>
     <system:String x:Key="FontAwesomePlusIcon">&#xf067;</system:String>
